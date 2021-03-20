@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="dark">
+        <ion-title>
+            Acerca de
+            <ion-badge class="info">Autor</ion-badge>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="container">
+
+    <ion-slides [options]="sliderOp">
+        <ion-slide>
+            <ion-label>
+                <ion-badge color="dark">
+
+                    <ion-avatar class="ion-margin-start">
+                        <img src="../../assets/nicoarato.png">
+                    </ion-avatar>
+                </ion-badge>
+                <ion-list-header>
+                    <strong>@NicoArato</strong>
+                </ion-list-header>
+                <p>
+                    <ion-badge color="dark"><strong> nico.arato@gmail.com</strong></ion-badge>
+                </p>
+
+            </ion-label>
+        </ion-slide>
+    </ion-slides>
+
+
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="dark">
+        <ion-title>
+            Farmacias
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+    <div id="mapamapbox">
+
+    </div>
+    <div>
+
+        <ion-button [color]="estilo" (click)="mostrarFarmacias()">
+            {{!visibles ? 'Ver' : 'Quitar'}} farmacias
+        </ion-button>
+
+    </div>
+
+</ion-content>
