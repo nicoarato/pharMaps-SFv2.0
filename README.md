@@ -8,7 +8,7 @@ I am trying to create an ionic application where I can use my geolocation to fin
 To do this I spent time collecting the location of all the pharmacies in my city (Santa Fe - Argentina) and created a service.
 
 
-Visit de project at [PharMaps](https://pharmaps-narato.netlify.app).
+Visit de project at [PharMaps](https://www.santafe-farmacias.com.ar).
 
 
 To work with maps, on this occasion I chose [Mapbox](https://www.mapbox.com).
