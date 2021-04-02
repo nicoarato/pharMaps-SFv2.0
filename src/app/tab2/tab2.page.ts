@@ -22,6 +22,14 @@ export class Tab2Page implements OnInit {
   constructor( private farmaciaService: FarmaciasService ) {}
 
   ngOnInit() {
+    // evita la carga con defectos del mapa
+    setTimeout(() => this.cargarMapa(), 100);
+
+    this.cargarFarmacias();
+
+  }
+
+  cargarMapa(){
     // inicializa el mapa
     (Mapboxgl as any).accessToken = environment.mapboxKey;
     this.mapa = new Mapboxgl.Map({
@@ -38,24 +46,7 @@ export class Tab2Page implements OnInit {
         },
         trackUserLocation: true
     }));
-
-    // // Change the cursor to a pointer when the mouse is over the places layer.
-    // this.mapa.on('mouseenter', 'places', function() {
-    //     this.getCanvas().style.cursor = 'pointer';
-    //     });
-
-    // // Change it back to a pointer when it leaves.
-    // this.mapa.on('mouseleave', 'places', function() {
-    // this.getCanvas().style.cursor = '';
-    // });
-
-
-    setTimeout(() => this.mapa.resize(), 0);
-
-    this.cargarFarmacias();
-
   }
-
 
 
     // carga el pedido por http
