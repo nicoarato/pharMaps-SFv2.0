@@ -118,7 +118,8 @@ export class Tab2Page implements OnInit, AfterViewInit {
         }
         this.farmacias = res;
         if (this.farmacias.length > 0) {
-          console.log('carga exitosa -> filas: ', this.farmacias.length);
+          // console.log('carga exitosa -> filas: ', this.farmacias.length);
+          console.log('carga exitosa');
           return true;
         } else {
           console.log('problemas para cargar farmacias');
@@ -146,9 +147,9 @@ export class Tab2Page implements OnInit, AfterViewInit {
   cargarFarmacia(farmacia: Farmacia) {
     const lng = farmacia.coords[1];
     const lat = farmacia.coords[0];
-    const marker = new Mapboxgl.Marker({
-      color: '#42d77d',
-    })
+    const el = document.createElement('div');
+    el.className = 'marker';
+    const marker = new Mapboxgl.Marker(el)
       .setLngLat([lng, lat])
       .setPopup(new Mapboxgl.Popup({ closeOnClick: false })
         .setLngLat([lng, lat])
@@ -165,7 +166,7 @@ export class Tab2Page implements OnInit, AfterViewInit {
       farmacia.remove();
     });
     this.markers = [];
-    console.log('cantidad de elemntos en markers: ', this.markers.length);
+    // console.log('cantidad de elemntos en markers: ', this.markers.length);
   }
 
 
