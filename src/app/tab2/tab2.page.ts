@@ -118,7 +118,6 @@ export class Tab2Page implements OnInit, AfterViewInit {
         }
         this.farmacias = res;
         if (this.farmacias.length > 0) {
-          // console.log('carga exitosa -> filas: ', this.farmacias.length);
           console.log('carga exitosa');
           return true;
         } else {
@@ -166,7 +165,6 @@ export class Tab2Page implements OnInit, AfterViewInit {
       farmacia.remove();
     });
     this.markers = [];
-    // console.log('cantidad de elemntos en markers: ', this.markers.length);
   }
 
 
