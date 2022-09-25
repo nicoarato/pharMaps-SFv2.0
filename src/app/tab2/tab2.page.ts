@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 
 
@@ -11,7 +11,7 @@ import { Farmacia } from '../interfaces/farmacia.interface';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit, AfterViewInit {
+export class Tab2Page implements OnInit {
 
   mapa: any;
   LngLat: Mapboxgl.LngLat;
@@ -20,9 +20,7 @@ export class Tab2Page implements OnInit, AfterViewInit {
   markers: Mapboxgl.Marker[] = [];
   estilo = 'primary';
   estiloMapa = '';
-  constructor(private farmaciaService: FarmaciasService) {
-
-  }
+  constructor(private farmaciaService: FarmaciasService) {}
 
   ngOnInit() {
     // evita la carga con defectos del mapa
@@ -33,20 +31,13 @@ export class Tab2Page implements OnInit, AfterViewInit {
 
     setTimeout(() =>
       this.mapa.resize(), 1000);
-
-
-
-  }
-
-  ngAfterViewInit() {
-
   }
 
 
   cargarMapa() {
     const hoy = new Date();
     const hora = hoy.getHours();
-    let estiloMapa;
+    let estiloMapa: string;
     if (hora < 19 && hora > 7) {
       estiloMapa = 'mapbox://styles/mapbox/light-v10';
     } else {
@@ -56,7 +47,6 @@ export class Tab2Page implements OnInit, AfterViewInit {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
     this.mapa = new Mapboxgl.Map({
       container: 'mapamapbox', // container id
-      // style: 'mapbox://styles/mapbox/light-v10',
       style: estiloMapa,
       center: [-60.707367, -31.6251114], // starting position lng, lat
       zoom: 13, // starting zoom
