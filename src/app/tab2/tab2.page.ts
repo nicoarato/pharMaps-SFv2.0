@@ -4,7 +4,8 @@ import { environment } from '../../environments/environment.prod';
 
 import * as Mapboxgl from 'mapbox-gl';
 import { FarmaciasService } from '../services/farmacias.service';
-import { Farmacia } from '../interfaces/farmacia.interface';
+import { FarmaciaGeojson } from './../interfaces/farmacia.interface';
+// import { Farmacia } from '../interfaces/farmacia.interface';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +16,7 @@ export class Tab2Page implements OnInit {
 
   mapa: any;
   LngLat: Mapboxgl.LngLat;
-  farmacias: Farmacia[] = [];
+  farmacias: FarmaciaGeojson[] = [];
   visibles = false;
   markers: Mapboxgl.Marker[] = [];
   estilo = 'primary';
@@ -121,7 +122,7 @@ export class Tab2Page implements OnInit {
   mostrarFarmacias() {
     if (!this.visibles) {
       this.visibles = true;
-      const farms: Farmacia[] = this.farmacias;
+      const farms: FarmaciaGeojson[] = this.farmacias;
       farms.forEach(farmacia => {
         this.cargarFarmacia(farmacia);
       });
@@ -133,17 +134,21 @@ export class Tab2Page implements OnInit {
   }
 
   // carga una farmacia en el mapa
-  cargarFarmacia(farmacia: Farmacia) {
-    const lng = farmacia.coords[1];
-    const lat = farmacia.coords[0];
+  cargarFarmacia(farmacia: FarmaciaGeojson) {
+    if(!farmacia) return;
+    const { geometry: { coordinates }, properties: {name, phone, address} } = farmacia;
+    const lng = coordinates[0];
+    const lat = coordinates[1];
     const el = document.createElement('div');
     el.className = 'marker';
     const marker = new Mapboxgl.Marker(el)
       .setLngLat([lng, lat])
       .setPopup(new Mapboxgl.Popup({ closeOnClick: false })
         .setLngLat([lng, lat])
-        .setHTML(`<p><strong>${farmacia.nombre}</strong>
-                          <br>${farmacia.telefono}</p>`))
+        .setHTML(`<p><strong>${name}</strong>
+                          <br>${phone}
+                          <br>${address}</p>
+                          `))
       .addTo(this.mapa);
     // carga array de marcadores.
     this.markers.push(marker);
