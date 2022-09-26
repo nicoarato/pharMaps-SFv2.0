@@ -41,10 +41,18 @@ body {
     margin-top: 70px !important;
 }
 
-// .boton-mostrar {
-    
-//     text-align: center;
-//     display: block;
-//     width: 100%;
 
-// }
+.marker {
+background-image: url('./assets/mapbox-icon.png');
+background-size: cover;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+cursor: pointer;
+}
+
+.mapboxgl-popup-content {
+text-align: center;
+font-family: 'Open Sans', sans-serif;
+color: black;
+}
