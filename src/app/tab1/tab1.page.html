@@ -8,26 +8,38 @@
 
 <ion-content [fullscreen]="true">
 
-    <div class="contenido">
-        <h1>Santa Fe y sus Farmacias</h1>
-        <div>
-            <p>En esta app se pueden visualizar todas las farmacias de la ciudad de Santa Fe, Santo Tomé y Esperanza - Argentina</p>
-            <p>Si lo deseas puedes utilizar la geolocalización para encontrar las farmacias más cercanas a tu ubicación.</p>
-            <p>Descargala y tendrás todas las farmacias a tu alcance.</p>
-            <p>
-                <ion-badge color="success">Próximamente Rafaela</ion-badge>
-            </p>
-        </div>
+    <ion-card class="contenido">
+        <ion-card-header>
+                <h1>Santa Fe y sus Farmacias</h1>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item>En esta app se pueden visualizar todas las farmacias de la ciudad de Santa Fe, Santo Tomé,
+                    Esperanza, Rosario y otras localidades.</ion-item>
+                <ion-item>Si lo deseas puedes utilizar la geolocalización para encontrar las farmacias más cercanas a tu
+                    ubicación.</ion-item>
+                <ion-item>Descargala y tendrás todas las farmacias a tu alcance.</ion-item>
+            </ion-list>
 
-
-    </div>
-    <div class="contenido">
-        <p>Gracias por visitarnos...</p>
-
-    </div>
-
-    <div class="contenido">
-        Utilizamos <a href="https://www.mapbox.com" target="_blank">Mapbox <ion-icon name="open-outline"></ion-icon></a>
-    </div>
+            <ion-title>
+                <ion-badge color="success">Puedes colaborar</ion-badge>
+            </ion-title>
+            <ion-item>
+                <p>Informando una farmacia con sus datos 
+                    y horarios de turno.</p>
+            </ion-item>
+            <ion-item>
+                <p>Asunto: Nueva Farmacia</p>
+            </ion-item>
+            <ion-item>
+                pharmapsargentina@gmail.com
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-card class="contenido">
+        <ion-text> 
+            <p> Lo hacemos con gusto. Gracias por visitarnos...</p> 
+        </ion-text>
+    </ion-card>
 
 </ion-content>
