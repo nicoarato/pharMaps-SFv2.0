@@ -31,7 +31,10 @@
                 *ngFor="let farmacia of farmaciasFiltradas"
                 (click)="seleccionarFarmacia(farmacia)">
                 <ion-label>
-                    <h2>{{ farmacia.properties.name }}</h2>
+                    <h2>
+                        {{ farmacia.properties.name }}
+                        <span class="turno-badge" *ngIf="esFarmaciaDeTurno(farmacia)">De turno</span>
+                    </h2>
                     <p>{{ farmacia.properties.address }}</p>
                     <p class="localidad">{{ farmacia.properties.localidad }}</p>
                 </ion-label>
@@ -39,6 +42,9 @@
         </ion-list>
     </div>
     <div class="acciones-mapa" slot="fixed">
+        <ion-button [color]="estiloTurnos" (click)="mostrarTurnosHoy()">
+            {{!turnosVisibles ? 'De turno' : 'Quitar turnos'}}
+        </ion-button>
         <ion-button [color]="estilo" (click)="mostrarFarmacias()">
             {{!visibles ? 'Ver' : 'Quitar'}} farmacias
         </ion-button>

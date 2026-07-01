@@ -1,0 +1,458 @@
+[
+  {
+    "localidad": "Santa Fe",
+    "mes": "2026-07",
+    "turnos": [
+      {
+        "turno": "PRIMER TURNO",
+        "rangos": [
+          { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" },
+          { "desde": "2026-07-22T08:00:00-03:00", "hasta": "2026-07-23T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Banchio", "direccion": "Irigoyen Freyre 2200", "telefono": "452 2268" },
+          { "nombre": "Belgrano", "direccion": "Rivadavia 3237", "telefono": "456 1118" },
+          { "nombre": "Bonazzola", "direccion": "Av. Freyre 2298", "telefono": "452 7939" },
+          { "nombre": "Bruno", "direccion": "Av. Gral. Paz 5550", "telefono": "460 2204" },
+          { "nombre": "Camilatto", "direccion": "Estanislao Zeballos 2702", "telefono": "460 3413" },
+          { "nombre": "Camusso", "direccion": "4 de Enero 1594", "telefono": "459 4678" },
+          { "nombre": "Costa", "direccion": "Av. Blas Parera 5671", "telefono": "489 5215" },
+          { "nombre": "Gheco", "direccion": "Av. Blas Parera 7621", "telefono": "155 927199" },
+          { "nombre": "Morales", "direccion": "Av. A. del Valle 5855", "telefono": "469 6396" },
+          { "nombre": "Morello", "direccion": "Av. F. Zuviria 4201", "telefono": "453 1215" },
+          { "nombre": "Nebiolo", "direccion": "Av. A. del Valle 7781", "telefono": "460 9883" },
+          { "nombre": "Ortiz de Zarate", "direccion": "Av. J.J. Paso 3299", "telefono": "459 9865" },
+          {
+            "nombre": "Azanza",
+            "direccion": "San Martin 3001",
+            "telefono": "481 1118",
+            "soloRangos": [
+              { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" }
+            ]
+          }
+        ]
+      },
+      {
+        "turno": "SEGUNDO TURNO",
+        "rangos": [
+          { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" },
+          { "desde": "2026-07-23T08:00:00-03:00", "hasta": "2026-07-24T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Amherdt", "direccion": "Saavedra 2498", "telefono": "452 4846" },
+          { "nombre": "Bourdin", "direccion": "Alberdi 3500", "telefono": "452 8066" },
+          { "nombre": "Escudero", "direccion": "Av. Galicia 1881", "telefono": "460 7386" },
+          { "nombre": "Ghersi", "direccion": "Pte Roca 2993", "telefono": "580 8542" },
+          { "nombre": "Jullier", "direccion": "Av. Freyre 3313", "telefono": "455 2838" },
+          { "nombre": "Lauxmann", "direccion": "Bv. Zavalla 1417", "telefono": "459 9610" },
+          { "nombre": "Theiller", "direccion": "Av. Gral. Paz 5773", "telefono": "460 4334" },
+          { "nombre": "Trucco", "direccion": "Las Heras 4501", "telefono": "452 8523" },
+          { "nombre": "Timofiejuk", "direccion": "Rivadavia 2443", "telefono": "155 922104" },
+          { "nombre": "Wuilloud", "direccion": "San Jeronimo 1801", "telefono": "459 7895" },
+          {
+            "nombre": "Bordignon",
+            "direccion": "Suipacha 2310",
+            "telefono": "452 7618",
+            "soloRangos": [
+              { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" }
+            ]
+          }
+        ]
+      },
+      {
+        "turno": "TERCER TURNO",
+        "rangos": [
+          { "desde": "2026-06-30T08:00:00-03:00", "hasta": "2026-07-01T08:00:00-03:00" },
+          { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" },
+          { "desde": "2026-07-24T08:00:00-03:00", "hasta": "2026-07-25T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Armando", "direccion": "25 de Mayo 3441", "telefono": "452 0603" },
+          { "nombre": "Arrimada", "direccion": "Alvear 3618", "telefono": "456 1397" },
+          { "nombre": "Daniel Lagger", "direccion": "Av. Fdo. Zuviria 6536", "telefono": "489 5994" },
+          { "nombre": "El Inca", "direccion": "San Martin 2255", "telefono": "452 1747 / 453 5657" },
+          { "nombre": "Burgues Romano", "direccion": "Av. Blas Parera 7001", "telefono": "489 1807" },
+          { "nombre": "Lucia Banchio", "direccion": "Av. Gral. Paz 7165", "telefono": "460 3500" },
+          { "nombre": "Mazzali", "direccion": "Juan de Garay 2915", "telefono": "458 1286" },
+          { "nombre": "Pellegrini", "direccion": "Bv. Pellegrini 3465", "telefono": "452 1233" },
+          { "nombre": "Plank", "direccion": "Av. Gral. Paz 4880", "telefono": "412 1360" },
+          { "nombre": "Sobrero", "direccion": "Mendoza 3306", "telefono": "154 056175" },
+          { "nombre": "Strada", "direccion": "Bv. Zavalla 1067", "telefono": "459 9798" },
+          {
+            "nombre": "Asinari",
+            "direccion": "Crespo 2808",
+            "telefono": "453 0042",
+            "soloRangos": [
+              { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" }
+            ]
+          }
+        ]
+      },
+      {
+        "turno": "CUARTO TURNO",
+        "rangos": [
+          { "desde": "2026-07-01T08:00:00-03:00", "hasta": "2026-07-02T08:00:00-03:00" },
+          { "desde": "2026-07-13T08:00:00-03:00", "hasta": "2026-07-14T08:00:00-03:00" },
+          { "desde": "2026-07-25T08:00:00-03:00", "hasta": "2026-07-26T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Abregu", "direccion": "Av. Freyre 3029", "telefono": "453 1300" },
+          { "nombre": "Ignacio Azanza", "direccion": "Av. L. y Planes 3901", "telefono": "452 6526" },
+          { "nombre": "Gottero", "direccion": "San Martin 2699", "telefono": "453 0644" },
+          { "nombre": "Liliana Martinez", "direccion": "Belgrano 6254", "telefono": "460 6780" },
+          { "nombre": "Luero", "direccion": "9 de Julio 1898", "telefono": "459 4785" },
+          { "nombre": "Marcelo Galizzi", "direccion": "Av. Blas Parera 8953", "telefono": "484 0578" },
+          { "nombre": "Mario Martinez", "direccion": "Av. A. del Valle 4499", "telefono": "453 1597" },
+          { "nombre": "Pardo", "direccion": "9 de Julio 3443", "telefono": "456 6267" },
+          { "nombre": "Sabio", "direccion": "Angel Cassanello 898", "telefono": "460 8172" },
+          { "nombre": "San Lorenzo", "direccion": "Av. Freyre 1598", "telefono": "459 3487" },
+          { "nombre": "Santivanez", "direccion": "Estanislao Zeballos 4453", "telefono": "489 2739" },
+          { "nombre": "Tonini", "direccion": "Avellaneda 3498", "telefono": "453 8391" },
+          { "nombre": "Zimmerman", "direccion": "Padre Genesio 2971", "telefono": "469 1616" }
+        ]
+      },
+      {
+        "turno": "QUINTO TURNO",
+        "rangos": [
+          { "desde": "2026-07-02T08:00:00-03:00", "hasta": "2026-07-03T08:00:00-03:00" },
+          { "desde": "2026-07-14T08:00:00-03:00", "hasta": "2026-07-15T08:00:00-03:00" },
+          { "desde": "2026-07-26T08:00:00-03:00", "hasta": "2026-07-27T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Acosta", "direccion": "Suipacha 2506", "telefono": "455 6677" },
+          { "nombre": "Alejandro Senn", "direccion": "4 de Enero 2599", "telefono": "452 9302" },
+          { "nombre": "Bonazzola Denise", "direccion": "Gral. Lopez 2740", "telefono": "156 139373" },
+          { "nombre": "Chelini", "direccion": "Av. Facundo Zuviria 4679", "telefono": "453 0348" },
+          { "nombre": "Giulioni", "direccion": "Gorostiaga 3038", "telefono": "488 9970" },
+          { "nombre": "Lopez", "direccion": "Av. Lopez y Planes 4267", "telefono": "453 4829" },
+          { "nombre": "Mai", "direccion": "Av. A. del Valle 7431", "telefono": "460 2224" },
+          { "nombre": "Martinez Juan Jose", "direccion": "Urquiza 1859", "telefono": "459 9949" },
+          { "nombre": "Mendez", "direccion": "Guemes 4356", "telefono": "453 1945" },
+          { "nombre": "Naito", "direccion": "Mendoza 4098", "telefono": "456 3842" },
+          { "nombre": "Pasteur", "direccion": "Marcial Candioti 3499", "telefono": "452 0608" },
+          { "nombre": "Rojas", "direccion": "Blas Parera 7202", "telefono": "489 2747" },
+          { "nombre": "Valetti", "direccion": "Av. Gral. Paz 6440", "telefono": "469 1813" }
+        ]
+      },
+      {
+        "turno": "SEXTO TURNO",
+        "rangos": [
+          { "desde": "2026-07-03T08:00:00-03:00", "hasta": "2026-07-04T08:00:00-03:00" },
+          { "desde": "2026-07-15T08:00:00-03:00", "hasta": "2026-07-16T08:00:00-03:00" },
+          { "desde": "2026-07-27T08:00:00-03:00", "hasta": "2026-07-28T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Capra", "direccion": "Entre Rios 3115", "telefono": "459 7877" },
+          { "nombre": "Costa Samita", "direccion": "Av. A. del Valle 6378", "telefono": "460 2586" },
+          { "nombre": "Caporizzo", "direccion": "Av. A. del Valle 9284", "telefono": "412 2564" },
+          { "nombre": "Donadio", "direccion": "Javier de la Rosa 322", "telefono": "460 6020" },
+          { "nombre": "Junges", "direccion": "Guemes 3701", "telefono": "456 1203" },
+          { "nombre": "Long", "direccion": "Av. A. del Valle 4026", "telefono": "455 2457" },
+          { "nombre": "Mergen", "direccion": "Av. Penalosa 7308", "telefono": "155 849314" },
+          { "nombre": "Ortega", "direccion": "Blas Parera 8448", "telefono": "484 2593" },
+          { "nombre": "Pedro A. Kornijuk", "direccion": "Av. F. Zuviria 5323", "telefono": "488 2156" },
+          { "nombre": "Sartor", "direccion": "Rivadavia 3300", "telefono": "455 5412" },
+          { "nombre": "Valverde", "direccion": "1 de Mayo 2215", "telefono": "453 5891" },
+          { "nombre": "Veronica Cano", "direccion": "Suipacha 2912", "telefono": "455 8880" },
+          { "nombre": "Vignolo", "direccion": "Av. Gral. Paz 4698", "telefono": "453 8276" }
+        ]
+      },
+      {
+        "turno": "SEPTIMO TURNO",
+        "rangos": [
+          { "desde": "2026-07-04T08:00:00-03:00", "hasta": "2026-07-05T08:00:00-03:00" },
+          { "desde": "2026-07-16T08:00:00-03:00", "hasta": "2026-07-17T08:00:00-03:00" },
+          { "desde": "2026-07-28T08:00:00-03:00", "hasta": "2026-07-29T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Bolognesi", "direccion": "Av. Fdo. Zuviria 5079", "telefono": "488 7805" },
+          { "nombre": "Cardoso", "direccion": "Av. Freyre 2638", "telefono": "453 7137 / 452 6344" },
+          { "nombre": "Esterkin", "direccion": "San Jeronimo 1995", "telefono": "459 7766" },
+          { "nombre": "Figueroa Sobrero", "direccion": "Av. Gral. Paz 7471", "telefono": "460 1179" },
+          { "nombre": "Gomez", "direccion": "Av. Vera Penalosa 6839", "telefono": "484 3684" },
+          { "nombre": "Imhof", "direccion": "Marcial Candioti 2796", "telefono": "456 6137" },
+          { "nombre": "Lagger Zurbriggen", "direccion": "Las Heras 5401", "telefono": "460 3331" },
+          { "nombre": "Lencinas", "direccion": "Balcarce 2384", "telefono": "481 1613" },
+          { "nombre": "Maria Selva", "direccion": "Av. A. del Valle 6600", "telefono": "484 7455" },
+          { "nombre": "Santiago", "direccion": "Necochea 4162", "telefono": "481 1560" },
+          { "nombre": "Vinderola", "direccion": "Bv. Pellegrini 3060", "telefono": "453 1674" }
+        ]
+      },
+      {
+        "turno": "OCTAVO TURNO",
+        "rangos": [
+          { "desde": "2026-07-05T08:00:00-03:00", "hasta": "2026-07-06T08:00:00-03:00" },
+          { "desde": "2026-07-17T08:00:00-03:00", "hasta": "2026-07-18T08:00:00-03:00" },
+          { "desde": "2026-07-29T08:00:00-03:00", "hasta": "2026-07-30T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Barrientos", "direccion": "9 de Julio 2198", "telefono": "459 9601" },
+          { "nombre": "Caraballo", "direccion": "Diagonal Goyena 3460", "telefono": "155 555286" },
+          { "nombre": "Clave", "direccion": "Av. G. Paz 4548", "telefono": "154 622615" },
+          { "nombre": "Fanessi", "direccion": "1 de Mayo 2899", "telefono": "453 9000" },
+          { "nombre": "Ferro", "direccion": "Francia 2998", "telefono": "581 7632" },
+          { "nombre": "Judith Acevedo", "direccion": "Castelli 3642", "telefono": "155 329661" },
+          { "nombre": "Montes", "direccion": "Av. Gral. Paz 6765", "telefono": "460 5026" },
+          { "nombre": "Santa Fe", "direccion": "Saavedra 1822", "telefono": "459 2301 / 459 9707" },
+          { "nombre": "Sen - Coltrinari", "direccion": "Salv. del Carril 1672", "telefono": "460 5463" },
+          { "nombre": "Suppo", "direccion": "Av. A. del Valle 6897", "telefono": "460 4141" },
+          { "nombre": "Ugolini", "direccion": "Av. Gorriti 4512", "telefono": "480 2555" }
+        ]
+      },
+      {
+        "turno": "NOVENO TURNO",
+        "rangos": [
+          { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" },
+          { "desde": "2026-07-18T08:00:00-03:00", "hasta": "2026-07-19T08:00:00-03:00" },
+          { "desde": "2026-07-30T08:00:00-03:00", "hasta": "2026-07-31T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Bertolin", "direccion": "Urquiza 1067", "telefono": "412 1091" },
+          { "nombre": "Chemes", "direccion": "Av. Urquiza 2179", "telefono": "459 7575" },
+          { "nombre": "Coll", "direccion": "Av. A. del Valle 6029", "telefono": "581 8682" },
+          { "nombre": "Damiani", "direccion": "Urquiza 3180", "telefono": "456 5287" },
+          { "nombre": "Domet Hurani", "direccion": "Av. Gorriti 3751-Loc. 2", "telefono": "155 139889" },
+          { "nombre": "Gabriel Jauregui", "direccion": "Echaque 7254", "telefono": "460 4556" },
+          { "nombre": "Pirola", "direccion": "Av. Lopez y Planes 4499", "telefono": "456 3029" },
+          { "nombre": "Nicolau Manzur", "direccion": "1 de Mayo 2699", "telefono": "452 3002" },
+          { "nombre": "Pacce", "direccion": "Av. A. del Valle 4900", "telefono": "455 8517" },
+          { "nombre": "Peiro", "direccion": "Av. Fdo. Zuviria 6253", "telefono": "154 725272" },
+          { "nombre": "Stricker", "direccion": "Chacabuco 2116", "telefono": "453 9095" },
+          { "nombre": "Zapata Moran", "direccion": "Blas Parera 6751", "telefono": "489 1979" },
+          {
+            "nombre": "Garcia",
+            "direccion": "Rivadavia 3193",
+            "telefono": "455 0724",
+            "soloRangos": [
+              { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" }
+            ]
+          }
+        ]
+      },
+      {
+        "turno": "DECIMO TURNO",
+        "rangos": [
+          { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" },
+          { "desde": "2026-07-19T08:00:00-03:00", "hasta": "2026-07-20T08:00:00-03:00" },
+          { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Coniglio", "direccion": "Av. Facundo Zuviria 5912", "telefono": "489 3327" },
+          { "nombre": "Dentesani", "direccion": "Ituzaingo 1357 P.B.", "telefono": "154 492052" },
+          { "nombre": "Finelli", "direccion": "Las Heras 7304", "telefono": "460 0104" },
+          { "nombre": "Fucksmann", "direccion": "Saavedra 3081/85", "telefono": "452 3165" },
+          { "nombre": "Leiva", "direccion": "La Rioja 2511", "telefono": "453 7968" },
+          { "nombre": "Mercado Central", "direccion": "San Geronimo 2179", "telefono": "459 7200" },
+          { "nombre": "Morante", "direccion": "Barrio El Pozo M.8 Vda.43", "telefono": "451 1485" },
+          { "nombre": "Queglas", "direccion": "12 de Infanteria 4400 / Las Flores II - M 8 - Dto. 379 - P. Baja", "telefono": "489 7439" },
+          { "nombre": "Salvatierra", "direccion": "Av. Gral. Lopez 3272", "telefono": "459 8352" },
+          { "nombre": "Sileoni", "direccion": "Angel Casanello 519", "telefono": "460 4940" },
+          {
+            "nombre": "Bosch",
+            "direccion": "Stgo. del Estero 2764",
+            "telefono": "456 9919 / 454 0404",
+            "soloRangos": [
+              { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" }
+            ]
+          }
+        ]
+      },
+      {
+        "turno": "UNDECIMO TURNO",
+        "rangos": [
+          { "desde": "2026-07-08T08:00:00-03:00", "hasta": "2026-07-09T08:00:00-03:00" },
+          { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Argenti", "direccion": "San Jeronimo 1746", "telefono": "459 2943" },
+          { "nombre": "Berron", "direccion": "Diagonal Goyena 3221", "telefono": "489 4530" },
+          { "nombre": "Castro Karina", "direccion": "Dra. Grierson 8231", "telefono": "155 691900" },
+          { "nombre": "Facino", "direccion": "Diagonal Espana 3176", "telefono": "580 5041" },
+          { "nombre": "Labath", "direccion": "Stgo. del Estero 3142 - Loc. 5", "telefono": "455 5146" },
+          { "nombre": "Martinez", "direccion": "Av. Galicia 1519", "telefono": "460 6375" },
+          { "nombre": "Monica Wagner", "direccion": "Marcial Candioti 3899", "telefono": "452 2242" },
+          { "nombre": "Rita Martinez", "direccion": "Av. A. del Valle 10479", "telefono": "469 4874" },
+          { "nombre": "Rojas Sotelo", "direccion": "Alvear 6303", "telefono": "460 7603" },
+          { "nombre": "Pescetti Maximiliano", "direccion": "Mendoza 2676", "telefono": "452 2928" },
+          { "nombre": "Scalzo", "direccion": "Gobernador Vera 3206", "telefono": "455 3083" },
+          { "nombre": "Vilarrubi", "direccion": "Av. Penalosa 7512", "telefono": "488 3608" }
+        ]
+      },
+      {
+        "turno": "DUODECIMO TURNO",
+        "rangos": [
+          { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
+          { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Bonazzola Estefania", "direccion": "A. del Valle 5118", "telefono": "452 6519" },
+          { "nombre": "Brambilla", "direccion": "E. Zeballos 3731", "telefono": "489 4243 / 489 4287" },
+          { "nombre": "Burgi", "direccion": "Bv. Pellegrini 3187", "telefono": "581 5787" },
+          { "nombre": "Colucci", "direccion": "Av. Freyre 1908", "telefono": "459 9418" },
+          { "nombre": "German Lopez", "direccion": "Av. Gral. Paz 5210", "telefono": "452 8048" },
+          { "nombre": "Gimenez", "direccion": "Urquiza 2332", "telefono": "452 6256" },
+          { "nombre": "Invinkelried", "direccion": "Lavalle 4201", "telefono": "456 6576" },
+          { "nombre": "Mansilla", "direccion": "9 de Julio 1181", "telefono": "459 8798" },
+          { "nombre": "Menapace", "direccion": "Blas Parera 7831", "telefono": "489 0660" },
+          { "nombre": "Pescetti", "direccion": "P. Genesio 1901", "telefono": "460 4447" },
+          { "nombre": "Ranzuglia", "direccion": "Fray C. Rodriguez 3889", "telefono": "488 4801" },
+          {
+            "nombre": "Wagner Burgues",
+            "direccion": "Rivadavia 3098",
+            "telefono": "456 1500",
+            "soloRangos": [
+              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" }
+            ]
+          },
+          {
+            "nombre": "Zentner",
+            "direccion": "San Geronimo 3101",
+            "telefono": "453 2805",
+            "soloRangos": [
+              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" }
+            ]
+          }
+        ]
+      }
+    ],
+    "fuente": {
+      "tipo": "capturas-manuales-del-afiche",
+      "fechaReferencia": "2026-07",
+      "nota": "Bloques de Santa Fe recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion."
+    }
+  },
+  {
+    "localidad": "Santo Tome",
+    "mes": "2026-07",
+    "turnos": [
+      {
+        "turno": "PRIMER TURNO",
+        "rangos": [
+          { "desde": "2026-06-30T08:00:00-03:00", "hasta": "2026-07-01T08:00:00-03:00" },
+          { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
+          { "desde": "2026-07-18T08:00:00-03:00", "hasta": "2026-07-19T08:00:00-03:00" },
+          { "desde": "2026-07-27T08:00:00-03:00", "hasta": "2026-07-28T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Erica Tepp", "direccion": "Av. Richeri 3296", "telefono": "474 1041" },
+          { "nombre": "Stessens", "direccion": "Av. 7 de Marzo 1882", "telefono": "474 3669" },
+          { "nombre": "Villata", "direccion": "Av. Lujan 2979", "telefono": "474 3371" }
+        ]
+      },
+      {
+        "turno": "SEGUNDO TURNO",
+        "rangos": [
+          { "desde": "2026-07-01T08:00:00-03:00", "hasta": "2026-07-02T08:00:00-03:00" },
+          { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" },
+          { "desde": "2026-07-19T08:00:00-03:00", "hasta": "2026-07-20T08:00:00-03:00" },
+          { "desde": "2026-07-28T08:00:00-03:00", "hasta": "2026-07-29T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Sauco", "direccion": "Alberdi 2154", "telefono": "474 6180" },
+          { "nombre": "Olivero", "direccion": "Hernandarias 1793", "telefono": "475 1075" },
+          { "nombre": "Escobar", "direccion": "Av. 7 de Marzo 1527", "telefono": "474 0133" }
+        ]
+      },
+      {
+        "turno": "TERCER TURNO",
+        "rangos": [
+          { "desde": "2026-07-02T08:00:00-03:00", "hasta": "2026-07-03T08:00:00-03:00" },
+          { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" },
+          { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" },
+          { "desde": "2026-07-29T08:00:00-03:00", "hasta": "2026-07-30T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Cirelli", "direccion": "25 de Mayo 1654", "telefono": "474 0427" },
+          { "nombre": "Gomez", "direccion": "La Rioja 2295", "telefono": "475 3219" },
+          { "nombre": "Zimmermann", "direccion": "Mariano Candioti 3226", "telefono": "474 7279" }
+        ]
+      },
+      {
+        "turno": "CUARTO TURNO",
+        "rangos": [
+          { "desde": "2026-07-03T08:00:00-03:00", "hasta": "2026-07-04T08:00:00-03:00" },
+          { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" },
+          { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" },
+          { "desde": "2026-07-30T08:00:00-03:00", "hasta": "2026-07-31T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Marta Tepp", "direccion": "Av. Lujan 3636", "telefono": "474 4804" },
+          { "nombre": "Bonino", "direccion": "Obispo Gelabert 2198", "telefono": "474 4484" },
+          { "nombre": "Martinez", "direccion": "Hipolito Yrigoyen 2235", "telefono": "474 3995" }
+        ]
+      },
+      {
+        "turno": "QUINTO TURNO",
+        "rangos": [
+          { "desde": "2026-07-04T08:00:00-03:00", "hasta": "2026-07-05T08:00:00-03:00" },
+          { "desde": "2026-07-13T08:00:00-03:00", "hasta": "2026-07-14T08:00:00-03:00" },
+          { "desde": "2026-07-22T08:00:00-03:00", "hasta": "2026-07-23T08:00:00-03:00" },
+          { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Pescetti Julieta", "direccion": "Av. 7 de Marzo 1760", "telefono": "474 0375" },
+          { "nombre": "Berta", "direccion": "Ejercito Argentino 2695", "telefono": "474 9893" },
+          { "nombre": "Cruz", "direccion": "M. Candioti 2493", "telefono": "474 3501" },
+          { "nombre": "Curado", "direccion": "Paseo Las Acacias - AP01 km 151 - Loc. U31 y U37", "telefono": "155317070" }
+        ]
+      },
+      {
+        "turno": "SEXTO TURNO",
+        "rangos": [
+          { "desde": "2026-07-05T08:00:00-03:00", "hasta": "2026-07-06T08:00:00-03:00" },
+          { "desde": "2026-07-14T08:00:00-03:00", "hasta": "2026-07-15T08:00:00-03:00" },
+          { "desde": "2026-07-23T08:00:00-03:00", "hasta": "2026-07-24T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Mayoraz", "direccion": "25 de Mayo 2017", "telefono": "474 7057" },
+          { "nombre": "Macagno", "direccion": "Av. 7 de Marzo 2601", "telefono": "474 2196" },
+          { "nombre": "Tosello", "direccion": "Lopez y Planes 2865", "telefono": "154 470671" }
+        ]
+      },
+      {
+        "turno": "SEPTIMO TURNO",
+        "rangos": [
+          { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" },
+          { "desde": "2026-07-15T08:00:00-03:00", "hasta": "2026-07-16T08:00:00-03:00" },
+          { "desde": "2026-07-24T08:00:00-03:00", "hasta": "2026-07-25T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Contini", "direccion": "Sarmiento 1776", "telefono": "474 0422" },
+          { "nombre": "Marcolini", "direccion": "Av. Lujan 2659", "telefono": "474 1354" },
+          { "nombre": "San Roque", "direccion": "Av. 7 de Marzo 2118", "telefono": "474 0466" }
+        ]
+      },
+      {
+        "turno": "OCTAVO TURNO",
+        "rangos": [
+          { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" },
+          { "desde": "2026-07-16T08:00:00-03:00", "hasta": "2026-07-17T08:00:00-03:00" },
+          { "desde": "2026-07-25T08:00:00-03:00", "hasta": "2026-07-26T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Quassolo", "direccion": "Sarmiento 2343", "telefono": "474 7428" },
+          { "nombre": "Mariana Gomez", "direccion": "Avenida Lujan 2468", "telefono": "474 2737" },
+          { "nombre": "Rivero", "direccion": "Mariano Candioti 2801", "telefono": "154 623606" }
+        ]
+      },
+      {
+        "turno": "NOVENO TURNO",
+        "rangos": [
+          { "desde": "2026-07-08T08:00:00-03:00", "hasta": "2026-07-09T08:00:00-03:00" },
+          { "desde": "2026-07-17T08:00:00-03:00", "hasta": "2026-07-18T08:00:00-03:00" },
+          { "desde": "2026-07-26T08:00:00-03:00", "hasta": "2026-07-27T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Adrian Carrizo", "direccion": "Belgrano 3405", "telefono": "474 1865" },
+          { "nombre": "Firmani", "direccion": "25 de Mayo 1878", "telefono": "474 4847" },
+          { "nombre": "Palacin", "direccion": "Mariano Candioti 3677", "telefono": "474 1674" }
+        ]
+      }
+    ],
+    "fuente": {
+      "tipo": "capturas-manuales-del-afiche",
+      "fechaReferencia": "2026-07",
+      "nota": "Bloques de Santo Tome recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion."
+    }
+  }
+]

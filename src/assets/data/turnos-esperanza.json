@@ -1,0 +1,242 @@
+{
+  "source": {
+    "name": "Turismo Esperanza",
+    "url": "https://esperanza.tur.ar/2016/12/12/farmacias-de-turno/",
+    "retrievedAt": "2026-07-01"
+  },
+  "localidad": "ESPERANZA",
+  "turnoHorario": "08:00 a 08:00",
+  "items": [
+    {
+      "date": "2026-06-29",
+      "farmacias": [
+        { "alias": "SAD", "farmaciaName": "Farmacia SAD" },
+        { "alias": "BARRIOS", "farmaciaName": "Farmacia BARRIOS" }
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "farmacias": [
+        { "alias": "ALTHAUS", "farmaciaName": "Farmacia ALTHAUS" },
+        { "alias": "LONGONI", "farmaciaName": "Farmacia LONGONI" }
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "farmacias": [
+        { "alias": "BIANCHINI", "farmaciaName": "Farmacia BIANCHINI" },
+        { "alias": "TARDIOLI", "farmaciaName": "Farmacia TARDIOLI" }
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "farmacias": [
+        { "alias": "PIERUCCIONI", "farmaciaName": "Farmacia PIERUCCIONI" },
+        { "alias": "SCHNEIDER C.", "farmaciaName": "Farmacia CLAUDIA SCHNEIDER" }
+      ]
+    },
+    {
+      "date": "2026-07-03",
+      "farmacias": [
+        { "alias": "HILAS", "farmaciaName": "Farmacia HILAS" },
+        { "alias": "FORTI", "farmaciaName": "Farmacia FORTI" }
+      ]
+    },
+    {
+      "date": "2026-07-04",
+      "farmacias": [
+        { "alias": "BORGOGNO", "farmaciaName": "Farmacia BORGOGNO" },
+        { "alias": "MARELLI", "farmaciaName": null }
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "farmacias": [
+        { "alias": "FAVARIN", "farmaciaName": "Farmacia FAVARIN" },
+        { "alias": "SAUGY", "farmaciaName": "Farmacia SAUGY" }
+      ]
+    },
+    {
+      "date": "2026-07-06",
+      "farmacias": [
+        { "alias": "FUENTES", "farmaciaName": "Farmacia FUENTES" },
+        { "alias": "ZEHNDER", "farmaciaName": "Farmacia ZEHNDER" }
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "farmacias": [
+        { "alias": "ZEBALLOS", "farmaciaName": "Farmacia SALIM ZEBALLOS" },
+        { "alias": "FERREYRA", "farmaciaName": "Farmacia FERREYRA" }
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "farmacias": [
+        { "alias": "RIERA", "farmaciaName": "Farmacia Riera" },
+        { "alias": "SANTILLAN", "farmaciaName": null }
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "farmacias": [
+        { "alias": "LOUREYRO", "farmaciaName": null },
+        { "alias": "PAOLI", "farmaciaName": null }
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "farmacias": [
+        { "alias": "SAD", "farmaciaName": "Farmacia SAD" },
+        { "alias": "DONALISIO", "farmaciaName": "Farmacia DONALISIO" }
+      ]
+    },
+    {
+      "date": "2026-07-11",
+      "farmacias": [
+        { "alias": "MORELLI", "farmaciaName": "Farmacia MORELLI" },
+        { "alias": "PERIN", "farmaciaName": "Farmacia PERIN" }
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "farmacias": [
+        { "alias": "LIMACHE", "farmaciaName": "Farmacia LIMACHE" },
+        { "alias": "TKACZYC", "farmaciaName": "Farmacia TKACZYK" }
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "farmacias": [
+        { "alias": "GAMBOA", "farmaciaName": "Farmacia GAMBOA" },
+        { "alias": "SCHNEIDER S.", "farmaciaName": "Farmacia SERGIO SCHNEIDER" }
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "farmacias": [
+        { "alias": "BAR", "farmaciaName": "Farmacia Bar" },
+        { "alias": "BARRIOS", "farmaciaName": "Farmacia BARRIOS" }
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "farmacias": [
+        { "alias": "ALTHAUS", "farmaciaName": "Farmacia ALTHAUS" },
+        { "alias": "LONGONI", "farmaciaName": "Farmacia LONGONI" }
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "farmacias": [
+        { "alias": "BIANCHINI", "farmaciaName": "Farmacia BIANCHINI" },
+        { "alias": "TARDIOLI", "farmaciaName": "Farmacia TARDIOLI" }
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "farmacias": [
+        { "alias": "PIERUCCIONI", "farmaciaName": "Farmacia PIERUCCIONI" },
+        { "alias": "SCHNEIDER C.", "farmaciaName": "Farmacia CLAUDIA SCHNEIDER" }
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "farmacias": [
+        { "alias": "HILAS", "farmaciaName": "Farmacia HILAS" },
+        { "alias": "FORTI", "farmaciaName": "Farmacia FORTI" }
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "farmacias": [
+        { "alias": "BORGOGNO", "farmaciaName": "Farmacia BORGOGNO" },
+        { "alias": "MARELLI", "farmaciaName": null }
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "farmacias": [
+        { "alias": "FAVARIN", "farmaciaName": "Farmacia FAVARIN" },
+        { "alias": "SAUGY", "farmaciaName": "Farmacia SAUGY" }
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "farmacias": [
+        { "alias": "FUENTES", "farmaciaName": "Farmacia FUENTES" },
+        { "alias": "ZEHNDER", "farmaciaName": "Farmacia ZEHNDER" }
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "farmacias": [
+        { "alias": "ZEBALLOS", "farmaciaName": "Farmacia SALIM ZEBALLOS" },
+        { "alias": "FERREYRA", "farmaciaName": "Farmacia FERREYRA" }
+      ]
+    },
+    {
+      "date": "2026-07-23",
+      "farmacias": [
+        { "alias": "RIERA", "farmaciaName": "Farmacia Riera" },
+        { "alias": "SANTILLAN", "farmaciaName": null }
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "farmacias": [
+        { "alias": "LOUREYRO", "farmaciaName": null },
+        { "alias": "PAOLI", "farmaciaName": null }
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "farmacias": [
+        { "alias": "SAD", "farmaciaName": "Farmacia SAD" },
+        { "alias": "DONALISIO", "farmaciaName": "Farmacia DONALISIO" }
+      ]
+    },
+    {
+      "date": "2026-07-26",
+      "farmacias": [
+        { "alias": "MORELLI", "farmaciaName": "Farmacia MORELLI" },
+        { "alias": "PERIN", "farmaciaName": "Farmacia PERIN" }
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "farmacias": [
+        { "alias": "LIMACHE", "farmaciaName": "Farmacia LIMACHE" },
+        { "alias": "TKACZYC", "farmaciaName": "Farmacia TKACZYK" }
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "farmacias": [
+        { "alias": "GAMBOA", "farmaciaName": "Farmacia GAMBOA" },
+        { "alias": "SCHNEIDER S.", "farmaciaName": "Farmacia SERGIO SCHNEIDER" }
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "farmacias": [
+        { "alias": "BAR", "farmaciaName": "Farmacia Bar" },
+        { "alias": "BARRIOS", "farmaciaName": "Farmacia BARRIOS" }
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "farmacias": [
+        { "alias": "ALTHAUS", "farmaciaName": "Farmacia ALTHAUS" },
+        { "alias": "LONGONI", "farmaciaName": "Farmacia LONGONI" }
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "farmacias": [
+        { "alias": "BIANCHINI", "farmaciaName": "Farmacia BIANCHINI" },
+        { "alias": "TARDIOLI", "farmaciaName": "Farmacia TARDIOLI" }
+      ]
+    }
+  ]
+}
