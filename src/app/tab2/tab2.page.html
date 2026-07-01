@@ -6,14 +6,40 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 
 
-    <div id="mapamapbox">
+    <div id="mapamapbox" slot="fixed">
 
     </div>
-    <div >
-        <ion-button class="boton-mostrar" [color]="estilo" (click)="mostrarFarmacias()">
+    <div class="buscador-farmacias" slot="fixed">
+        <ion-searchbar
+            #buscadorFarmacias
+            [value]="terminoBusqueda"
+            placeholder="Buscar farmacia"
+            debounce="200"
+            showCancelButton="focus"
+            (ionInput)="buscarFarmacias(buscadorFarmacias.value)"
+            (ionClear)="limpiarBusqueda()"
+            (ionCancel)="limpiarBusqueda()">
+        </ion-searchbar>
+
+        <ion-list *ngIf="farmaciasFiltradas.length > 0">
+            <ion-item
+                button
+                detail="false"
+                *ngFor="let farmacia of farmaciasFiltradas"
+                (click)="seleccionarFarmacia(farmacia)">
+                <ion-label>
+                    <h2>{{ farmacia.properties.name }}</h2>
+                    <p>{{ farmacia.properties.address }}</p>
+                    <p class="localidad">{{ farmacia.properties.localidad }}</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="acciones-mapa" slot="fixed">
+        <ion-button [color]="estilo" (click)="mostrarFarmacias()">
             {{!visibles ? 'Ver' : 'Quitar'}} farmacias
         </ion-button>
     </div>

@@ -17,6 +17,8 @@ export class Tab2Page implements OnInit {
   mapa: any;
   LngLat: Mapboxgl.LngLat;
   farmacias: FarmaciaGeojson[] = [];
+  farmaciasFiltradas: FarmaciaGeojson[] = [];
+  terminoBusqueda = '';
   visibles = false;
   markers: Mapboxgl.Marker[] = [];
   estilo = 'primary';
@@ -108,6 +110,7 @@ export class Tab2Page implements OnInit {
           event.target.complete();
         }
         this.farmacias = res;
+        this.buscarFarmacias();
         if (this.farmacias.length > 0) {
           console.log('carga exitosa');
           return true;
@@ -122,6 +125,7 @@ export class Tab2Page implements OnInit {
   mostrarFarmacias() {
     if (!this.visibles) {
       this.visibles = true;
+      this.quitarFarmacias();
       const farms: FarmaciaGeojson[] = this.farmacias;
       farms.forEach(farmacia => {
         this.cargarFarmacia(farmacia);
@@ -131,6 +135,58 @@ export class Tab2Page implements OnInit {
       this.quitarFarmacias();
     }
     this.estilo = (!this.visibles ? 'primary' : 'danger');
+  }
+
+  buscarFarmacias(valor?) {
+    const valorBusqueda = typeof valor === 'string'
+      ? valor
+      : valor && valor.detail && typeof valor.detail.value === 'string'
+        ? valor.detail.value
+        : valor && valor.target && typeof valor.target.value === 'string'
+          ? valor.target.value
+          : this.terminoBusqueda;
+
+    this.terminoBusqueda = valorBusqueda || '';
+    const busqueda = this.normalizarTexto(this.terminoBusqueda);
+
+    if (!busqueda) {
+      this.farmaciasFiltradas = [];
+      return;
+    }
+
+    this.farmaciasFiltradas = this.farmacias
+      .filter(farmacia => this.farmaciaCoincide(farmacia, busqueda))
+      .slice(0, 8);
+  }
+
+  buscarFarmaciasPorClick() {
+    this.buscarFarmacias(this.terminoBusqueda);
+  }
+
+  seleccionarFarmacia(farmacia: FarmaciaGeojson) {
+    if (!farmacia) {
+      return;
+    }
+
+    const { geometry: { coordinates } } = farmacia;
+    const lng = coordinates[0];
+    const lat = coordinates[1];
+    const marker = this.buscarMarker(farmacia) || this.cargarFarmacia(farmacia);
+
+    this.mapa.flyTo({
+      center: [lng, lat],
+      zoom: 16,
+      essential: true
+    });
+
+    marker.getPopup().addTo(this.mapa);
+    this.terminoBusqueda = farmacia.properties.name;
+    this.farmaciasFiltradas = [];
+  }
+
+  limpiarBusqueda() {
+    this.terminoBusqueda = '';
+    this.farmaciasFiltradas = [];
   }
 
   // carga una farmacia en el mapa
@@ -152,6 +208,7 @@ export class Tab2Page implements OnInit {
       .addTo(this.mapa);
     // carga array de marcadores.
     this.markers.push(marker);
+    return marker;
 
   }
 
@@ -162,6 +219,43 @@ export class Tab2Page implements OnInit {
     this.markers = [];
   }
 
+  private farmaciaCoincide(farmacia: FarmaciaGeojson, busqueda: string) {
+    const properties = farmacia && farmacia.properties ? farmacia.properties : null;
+
+    if (!properties) {
+      return false;
+    }
+
+    const texto = this.normalizarTexto([
+      properties.name,
+      properties.address,
+      properties.localidad,
+      properties.phone,
+      properties.farma_id
+    ].join(' '));
+
+    return texto.includes(busqueda);
+  }
+
+  private buscarMarker(farmacia: FarmaciaGeojson) {
+    const { geometry: { coordinates } } = farmacia;
+    const lng = coordinates[0];
+    const lat = coordinates[1];
+
+    return this.markers.find(marker => {
+      const markerLngLat = marker.getLngLat();
+
+      return markerLngLat.lng === lng && markerLngLat.lat === lat;
+    });
+  }
+
+  private normalizarTexto(texto: string) {
+    return (texto || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
 
 
 }

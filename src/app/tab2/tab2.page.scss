@@ -3,6 +3,50 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
+.buscador-farmacias {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: calc(100% - 24px);
+    max-width: 420px;
+    z-index: 2;
+}
+
+.buscador-farmacias ion-searchbar {
+    --background: rgba(255, 255, 255, 0.96);
+    --border-radius: 8px;
+    --box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    padding: 0;
+}
+
+.buscador-farmacias ion-list {
+    max-height: 280px;
+    overflow: auto;
+    margin-top: 8px;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.buscador-farmacias ion-item h2 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.buscador-farmacias ion-item p {
+    font-size: 12px;
+}
+
+.buscador-farmacias ion-item .localidad {
+    color: #3f6b5a;
+    font-weight: 600;
+}
+
+.acciones-mapa {
+    position: absolute;
+    left: 12px;
+    bottom: 16px;
+    z-index: 2;
+}
