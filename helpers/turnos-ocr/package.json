@@ -1,0 +1,16 @@
+{
+  "name": "pharmaps-turnos-ocr-helper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ocr:pdf": "node scripts/ocr-turnos-pdf.mjs",
+    "ocr:santa-fe": "node scripts/ocr-turnos-santa-fe.mjs",
+    "extract:pdf": "node scripts/extract-turnos-pdf.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.2",
+    "pdfjs-dist": "^6.1.200",
+    "tesseract.js": "^7.0.0"
+  }
+}
