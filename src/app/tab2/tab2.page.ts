@@ -267,7 +267,7 @@ export class Tab2Page implements OnInit {
       essential: true
     });
 
-    this.mostrarPopupFarmacia(farmacia, false);
+    this.mostrarPopupFarmacia(farmacia, this.esFarmaciaDeTurno(farmacia));
     this.terminoBusqueda = farmacia.properties.name;
     this.farmaciasFiltradas = [];
   }
@@ -538,7 +538,7 @@ export class Tab2Page implements OnInit {
   private construirContenidoPopup(name: string, phone: string, address: string, deTurno: boolean) {
     const badge = deTurno
       ? '<span class="popup-badge popup-badge--turno">De turno hoy</span>'
-      : '<span class="popup-badge popup-badge--normal">Disponible</span>';
+      : '';
 
     return `
       <div class="popup-card">

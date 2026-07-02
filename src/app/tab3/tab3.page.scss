@@ -1,21 +1,205 @@
-.about-panel {
+:host {
+    display: block;
+}
+
+.about-content {
+    --background: linear-gradient(180deg, #f7fbf8 0%, #eef5f0 100%);
+}
+
+.about-content::part(background) {
+    background: linear-gradient(180deg, #f7fbf8 0%, #eef5f0 100%);
+}
+
+.about-shell {
     min-height: 100%;
     display: grid;
+    gap: 14px;
+    padding: 18px 16px calc(96px + env(safe-area-inset-bottom));
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.about-hero,
+.about-card {
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(22, 163, 74, 0.08);
+    box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
+}
+
+.about-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 24px 22px 22px;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 0 0 150px 0;
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.16), rgba(134, 239, 172, 0));
+    pointer-events: none;
+}
+
+.about-mark {
+    width: 56px;
+    height: 56px;
+    display: grid;
     place-items: center;
-    gap: 1.25rem;
-    padding: 2rem 1rem;
+    border-radius: 18px;
+    margin-bottom: 14px;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #16a34a;
+    background: linear-gradient(180deg, #ffffff 0%, #eefbf0 100%);
+    box-shadow: 0 12px 26px rgba(22, 163, 74, 0.14);
 }
 
-.profile-card {
-    width: min(320px, 100%);
+.about-hero__eyebrow {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #16a34a;
+}
+
+.about-hero h1 {
     margin: 0;
+    font-size: 32px;
+    line-height: 1.05;
+    font-weight: 800;
+    color: #0f172a;
 }
 
-.avatar-badge {
-    display: block;
-    padding: 0.5rem;
+.about-hero__lead {
+    margin: 12px 0 0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #475569;
 }
 
-ion-avatar {
-    margin: auto;
+.about-card {
+    padding: 18px 20px;
+    border: 1px solid rgba(22, 163, 74, 0.08);
+}
+
+.about-card--accent {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(239, 250, 243, 0.96) 100%);
+    border-color: rgba(22, 163, 74, 0.14);
+}
+
+.about-card--profile {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(247, 251, 248, 0.98) 100%);
+}
+
+.profile-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #16a34a 0%, #4ade80 100%);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: 0 14px 28px rgba(22, 163, 74, 0.2);
+}
+
+.profile-head h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.profile-handle {
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.about-card__title {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #16a34a;
+}
+
+.about-card__text,
+.about-card__meta {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1e293b;
+}
+
+.about-email {
+    display: inline-flex;
+    margin-top: 12px;
+    color: #166534;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+@media (max-width: 420px) {
+    .about-shell {
+        padding: 12px 12px calc(92px + env(safe-area-inset-bottom));
+        gap: 12px;
+    }
+
+    .about-hero,
+    .about-card {
+        padding: 16px;
+        border-radius: 22px;
+    }
+
+    .about-hero h1 {
+        font-size: 24px;
+        line-height: 1.08;
+    }
+
+    .about-mark {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        margin-bottom: 12px;
+    }
+
+    .profile-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+        font-size: 16px;
+    }
+
+    .profile-head h2 {
+        font-size: 18px;
+    }
+
+    .about-hero__lead,
+    .about-card__text,
+    .about-card__meta,
+    .about-email {
+        font-size: 13px;
+        line-height: 1.45;
+    }
 }
