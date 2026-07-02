@@ -520,17 +520,56 @@ export class Tab2Page implements OnInit {
     }
 
     const { geometry: { coordinates }, properties: { name, phone, address } } = farmacia;
-    const turnoTexto = deTurno ? '<br><strong>De turno hoy</strong>' : '';
+    const popupHtml = this.construirContenidoPopup(name, phone, address, deTurno);
 
     this.cerrarPopupActivo();
 
-    this.popupActivo = new Mapboxgl.Popup({ closeOnClick: true })
+    this.popupActivo = new Mapboxgl.Popup({
+      closeOnClick: true,
+      closeButton: true,
+      maxWidth: '300px',
+      className: 'pharmap-popup'
+    })
       .setLngLat([Number(coordinates[0]), Number(coordinates[1])])
-      .setHTML(`<p><strong>${name}</strong>
-                        <br>${phone}
-                        <br>${address}
-                        ${turnoTexto}</p>`)
+      .setHTML(popupHtml)
       .addTo(this.mapa);
+  }
+
+  private construirContenidoPopup(name: string, phone: string, address: string, deTurno: boolean) {
+    const badge = deTurno
+      ? '<span class="popup-badge popup-badge--turno">De turno hoy</span>'
+      : '<span class="popup-badge popup-badge--normal">Disponible</span>';
+
+    return `
+      <div class="popup-card">
+        <div class="popup-card__header">
+          <div class="popup-card__title-group">
+            <p class="popup-card__eyebrow">Farmacia</p>
+            <h3 class="popup-card__title">${this.escaparHtml(name)}</h3>
+          </div>
+          ${badge}
+        </div>
+        <div class="popup-card__body">
+          <div class="popup-row">
+            <span class="popup-row__label">Dirección</span>
+            <span class="popup-row__value">${this.escaparHtml(address)}</span>
+          </div>
+          <div class="popup-row">
+            <span class="popup-row__label">Teléfono</span>
+            <span class="popup-row__value">${this.escaparHtml(phone)}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  private escaparHtml(texto: string) {
+    return (texto || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   private alejarMapaUnPoco() {
