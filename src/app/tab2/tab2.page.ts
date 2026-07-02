@@ -16,7 +16,8 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
+  standalone: false
 })
 export class Tab2Page implements OnInit {
   private readonly farmaciasSourceId = 'farmacias-source';

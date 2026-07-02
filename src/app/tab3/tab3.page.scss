@@ -1,7 +1,19 @@
-ion-slides,
-ion-slide {
-    width: 100%;
-    height: 100%;
+.about-panel {
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    gap: 1.25rem;
+    padding: 2rem 1rem;
+}
+
+.profile-card {
+    width: min(320px, 100%);
+    margin: 0;
+}
+
+.avatar-badge {
+    display: block;
+    padding: 0.5rem;
 }
 
 ion-avatar {
