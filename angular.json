@@ -39,7 +39,10 @@
                 "input": "src/global.scss"
               }
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "mapbox-gl"
+            ]
           },
           "configurations": {
             "production": {
