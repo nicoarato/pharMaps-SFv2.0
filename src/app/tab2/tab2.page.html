@@ -42,11 +42,17 @@
         </ion-list>
     </div>
     <div class="acciones-mapa" slot="fixed">
-        <ion-button [color]="estiloTurnos" (click)="mostrarTurnosHoy()">
-            {{!turnosVisibles ? 'De turno' : 'Quitar turnos'}}
+        <ion-button
+            [class.map-action--active]="!turnosVisibles"
+            [class.map-action--muted]="turnosVisibles"
+            (click)="mostrarTurnosHoy()">
+            {{!turnosVisibles ? 'De turno' : 'Ocultar'}}
         </ion-button>
-        <ion-button [color]="estilo" (click)="mostrarFarmacias()">
-            {{!visibles ? 'Ver' : 'Quitar'}} farmacias
+        <ion-button
+            [class.map-action--soft]="!visibles"
+            [class.map-action--muted]="visibles"
+            (click)="mostrarFarmacias()">
+            {{!visibles ? 'Ver todas' : 'Ocultar'}}
         </ion-button>
     </div>
 

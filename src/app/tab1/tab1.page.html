@@ -1,45 +1,36 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="dark">
         <ion-title>
-            PharMaps
+            Santa Fe Farmacias
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="home-content">
+    <div class="home-shell">
+        <section class="hero-card">
+            <div class="hero-card__mark">SF</div>
+            <p class="hero-card__eyebrow">Santa Fe Farmacias</p>
+            <h1>Busca farmacias y consulta las de turno hoy.</h1>
+            <p class="hero-card__lead">
+                Una vista simple para encontrar ubicación, detalles y estado de turno sin perder tiempo.
+            </p>
 
-    <ion-card class="contenido">
-        <ion-card-header>
-                <h1>Santa Fe y sus Farmacias</h1>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-list>
-                <ion-item>En esta app se pueden visualizar todas las farmacias de la ciudad de Santa Fe, Santo Tomé,
-                    Esperanza, Rosario y otras localidades.</ion-item>
-                <ion-item>Si lo deseas puedes utilizar la geolocalización para encontrar las farmacias más cercanas a tu
-                    ubicación.</ion-item>
-                <ion-item>Descargala y tendrás todas las farmacias a tu alcance.</ion-item>
-            </ion-list>
+            <div class="hero-card__pills">
+                <span class="hero-pill">Mapa</span>
+                <span class="hero-pill">Turnos</span>
+                <span class="hero-pill">Búsqueda</span>
+            </div>
+        </section>
 
-            <ion-title>
-                <ion-badge color="success">Puedes colaborar</ion-badge>
-            </ion-title>
-            <ion-item>
-                <p>Informando una farmacia con sus datos 
-                    y horarios de turno.</p>
-            </ion-item>
-            <ion-item>
-                <p>Asunto: Nueva Farmacia</p>
-            </ion-item>
-            <ion-item>
-                pharmapsargentina@gmail.com
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
-    <ion-card class="contenido">
-        <ion-text> 
-            <p> Lo hacemos con gusto. Gracias por visitarnos...</p> 
-        </ion-text>
-    </ion-card>
-
+        <section class="support-card">
+            <p class="support-card__title">Colaborar</p>
+            <p class="support-card__text">
+                Si detectás un cambio en datos o turnos, escribinos y lo revisamos.
+            </p>
+            <a class="support-card__link" href="mailto:farmaciasdesantafe@gmail.com">
+                farmaciasdesantafe@gmail.com
+            </a>
+        </section>
+    </div>
 </ion-content>

@@ -8,9 +8,12 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
+    "strict": false,
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
     "lib": [
       "es2018",
       "dom"

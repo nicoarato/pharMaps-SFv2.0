@@ -40,8 +40,121 @@ body {
 .mapboxgl-ctrl-top-right{
     margin-top: 70px !important;
 }
-.mapboxgl-popup-content {
-text-align: center;
-font-family: 'Open Sans', sans-serif;
-color: black;
+
+.pharmap-popup .mapboxgl-popup-content {
+    padding: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+    font-family: inherit;
+    color: #0f172a;
+}
+
+.pharmap-popup .mapboxgl-popup-close-button {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96);
+    color: #0f172a;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+}
+
+.pharmap-popup .mapboxgl-popup-close-button:hover {
+    background: #ffffff;
+    color: #0f172a;
+}
+
+.pharmap-popup .mapboxgl-popup-tip {
+    border-top-color: #ffffff;
+}
+
+.popup-card {
+    min-width: 220px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
+    padding: 14px 44px 12px 14px;
+}
+
+.popup-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.popup-card__title-group {
+    min-width: 0;
+}
+
+.popup-card__eyebrow {
+    margin: 0 0 2px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #15803d;
+}
+
+.popup-card__title {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.popup-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.popup-badge--turno {
+    color: #166534;
+    background: #ecfdf3;
+    border: 1px solid #86efac;
+}
+
+.popup-badge--normal {
+    color: #166534;
+    background: #effaf2;
+}
+
+.popup-card__body {
+    display: grid;
+    gap: 8px;
+}
+
+.popup-row {
+    display: grid;
+    gap: 2px;
+}
+
+.popup-row__label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #15803d;
+    line-height: 1.1;
+}
+
+.popup-row__value {
+    font-size: 13px;
+    line-height: 1.2;
+    color: #1e293b;
+    word-break: break-word;
 }
