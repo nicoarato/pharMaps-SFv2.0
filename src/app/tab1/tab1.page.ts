@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -10,6 +9,4 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 export class Tab1Page {
 
   constructor() { }
-
-
 }

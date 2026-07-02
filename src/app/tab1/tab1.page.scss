@@ -97,34 +97,6 @@
     font-weight: 700;
 }
 
-.hero-card__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.hero-card__actions ion-button {
-    --border-radius: 999px;
-    --height: 46px;
-    --padding-start: 18px;
-    --padding-end: 18px;
-    text-transform: none;
-    font-weight: 700;
-    letter-spacing: 0;
-}
-
-.hero-card__primary-action {
-    --box-shadow: 0 10px 24px rgba(22, 163, 74, 0.24);
-}
-
-.hero-card__secondary-action {
-    --border-width: 1px;
-    --border-color: rgba(22, 163, 74, 0.18);
-    --color: #166534;
-    --background-hover: rgba(22, 163, 74, 0.06);
-}
-
 .support-card {
     padding: 18px 22px;
 }
@@ -174,15 +146,6 @@
     .hero-card__lead {
         font-size: 14px;
         line-height: 1.4;
-    }
-
-    .hero-card__actions {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .hero-card__actions ion-button {
-        width: 100%;
     }
 
     .support-card__text {
