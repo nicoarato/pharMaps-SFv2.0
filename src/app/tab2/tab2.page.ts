@@ -21,6 +21,9 @@ import { forkJoin } from 'rxjs';
 })
 export class Tab2Page implements OnInit {
   private readonly farmaciasSourceId = 'farmacias-source';
+  private readonly farmaciasTurnoSourceId = 'farmacias-turno-source';
+  private readonly farmaciasClusterLayerId = 'farmacias-cluster-layer';
+  private readonly farmaciasClusterCountLayerId = 'farmacias-cluster-count-layer';
   private readonly farmaciasLayerId = 'farmacias-layer';
   private readonly farmaciasTurnoHaloLayerId = 'farmacias-turno-halo-layer';
   private readonly farmaciasTurnoLayerId = 'farmacias-turno-layer';
@@ -377,21 +380,110 @@ export class Tab2Page implements OnInit {
   private agregarOActualizarFuenteFarmacias() {
     if (this.mapa.getSource(this.farmaciasSourceId)) {
       this.mapa.getSource(this.farmaciasSourceId).setData(this.farmaciasSource);
+    } else {
+      this.mapa.addSource(this.farmaciasSourceId, {
+        type: 'geojson',
+        data: this.farmaciasSource,
+        cluster: true,
+        clusterMaxZoom: 14,
+        clusterRadius: 42
+      });
+    }
+
+    if (this.mapa.getSource(this.farmaciasTurnoSourceId)) {
+      this.mapa.getSource(this.farmaciasTurnoSourceId).setData(this.farmaciasSource);
       return;
     }
 
-    this.mapa.addSource(this.farmaciasSourceId, {
+    this.mapa.addSource(this.farmaciasTurnoSourceId, {
       type: 'geojson',
       data: this.farmaciasSource
     });
   }
 
   private agregarCapasFarmacias() {
+    if (!this.mapa.getLayer(this.farmaciasClusterLayerId)) {
+      this.mapa.addLayer({
+        id: this.farmaciasClusterLayerId,
+        type: 'circle',
+        source: this.farmaciasSourceId,
+        filter: ['has', 'point_count'],
+        paint: {
+          'circle-color': '#16a34a',
+          'circle-radius': [
+            'step',
+            ['get', 'point_count'],
+            18,
+            20,
+            22,
+            50,
+            28
+          ],
+          'circle-opacity': 0.9,
+          'circle-stroke-color': '#dcfce7',
+          'circle-stroke-width': 3
+        }
+      });
+
+      this.mapa.on('click', this.farmaciasClusterLayerId, (event) => {
+        const feature = event && event.features && event.features[0];
+        if (!feature || !feature.properties || !feature.geometry) {
+          return;
+        }
+
+        const clusterId = feature.properties.cluster_id;
+        const source = this.mapa.getSource(this.farmaciasSourceId) as any;
+
+        if (!source || typeof source.getClusterExpansionZoom !== 'function') {
+          return;
+        }
+
+        source.getClusterExpansionZoom(clusterId, (error, zoom) => {
+          if (error) {
+            return;
+          }
+
+          this.mapa.easeTo({
+            center: feature.geometry.coordinates,
+            zoom,
+            essential: true,
+            duration: 500
+          });
+        });
+      });
+
+      this.mapa.on('mouseenter', this.farmaciasClusterLayerId, () => {
+        this.mapa.getCanvas().style.cursor = 'pointer';
+      });
+
+      this.mapa.on('mouseleave', this.farmaciasClusterLayerId, () => {
+        this.mapa.getCanvas().style.cursor = '';
+      });
+    }
+
+    if (!this.mapa.getLayer(this.farmaciasClusterCountLayerId)) {
+      this.mapa.addLayer({
+        id: this.farmaciasClusterCountLayerId,
+        type: 'symbol',
+        source: this.farmaciasSourceId,
+        filter: ['has', 'point_count'],
+        layout: {
+          'text-field': ['get', 'point_count_abbreviated'],
+          'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+          'text-size': 12
+        },
+        paint: {
+          'text-color': '#ffffff'
+        }
+      });
+    }
+
     if (!this.mapa.getLayer(this.farmaciasLayerId)) {
       this.mapa.addLayer({
         id: this.farmaciasLayerId,
         type: 'symbol',
         source: this.farmaciasSourceId,
+        filter: ['!', ['has', 'point_count']],
         layout: {
           'icon-image': 'farmacia-icon',
           'icon-size': 0.7,
@@ -422,7 +514,7 @@ export class Tab2Page implements OnInit {
       this.mapa.addLayer({
         id: this.farmaciasTurnoHaloLayerId,
         type: 'circle',
-        source: this.farmaciasSourceId,
+        source: this.farmaciasTurnoSourceId,
         filter: ['==', ['get', 'turno'], true],
         paint: {
           'circle-radius': 28,
@@ -443,7 +535,7 @@ export class Tab2Page implements OnInit {
       this.mapa.addLayer({
         id: this.farmaciasTurnoLayerId,
         type: 'symbol',
-        source: this.farmaciasSourceId,
+        source: this.farmaciasTurnoSourceId,
         filter: ['==', ['get', 'turno'], true],
         layout: {
           'icon-image': 'farmacia-icon',
@@ -475,7 +567,9 @@ export class Tab2Page implements OnInit {
 
   private actualizarVisibilidadCapasFarmacias() {
     if (
-      !this.mapa.getLayer(this.farmaciasLayerId)
+      !this.mapa.getLayer(this.farmaciasClusterLayerId)
+      || !this.mapa.getLayer(this.farmaciasClusterCountLayerId)
+      || !this.mapa.getLayer(this.farmaciasLayerId)
       || !this.mapa.getLayer(this.farmaciasTurnoLayerId)
       || !this.mapa.getLayer(this.farmaciasTurnoHaloLayerId)
     ) {
@@ -484,11 +578,12 @@ export class Tab2Page implements OnInit {
 
     const mostrarFarmacias = this.modoMapa === 'farmacias';
     const mostrarTurnos = this.modoMapa === 'turnos';
-    const mostrarHaloTurnos = mostrarFarmacias || mostrarTurnos;
 
+    this.mapa.setLayoutProperty(this.farmaciasClusterLayerId, 'visibility', mostrarFarmacias ? 'visible' : 'none');
+    this.mapa.setLayoutProperty(this.farmaciasClusterCountLayerId, 'visibility', mostrarFarmacias ? 'visible' : 'none');
     this.mapa.setLayoutProperty(this.farmaciasLayerId, 'visibility', mostrarFarmacias ? 'visible' : 'none');
     this.mapa.setLayoutProperty(this.farmaciasTurnoLayerId, 'visibility', mostrarTurnos ? 'visible' : 'none');
-    this.mapa.setLayoutProperty(this.farmaciasTurnoHaloLayerId, 'visibility', mostrarHaloTurnos ? 'visible' : 'none');
+    this.mapa.setLayoutProperty(this.farmaciasTurnoHaloLayerId, 'visibility', mostrarTurnos ? 'visible' : 'none');
   }
 
   private cerrarPopupActivo() {
