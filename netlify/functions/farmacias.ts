@@ -1,4 +1,4 @@
-const FARMACIAS_SOURCE_URL =
+const DEFAULT_FARMACIAS_SOURCE_URL =
   'https://farmacias-7d813.firebaseio.com/farmacia2/features.json';
 const CACHE_TTL_MS = 30 * 60 * 1000;
 
@@ -7,6 +7,9 @@ let cachedAt = 0;
 
 export default async () => {
   try {
+    const farmaciasSourceUrl =
+      process.env.FARMACIAS_SOURCE_URL || DEFAULT_FARMACIAS_SOURCE_URL;
+
     if (cachedPayload && Date.now() - cachedAt < CACHE_TTL_MS) {
       return new Response(cachedPayload, {
         status: 200,
@@ -18,7 +21,7 @@ export default async () => {
       });
     }
 
-    const response = await fetch(FARMACIAS_SOURCE_URL, {
+    const response = await fetch(farmaciasSourceUrl, {
       headers: {
         accept: 'application/json'
       }
