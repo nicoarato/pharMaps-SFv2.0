@@ -49,6 +49,7 @@ export interface FarmaciaTurno {
 
 export interface TurnoFarmaciaItem {
     date: string;
+    rangos?: TurnoProgramadoRango[];
     farmacias: FarmaciaTurno[];
 }
 

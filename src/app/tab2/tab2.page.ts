@@ -687,8 +687,10 @@ export class Tab2Page implements OnInit {
       return [];
     }
 
-    const hoy = this.obtenerFechaTurnoEsperanzaVigente(new Date());
-    const turnoHoy = this.turnosEsperanza.items.find(item => item.date === hoy);
+    const ahora = new Date();
+    const turnoHoy = this.turnosEsperanza.items.find(item =>
+      item.rangos && item.rangos.some(rango => this.estaEnRango(ahora, rango))
+    );
 
     if (!turnoHoy) {
       return [];
@@ -702,34 +704,6 @@ export class Tab2Page implements OnInit {
         turno: 'Esperanza',
         farmacia: this.buscarFarmaciaPorNombreYLocalidad(turno.farmaciaName, this.turnosEsperanza.localidad)
       }));
-  }
-
-  private obtenerFechaTurnoEsperanzaVigente(fecha: Date) {
-    const inicioHorario = this.obtenerHoraInicioTurnoEsperanza();
-    const fechaVigente = new Date(fecha);
-
-    if (fecha.getHours() < inicioHorario.hora ||
-      (fecha.getHours() === inicioHorario.hora && fecha.getMinutes() < inicioHorario.minuto)) {
-      fechaVigente.setDate(fechaVigente.getDate() - 1);
-    }
-
-    return this.formatearFecha(fechaVigente);
-  }
-
-  private obtenerHoraInicioTurnoEsperanza() {
-    const horario = this.turnosEsperanza && this.turnosEsperanza.turnoHorario
-      ? this.turnosEsperanza.turnoHorario
-      : '';
-    const match = horario.match(/(\d{1,2}):(\d{2})/);
-
-    if (!match) {
-      return { hora: 8, minuto: 0 };
-    }
-
-    return {
-      hora: Number(match[1]),
-      minuto: Number(match[2])
-    };
   }
 
   private obtenerTurnosColegioHoy(): TurnoActivo[] {

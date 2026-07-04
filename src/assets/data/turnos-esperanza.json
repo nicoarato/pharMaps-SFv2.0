@@ -2,13 +2,16 @@
   "source": {
     "name": "Turismo Esperanza",
     "url": "https://esperanza.tur.ar/2016/12/12/farmacias-de-turno/",
-    "retrievedAt": "2026-07-01"
+    "retrievedAt": "2026-07-04"
   },
   "localidad": "ESPERANZA",
   "turnoHorario": "08:00 a 08:00",
   "items": [
     {
       "date": "2026-06-29",
+      "rangos": [
+        { "desde": "2026-06-29T08:00:00-03:00", "hasta": "2026-06-30T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "SAD", "farmaciaName": "Farmacia SAD" },
         { "alias": "BARRIOS", "farmaciaName": "Farmacia BARRIOS" }
@@ -16,6 +19,9 @@
     },
     {
       "date": "2026-06-30",
+      "rangos": [
+        { "desde": "2026-06-30T08:00:00-03:00", "hasta": "2026-07-01T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "ALTHAUS", "farmaciaName": "Farmacia ALTHAUS" },
         { "alias": "LONGONI", "farmaciaName": "Farmacia LONGONI" }
@@ -23,6 +29,9 @@
     },
     {
       "date": "2026-07-01",
+      "rangos": [
+        { "desde": "2026-07-01T08:00:00-03:00", "hasta": "2026-07-02T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BIANCHINI", "farmaciaName": "Farmacia BIANCHINI" },
         { "alias": "TARDIOLI", "farmaciaName": "Farmacia TARDIOLI" }
@@ -30,6 +39,9 @@
     },
     {
       "date": "2026-07-02",
+      "rangos": [
+        { "desde": "2026-07-02T08:00:00-03:00", "hasta": "2026-07-03T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "PIERUCCIONI", "farmaciaName": "Farmacia PIERUCCIONI" },
         { "alias": "SCHNEIDER C.", "farmaciaName": "Farmacia CLAUDIA SCHNEIDER" }
@@ -37,6 +49,9 @@
     },
     {
       "date": "2026-07-03",
+      "rangos": [
+        { "desde": "2026-07-03T08:00:00-03:00", "hasta": "2026-07-04T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "HILAS", "farmaciaName": "Farmacia HILAS" },
         { "alias": "FORTI", "farmaciaName": "Farmacia FORTI" }
@@ -44,13 +59,19 @@
     },
     {
       "date": "2026-07-04",
+      "rangos": [
+        { "desde": "2026-07-04T08:00:00-03:00", "hasta": "2026-07-05T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BORGOGNO", "farmaciaName": "Farmacia BORGOGNO" },
-        { "alias": "MARELLI", "farmaciaName": null }
+        { "alias": "MARELLI", "farmaciaName": "Farmacia MARELLI" }
       ]
     },
     {
       "date": "2026-07-05",
+      "rangos": [
+        { "desde": "2026-07-05T08:00:00-03:00", "hasta": "2026-07-06T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "FAVARIN", "farmaciaName": "Farmacia FAVARIN" },
         { "alias": "SAUGY", "farmaciaName": "Farmacia SAUGY" }
@@ -58,6 +79,9 @@
     },
     {
       "date": "2026-07-06",
+      "rangos": [
+        { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "FUENTES", "farmaciaName": "Farmacia FUENTES" },
         { "alias": "ZEHNDER", "farmaciaName": "Farmacia ZEHNDER" }
@@ -65,6 +89,9 @@
     },
     {
       "date": "2026-07-07",
+      "rangos": [
+        { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "ZEBALLOS", "farmaciaName": "Farmacia SALIM ZEBALLOS" },
         { "alias": "FERREYRA", "farmaciaName": "Farmacia FERREYRA" }
@@ -72,20 +99,29 @@
     },
     {
       "date": "2026-07-08",
+      "rangos": [
+        { "desde": "2026-07-08T08:00:00-03:00", "hasta": "2026-07-09T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "RIERA", "farmaciaName": "Farmacia Riera" },
-        { "alias": "SANTILLAN", "farmaciaName": null }
+        { "alias": "SANTILLAN", "farmaciaName": "Farmacia SANTILLAN" }
       ]
     },
     {
       "date": "2026-07-09",
+      "rangos": [
+        { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" }
+      ],
       "farmacias": [
-        { "alias": "LOUREYRO", "farmaciaName": null },
-        { "alias": "PAOLI", "farmaciaName": null }
+        { "alias": "LOUREYRO", "farmaciaName": "Farmacia LOUREYRO" },
+        { "alias": "PAOLI", "farmaciaName": "Farmacia PAOLI" }
       ]
     },
     {
       "date": "2026-07-10",
+      "rangos": [
+        { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "SAD", "farmaciaName": "Farmacia SAD" },
         { "alias": "DONALISIO", "farmaciaName": "Farmacia DONALISIO" }
@@ -93,6 +129,9 @@
     },
     {
       "date": "2026-07-11",
+      "rangos": [
+        { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "MORELLI", "farmaciaName": "Farmacia MORELLI" },
         { "alias": "PERIN", "farmaciaName": "Farmacia PERIN" }
@@ -100,6 +139,9 @@
     },
     {
       "date": "2026-07-12",
+      "rangos": [
+        { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "LIMACHE", "farmaciaName": "Farmacia LIMACHE" },
         { "alias": "TKACZYC", "farmaciaName": "Farmacia TKACZYK" }
@@ -107,6 +149,9 @@
     },
     {
       "date": "2026-07-13",
+      "rangos": [
+        { "desde": "2026-07-13T08:00:00-03:00", "hasta": "2026-07-14T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "GAMBOA", "farmaciaName": "Farmacia GAMBOA" },
         { "alias": "SCHNEIDER S.", "farmaciaName": "Farmacia SERGIO SCHNEIDER" }
@@ -114,6 +159,9 @@
     },
     {
       "date": "2026-07-14",
+      "rangos": [
+        { "desde": "2026-07-14T08:00:00-03:00", "hasta": "2026-07-15T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BAR", "farmaciaName": "Farmacia Bar" },
         { "alias": "BARRIOS", "farmaciaName": "Farmacia BARRIOS" }
@@ -121,6 +169,9 @@
     },
     {
       "date": "2026-07-15",
+      "rangos": [
+        { "desde": "2026-07-15T08:00:00-03:00", "hasta": "2026-07-16T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "ALTHAUS", "farmaciaName": "Farmacia ALTHAUS" },
         { "alias": "LONGONI", "farmaciaName": "Farmacia LONGONI" }
@@ -128,6 +179,9 @@
     },
     {
       "date": "2026-07-16",
+      "rangos": [
+        { "desde": "2026-07-16T08:00:00-03:00", "hasta": "2026-07-17T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BIANCHINI", "farmaciaName": "Farmacia BIANCHINI" },
         { "alias": "TARDIOLI", "farmaciaName": "Farmacia TARDIOLI" }
@@ -135,6 +189,9 @@
     },
     {
       "date": "2026-07-17",
+      "rangos": [
+        { "desde": "2026-07-17T08:00:00-03:00", "hasta": "2026-07-18T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "PIERUCCIONI", "farmaciaName": "Farmacia PIERUCCIONI" },
         { "alias": "SCHNEIDER C.", "farmaciaName": "Farmacia CLAUDIA SCHNEIDER" }
@@ -142,6 +199,9 @@
     },
     {
       "date": "2026-07-18",
+      "rangos": [
+        { "desde": "2026-07-18T08:00:00-03:00", "hasta": "2026-07-19T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "HILAS", "farmaciaName": "Farmacia HILAS" },
         { "alias": "FORTI", "farmaciaName": "Farmacia FORTI" }
@@ -149,13 +209,19 @@
     },
     {
       "date": "2026-07-19",
+      "rangos": [
+        { "desde": "2026-07-19T08:00:00-03:00", "hasta": "2026-07-20T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BORGOGNO", "farmaciaName": "Farmacia BORGOGNO" },
-        { "alias": "MARELLI", "farmaciaName": null }
+        { "alias": "MARELLI", "farmaciaName": "Farmacia MARELLI" }
       ]
     },
     {
       "date": "2026-07-20",
+      "rangos": [
+        { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "FAVARIN", "farmaciaName": "Farmacia FAVARIN" },
         { "alias": "SAUGY", "farmaciaName": "Farmacia SAUGY" }
@@ -163,6 +229,9 @@
     },
     {
       "date": "2026-07-21",
+      "rangos": [
+        { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "FUENTES", "farmaciaName": "Farmacia FUENTES" },
         { "alias": "ZEHNDER", "farmaciaName": "Farmacia ZEHNDER" }
@@ -170,6 +239,9 @@
     },
     {
       "date": "2026-07-22",
+      "rangos": [
+        { "desde": "2026-07-22T08:00:00-03:00", "hasta": "2026-07-23T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "ZEBALLOS", "farmaciaName": "Farmacia SALIM ZEBALLOS" },
         { "alias": "FERREYRA", "farmaciaName": "Farmacia FERREYRA" }
@@ -177,20 +249,29 @@
     },
     {
       "date": "2026-07-23",
+      "rangos": [
+        { "desde": "2026-07-23T08:00:00-03:00", "hasta": "2026-07-24T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "RIERA", "farmaciaName": "Farmacia Riera" },
-        { "alias": "SANTILLAN", "farmaciaName": null }
+        { "alias": "SANTILLAN", "farmaciaName": "Farmacia SANTILLAN" }
       ]
     },
     {
       "date": "2026-07-24",
+      "rangos": [
+        { "desde": "2026-07-24T08:00:00-03:00", "hasta": "2026-07-25T08:00:00-03:00" }
+      ],
       "farmacias": [
-        { "alias": "LOUREYRO", "farmaciaName": null },
-        { "alias": "PAOLI", "farmaciaName": null }
+        { "alias": "LOUREYRO", "farmaciaName": "Farmacia LOUREYRO" },
+        { "alias": "PAOLI", "farmaciaName": "Farmacia PAOLI" }
       ]
     },
     {
       "date": "2026-07-25",
+      "rangos": [
+        { "desde": "2026-07-25T08:00:00-03:00", "hasta": "2026-07-26T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "SAD", "farmaciaName": "Farmacia SAD" },
         { "alias": "DONALISIO", "farmaciaName": "Farmacia DONALISIO" }
@@ -198,6 +279,9 @@
     },
     {
       "date": "2026-07-26",
+      "rangos": [
+        { "desde": "2026-07-26T08:00:00-03:00", "hasta": "2026-07-27T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "MORELLI", "farmaciaName": "Farmacia MORELLI" },
         { "alias": "PERIN", "farmaciaName": "Farmacia PERIN" }
@@ -205,6 +289,9 @@
     },
     {
       "date": "2026-07-27",
+      "rangos": [
+        { "desde": "2026-07-27T08:00:00-03:00", "hasta": "2026-07-28T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "LIMACHE", "farmaciaName": "Farmacia LIMACHE" },
         { "alias": "TKACZYC", "farmaciaName": "Farmacia TKACZYK" }
@@ -212,6 +299,9 @@
     },
     {
       "date": "2026-07-28",
+      "rangos": [
+        { "desde": "2026-07-28T08:00:00-03:00", "hasta": "2026-07-29T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "GAMBOA", "farmaciaName": "Farmacia GAMBOA" },
         { "alias": "SCHNEIDER S.", "farmaciaName": "Farmacia SERGIO SCHNEIDER" }
@@ -219,6 +309,9 @@
     },
     {
       "date": "2026-07-29",
+      "rangos": [
+        { "desde": "2026-07-29T08:00:00-03:00", "hasta": "2026-07-30T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BAR", "farmaciaName": "Farmacia Bar" },
         { "alias": "BARRIOS", "farmaciaName": "Farmacia BARRIOS" }
@@ -226,6 +319,9 @@
     },
     {
       "date": "2026-07-30",
+      "rangos": [
+        { "desde": "2026-07-30T08:00:00-03:00", "hasta": "2026-07-31T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "ALTHAUS", "farmaciaName": "Farmacia ALTHAUS" },
         { "alias": "LONGONI", "farmaciaName": "Farmacia LONGONI" }
@@ -233,6 +329,9 @@
     },
     {
       "date": "2026-07-31",
+      "rangos": [
+        { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" }
+      ],
       "farmacias": [
         { "alias": "BIANCHINI", "farmaciaName": "Farmacia BIANCHINI" },
         { "alias": "TARDIOLI", "farmaciaName": "Farmacia TARDIOLI" }
