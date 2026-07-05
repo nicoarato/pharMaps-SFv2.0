@@ -167,10 +167,14 @@ export class Tab2Page implements OnInit {
 
     forkJoin([
       this.farmaciaService.getTurnosEsperanza(),
-      this.farmaciaService.getTurnosColegio()
-    ]).subscribe(([turnosEsperanza, turnosColegio]) => {
+      this.farmaciaService.getTurnosColegio(),
+      this.farmaciaService.getTurnosRosario()
+    ]).subscribe(([turnosEsperanza, turnosColegio, turnosRosario]) => {
         this.turnosEsperanza = turnosEsperanza;
-        this.turnosColegio = turnosColegio || [];
+        this.turnosColegio = [
+          ...(turnosColegio || []),
+          ...(turnosRosario || [])
+        ];
         this.actualizarTurnosHoy();
         this.construirFuenteFarmacias();
         this.configurarCapasFarmacias();

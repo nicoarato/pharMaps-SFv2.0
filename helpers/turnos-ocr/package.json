@@ -6,7 +6,8 @@
   "scripts": {
     "ocr:pdf": "node scripts/ocr-turnos-pdf.mjs",
     "ocr:santa-fe": "node scripts/ocr-turnos-santa-fe.mjs",
-    "extract:pdf": "node scripts/extract-turnos-pdf.mjs"
+    "extract:pdf": "node scripts/extract-turnos-pdf.mjs",
+    "build:rosario-2026": "node scripts/build-turnos-rosario-2026.mjs"
   },
   "dependencies": {
     "@napi-rs/canvas": "^1.0.2",
