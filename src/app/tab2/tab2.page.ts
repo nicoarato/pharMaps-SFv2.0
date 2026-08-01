@@ -26,7 +26,22 @@ export class Tab2Page implements OnInit {
   private readonly farmaciasClusterCountLayerId = 'farmacias-cluster-count-layer';
   private readonly farmaciasLayerId = 'farmacias-layer';
   private readonly farmaciasTurnoHaloLayerId = 'farmacias-turno-halo-layer';
+  private readonly farmaciasTurnoHaloFarmaciasLayerId = 'farmacias-turno-halo-farmacias-layer';
   private readonly farmaciasTurnoLayerId = 'farmacias-turno-layer';
+  private readonly turnoHaloBasePaint = {
+    'circle-radius': 28,
+    'circle-color': '#0ea5e9',
+    'circle-opacity': 0.18,
+    'circle-blur': 0.85,
+    'circle-stroke-color': '#38bdf8',
+    'circle-stroke-width': 4,
+    'circle-stroke-opacity': 0.82
+  };
+  private readonly turnoHaloAnimationDuration = 2600;
+  private readonly turnoHaloAnimatedRadiusBase = 20;
+  private readonly turnoHaloAnimatedRadiusRange = 20;
+  private readonly turnoHaloAnimatedOpacity = 0.18;
+  private readonly turnoHaloAnimatedStrokeOpacity = 0.58;
 
   mapa: any;
   LngLat: Mapboxgl.LngLat;
@@ -49,6 +64,7 @@ export class Tab2Page implements OnInit {
   mapaListo = false;
   iconoFarmaciaCargado = false;
   private popupActivo: Mapboxgl.Popup = null;
+  private turnoHaloAnimationId: number | null = null;
   iconoFarmaciaCargando = false;
   constructor(private farmaciaService: FarmaciasService) {}
 
@@ -514,26 +530,17 @@ export class Tab2Page implements OnInit {
       });
     }
 
-    if (!this.mapa.getLayer(this.farmaciasTurnoHaloLayerId)) {
-      this.mapa.addLayer({
-        id: this.farmaciasTurnoHaloLayerId,
-        type: 'circle',
-        source: this.farmaciasTurnoSourceId,
-        filter: ['==', ['get', 'turno'], true],
-        paint: {
-          'circle-radius': 28,
-          'circle-color': '#e53935',
-          'circle-opacity': 0.2,
-          'circle-blur': 0.85,
-          'circle-stroke-color': '#ff5a52',
-          'circle-stroke-width': 4,
-          'circle-stroke-opacity': 0.9
-        },
-        layout: {
-          visibility: 'none'
-        }
-      });
-    }
+    this.agregarCapaHaloTurno(
+      this.farmaciasTurnoHaloLayerId,
+      this.farmaciasTurnoSourceId,
+      ['==', ['get', 'turno'], true]
+    );
+
+    this.agregarCapaHaloTurno(
+      this.farmaciasTurnoHaloFarmaciasLayerId,
+      this.farmaciasSourceId,
+      ['all', ['!', ['has', 'point_count']], ['==', ['get', 'turno'], true]]
+    );
 
     if (!this.mapa.getLayer(this.farmaciasTurnoLayerId)) {
       this.mapa.addLayer({
@@ -569,6 +576,23 @@ export class Tab2Page implements OnInit {
     }
   }
 
+  private agregarCapaHaloTurno(layerId: string, sourceId: string, filter: any[]) {
+    if (this.mapa.getLayer(layerId)) {
+      return;
+    }
+
+    this.mapa.addLayer({
+      id: layerId,
+      type: 'circle',
+      source: sourceId,
+      filter,
+      paint: { ...this.turnoHaloBasePaint },
+      layout: {
+        visibility: 'none'
+      }
+    });
+  }
+
   private actualizarVisibilidadCapasFarmacias() {
     if (
       !this.mapa.getLayer(this.farmaciasClusterLayerId)
@@ -576,6 +600,7 @@ export class Tab2Page implements OnInit {
       || !this.mapa.getLayer(this.farmaciasLayerId)
       || !this.mapa.getLayer(this.farmaciasTurnoLayerId)
       || !this.mapa.getLayer(this.farmaciasTurnoHaloLayerId)
+      || !this.mapa.getLayer(this.farmaciasTurnoHaloFarmaciasLayerId)
     ) {
       return;
     }
@@ -588,6 +613,66 @@ export class Tab2Page implements OnInit {
     this.mapa.setLayoutProperty(this.farmaciasLayerId, 'visibility', mostrarFarmacias ? 'visible' : 'none');
     this.mapa.setLayoutProperty(this.farmaciasTurnoLayerId, 'visibility', mostrarTurnos ? 'visible' : 'none');
     this.mapa.setLayoutProperty(this.farmaciasTurnoHaloLayerId, 'visibility', mostrarTurnos ? 'visible' : 'none');
+    this.mapa.setLayoutProperty(this.farmaciasTurnoHaloFarmaciasLayerId, 'visibility', mostrarFarmacias ? 'visible' : 'none');
+
+    if (mostrarFarmacias || mostrarTurnos) {
+      this.iniciarAnimacionHaloTurno();
+    } else {
+      this.detenerAnimacionHaloTurno();
+    }
+  }
+
+  private iniciarAnimacionHaloTurno() {
+    if (
+      this.turnoHaloAnimationId !== null
+      || !this.mapa
+      || !this.mapa.getLayer(this.farmaciasTurnoHaloLayerId)
+      || !this.mapa.getLayer(this.farmaciasTurnoHaloFarmaciasLayerId)
+    ) {
+      return;
+    }
+
+    const animar = (timestamp: number) => {
+      if (
+        !this.mapa
+        || !this.mapa.getLayer(this.farmaciasTurnoHaloLayerId)
+        || !this.mapa.getLayer(this.farmaciasTurnoHaloFarmaciasLayerId)
+        || (this.modoMapa !== 'farmacias' && this.modoMapa !== 'turnos')
+      ) {
+        this.turnoHaloAnimationId = null;
+        return;
+      }
+
+      const progreso = (timestamp % this.turnoHaloAnimationDuration) / this.turnoHaloAnimationDuration;
+      const radio = this.turnoHaloAnimatedRadiusBase + progreso * this.turnoHaloAnimatedRadiusRange;
+      const opacidad = this.turnoHaloAnimatedOpacity * (1 - progreso);
+      const borde = this.turnoHaloAnimatedStrokeOpacity * (1 - progreso);
+
+      [this.farmaciasTurnoHaloLayerId, this.farmaciasTurnoHaloFarmaciasLayerId].forEach(layerId => {
+        this.mapa.setPaintProperty(layerId, 'circle-radius', radio);
+        this.mapa.setPaintProperty(layerId, 'circle-opacity', opacidad);
+        this.mapa.setPaintProperty(layerId, 'circle-stroke-opacity', borde);
+      });
+
+      this.turnoHaloAnimationId = requestAnimationFrame(animar);
+    };
+
+    this.turnoHaloAnimationId = requestAnimationFrame(animar);
+  }
+
+  private detenerAnimacionHaloTurno() {
+    if (this.turnoHaloAnimationId !== null) {
+      cancelAnimationFrame(this.turnoHaloAnimationId);
+      this.turnoHaloAnimationId = null;
+    }
+
+    [this.farmaciasTurnoHaloLayerId, this.farmaciasTurnoHaloFarmaciasLayerId].forEach(layerId => {
+      if (this.mapa && this.mapa.getLayer(layerId)) {
+        this.mapa.setPaintProperty(layerId, 'circle-radius', this.turnoHaloBasePaint['circle-radius']);
+        this.mapa.setPaintProperty(layerId, 'circle-opacity', this.turnoHaloBasePaint['circle-opacity']);
+        this.mapa.setPaintProperty(layerId, 'circle-stroke-opacity', this.turnoHaloBasePaint['circle-stroke-opacity']);
+      }
+    });
   }
 
   private cerrarPopupActivo() {
