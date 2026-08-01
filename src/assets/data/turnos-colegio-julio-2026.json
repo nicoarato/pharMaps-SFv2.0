@@ -261,55 +261,58 @@
         "turno": "UNDECIMO TURNO",
         "rangos": [
           { "desde": "2026-07-08T08:00:00-03:00", "hasta": "2026-07-09T08:00:00-03:00" },
-          { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" }
+          { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" },
+          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Argenti", "direccion": "San Jeronimo 1746", "telefono": "459 2943" },
-          { "nombre": "Berron", "direccion": "Diagonal Goyena 3221", "telefono": "489 4530" },
+          { "nombre": "Berron", "direccion": "Pedro Goyena 3221", "telefono": "489 4530" },
           { "nombre": "Castro Karina", "direccion": "Dra. Grierson 8231", "telefono": "155 691900" },
           { "nombre": "Facino", "direccion": "Diagonal Espana 3176", "telefono": "580 5041" },
-          { "nombre": "Labath", "direccion": "Stgo. del Estero 3142 - Loc. 5", "telefono": "455 5146" },
+          { "nombre": "Labath", "direccion": "Santiago del Estero 3142 - Local 5", "telefono": "455 5146" },
           { "nombre": "Martinez", "direccion": "Av. Galicia 1519", "telefono": "460 6375" },
           { "nombre": "Monica Wagner", "direccion": "Marcial Candioti 3899", "telefono": "452 2242" },
-          { "nombre": "Rita Martinez", "direccion": "Av. A. del Valle 10479", "telefono": "469 4874" },
+          { "nombre": "Rita Martinez", "direccion": "Av. del Valle 10479", "telefono": "469 4874" },
           { "nombre": "Rojas Sotelo", "direccion": "Alvear 6303", "telefono": "460 7603" },
           { "nombre": "Pescetti Maximiliano", "direccion": "Mendoza 2676", "telefono": "452 2928" },
-          { "nombre": "Scalzo", "direccion": "Gobernador Vera 3206", "telefono": "455 3083" },
-          { "nombre": "Vilarrubi", "direccion": "Av. Penalosa 7512", "telefono": "488 3608" }
+          { "nombre": "Scalzo", "direccion": "Gdor. Vera 3206", "telefono": "455 3083" },
+          { "nombre": "Villarrubi", "direccion": "Av. Vera Penalosa 7512", "telefono": "488 3608" }
         ]
       },
       {
         "turno": "DUODECIMO TURNO",
         "rangos": [
           { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
-          { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" }
+          { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" },
+          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
         ],
         "farmacias": [
-          { "nombre": "Bonazzola Estefania", "direccion": "A. del Valle 5118", "telefono": "452 6519" },
-          { "nombre": "Brambilla", "direccion": "E. Zeballos 3731", "telefono": "489 4243 / 489 4287" },
-          { "nombre": "Burgi", "direccion": "Bv. Pellegrini 3187", "telefono": "581 5787" },
+          { "nombre": "Bonazzola Estefania", "direccion": "Av. A. del Valle 5118", "telefono": "452 6519" },
+          { "nombre": "Brambilla", "direccion": "Estanislao Zeballos 3731", "telefono": "489 4243 / 489 4287" },
           { "nombre": "Colucci", "direccion": "Av. Freyre 1908", "telefono": "459 9418" },
-          { "nombre": "German Lopez", "direccion": "Av. Gral. Paz 5210", "telefono": "452 8048" },
+          { "nombre": "German Lopez", "direccion": "Av. Gral. Paz 5201", "telefono": "452 8048" },
           { "nombre": "Gimenez", "direccion": "Urquiza 2332", "telefono": "452 6256" },
-          { "nombre": "Invinkelried", "direccion": "Lavalle 4201", "telefono": "456 6576" },
+          { "nombre": "Imvinkelried", "direccion": "Lavalle 4201", "telefono": "456 6576" },
           { "nombre": "Mansilla", "direccion": "9 de Julio 1181", "telefono": "459 8798" },
           { "nombre": "Menapace", "direccion": "Blas Parera 7831", "telefono": "489 0660" },
-          { "nombre": "Pescetti", "direccion": "P. Genesio 1901", "telefono": "460 4447" },
-          { "nombre": "Ranzuglia", "direccion": "Fray C. Rodriguez 3889", "telefono": "488 4801" },
+          { "nombre": "Pescetti", "direccion": "Padre Genesio 1901", "telefono": "460 4447" },
+          { "nombre": "Ranzuglia", "direccion": "Fray Cayetano Rodriguez 3889", "telefono": "488 4801" },
           {
             "nombre": "Wagner Burgues",
             "direccion": "Rivadavia 3098",
             "telefono": "456 1500",
             "soloRangos": [
-              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" }
+              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
+              { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
             ]
           },
           {
             "nombre": "Zentner",
-            "direccion": "San Geronimo 3101",
+            "direccion": "San Jeronimo 3101",
             "telefono": "453 2805",
             "soloRangos": [
-              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" }
+              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
+              { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
             ]
           }
         ]
@@ -317,8 +320,8 @@
     ],
     "fuente": {
       "tipo": "capturas-manuales-del-afiche",
-      "fechaReferencia": "2026-07",
-      "nota": "Bloques de Santa Fe recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion."
+      "fechaReferencia": "2026-07 / 2026-08-01",
+      "nota": "Bloques de Santa Fe recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion. Incluye turno provisorio del 01/08/2026 cargado desde capturas hasta publicar el mes completo."
     }
   },
   {
@@ -447,12 +450,24 @@
           { "nombre": "Firmani", "direccion": "25 de Mayo 1878", "telefono": "474 4847" },
           { "nombre": "Palacin", "direccion": "Mariano Candioti 3677", "telefono": "474 1674" }
         ]
+      },
+      {
+        "turno": "TURNO PROVISORIO 01/08/2026",
+        "rangos": [
+          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
+        ],
+        "farmacias": [
+          { "nombre": "Macagno", "direccion": "Av. 7 de Marzo 2601", "telefono": "474 2196" },
+          { "nombre": "Mayoraz", "direccion": "25 de Mayo 2017", "telefono": "474 7057" },
+          { "nombre": "Rivero", "direccion": "Candioti 2801", "telefono": "154 623606" },
+          { "nombre": "Tosello", "direccion": "Lopez y Planes 2865", "telefono": "4470671" }
+        ]
       }
     ],
     "fuente": {
       "tipo": "capturas-manuales-del-afiche",
-      "fechaReferencia": "2026-07",
-      "nota": "Bloques de Santo Tome recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion."
+      "fechaReferencia": "2026-07 / 2026-08-01",
+      "nota": "Bloques de Santo Tome recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion. Incluye turno provisorio del 01/08/2026 cargado desde capturas hasta publicar el mes completo."
     }
   }
 ]
