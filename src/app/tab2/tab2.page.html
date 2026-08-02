@@ -54,6 +54,15 @@
             (click)="mostrarFarmacias()">
             {{!visibles ? 'Ver todas' : 'Ocultar'}}
         </ion-button>
+        <ion-button
+            class="map-action--nearest"
+            [disabled]="!hayTurnosHoy || buscandoFarmaciaTurnoCercana"
+            (click)="mostrarFarmaciaTurnoMasCercana()">
+            {{ buscandoFarmaciaTurnoCercana ? 'Buscando...' : 'Más cercana' }}
+        </ion-button>
+        <div class="estado-cercana" *ngIf="mensajeFarmaciaTurnoCercana">
+            {{ mensajeFarmaciaTurnoCercana }}
+        </div>
     </div>
 
 </ion-content>

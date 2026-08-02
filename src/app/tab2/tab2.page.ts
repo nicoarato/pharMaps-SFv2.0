@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
 import { FarmaciasService } from '../services/farmacias.service';
@@ -12,6 +12,16 @@ import {
   TurnosFarmaciaListado
 } from './../interfaces/farmacia.interface';
 import { forkJoin } from 'rxjs';
+
+interface CoordenadasLngLat {
+  lng: number;
+  lat: number;
+}
+
+interface FarmaciaConDistancia {
+  farmacia: FarmaciaGeojson;
+  distanciaMetros: number;
+}
 
 @Component({
   selector: 'app-tab2',
@@ -61,12 +71,18 @@ export class Tab2Page implements OnInit {
   estilo = 'secondary';
   estiloTurnos = 'primary';
   estiloMapa = '';
+  buscandoFarmaciaTurnoCercana = false;
+  mensajeFarmaciaTurnoCercana = '';
   mapaListo = false;
   iconoFarmaciaCargado = false;
   private popupActivo: Mapboxgl.Popup = null;
   private turnoHaloAnimationId: number | null = null;
   iconoFarmaciaCargando = false;
-  constructor(private farmaciaService: FarmaciasService) {}
+  constructor(
+    private farmaciaService: FarmaciasService,
+    private ngZone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   get hayTurnosHoy() {
     return this.turnosHoy.some(item => item.farmacia);
@@ -231,6 +247,55 @@ export class Tab2Page implements OnInit {
     this.actualizarEstadosBotones();
     this.configurarCapasFarmacias();
     this.alejarMapaUnPoco();
+  }
+
+  async mostrarFarmaciaTurnoMasCercana() {
+    this.cerrarPopupActivo();
+
+    if (this.buscandoFarmaciaTurnoCercana || !this.hayTurnosHoy) {
+      return;
+    }
+
+    const farmaciasDeTurno = this.obtenerFarmaciasDeTurnoGeorreferenciadas();
+
+    if (!farmaciasDeTurno.length) {
+      this.actualizarEstadoBusquedaFarmaciaTurnoCercana(
+        false,
+        'No hay farmacias de turno con ubicacion disponible.'
+      );
+      return;
+    }
+
+    this.actualizarEstadoBusquedaFarmaciaTurnoCercana(true, 'Buscando tu ubicacion...');
+
+    try {
+      const ubicacionUsuario = await this.obtenerUbicacionUsuario();
+      const farmaciaMasCercana = this.obtenerFarmaciaMasCercana(ubicacionUsuario, farmaciasDeTurno);
+
+      if (!farmaciaMasCercana) {
+        this.actualizarEstadoBusquedaFarmaciaTurnoCercana(
+          false,
+          'No se pudo calcular la farmacia mas cercana.'
+        );
+        return;
+      }
+
+      this.modoMapa = 'turnos';
+      this.actualizarEstadosBotones();
+      this.configurarCapasFarmacias();
+      this.centrarFarmaciaTurnoMasCercana(farmaciaMasCercana);
+      this.actualizarEstadoBusquedaFarmaciaTurnoCercana(
+        false,
+        ''
+      );
+    } catch (error) {
+      this.actualizarEstadoBusquedaFarmaciaTurnoCercana(
+        false,
+        this.obtenerMensajeErrorUbicacion(error)
+      );
+    } finally {
+      this.actualizarEstadoBusquedaFarmaciaTurnoCercana(false, this.mensajeFarmaciaTurnoCercana);
+    }
   }
 
   esFarmaciaDeTurno(farmacia: FarmaciaGeojson) {
@@ -698,13 +763,13 @@ export class Tab2Page implements OnInit {
     } as FarmaciaGeojson, !!properties.turno);
   }
 
-  private mostrarPopupFarmacia(farmacia: FarmaciaGeojson, deTurno = false) {
+  private mostrarPopupFarmacia(farmacia: FarmaciaGeojson, deTurno = false, distanciaMetros?: number) {
     if (!farmacia || !farmacia.properties || !farmacia.geometry) {
       return;
     }
 
     const { geometry: { coordinates }, properties: { name, phone, address } } = farmacia;
-    const popupHtml = this.construirContenidoPopup(name, phone, address, deTurno);
+    const popupHtml = this.construirContenidoPopup(name, phone, address, deTurno, distanciaMetros);
 
     this.cerrarPopupActivo();
 
@@ -719,9 +784,17 @@ export class Tab2Page implements OnInit {
       .addTo(this.mapa);
   }
 
-  private construirContenidoPopup(name: string, phone: string, address: string, deTurno: boolean) {
+  private construirContenidoPopup(name: string, phone: string, address: string, deTurno: boolean, distanciaMetros?: number) {
     const badge = deTurno
       ? '<span class="popup-badge popup-badge--turno">De turno hoy</span>'
+      : '';
+    const distancia = typeof distanciaMetros === 'number' && Number.isFinite(distanciaMetros)
+      ? `
+          <div class="popup-row">
+            <span class="popup-row__label">Distancia</span>
+            <span class="popup-row__value">${this.escaparHtml(this.formatearDistancia(distanciaMetros))} aprox.</span>
+          </div>
+        `
       : '';
 
     return `
@@ -742,9 +815,135 @@ export class Tab2Page implements OnInit {
             <span class="popup-row__label">Teléfono</span>
             <span class="popup-row__value">${this.escaparHtml(phone)}</span>
           </div>
+          ${distancia}
         </div>
       </div>
     `;
+  }
+
+  private obtenerFarmaciasDeTurnoGeorreferenciadas() {
+    const farmaciasPorId = new Map<string, FarmaciaGeojson>();
+
+    this.turnosHoy.forEach(turno => {
+      const farmacia = turno.farmacia;
+
+      if (!farmacia || !farmacia.properties || !this.tieneCoordenadasValidas(farmacia)) {
+        return;
+      }
+
+      const id = farmacia.properties.farma_id || farmacia.properties.name;
+
+      if (id && !farmaciasPorId.has(id)) {
+        farmaciasPorId.set(id, farmacia);
+      }
+    });
+
+    return Array.from(farmaciasPorId.values());
+  }
+
+  private obtenerUbicacionUsuario(): Promise<CoordenadasLngLat> {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error('geolocation-unavailable'));
+        return;
+      }
+
+      const timeoutId = window.setTimeout(() => {
+        reject(new Error('geolocation-timeout'));
+      }, 10000);
+
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          window.clearTimeout(timeoutId);
+          this.ngZone.run(() => resolve({
+            lng: position.coords.longitude,
+            lat: position.coords.latitude
+          }));
+        },
+        error => {
+          window.clearTimeout(timeoutId);
+          this.ngZone.run(() => reject(error));
+        },
+        {
+          enableHighAccuracy: false,
+          timeout: 8000,
+          maximumAge: 60000
+        }
+      );
+    });
+  }
+
+  private obtenerFarmaciaMasCercana(
+    ubicacionUsuario: CoordenadasLngLat,
+    farmacias: FarmaciaGeojson[]
+  ): FarmaciaConDistancia | null {
+    return farmacias.reduce<FarmaciaConDistancia | null>((masCercana, farmacia) => {
+      const [lng, lat] = farmacia.geometry.coordinates.map(coordenada => Number(coordenada));
+      const distanciaMetros = this.calcularDistanciaMetros(ubicacionUsuario, { lng, lat });
+
+      if (!masCercana || distanciaMetros < masCercana.distanciaMetros) {
+        return { farmacia, distanciaMetros };
+      }
+
+      return masCercana;
+    }, null);
+  }
+
+  private centrarFarmaciaTurnoMasCercana(resultado: FarmaciaConDistancia) {
+    const [lng, lat] = resultado.farmacia.geometry.coordinates.map(coordenada => Number(coordenada));
+
+    this.mapa.flyTo({
+      center: [lng, lat],
+      zoom: 16,
+      essential: true
+    });
+
+    this.mostrarPopupFarmacia(resultado.farmacia, true, resultado.distanciaMetros);
+  }
+
+  private actualizarEstadoBusquedaFarmaciaTurnoCercana(buscando: boolean, mensaje: string) {
+    this.ngZone.run(() => {
+      this.buscandoFarmaciaTurnoCercana = buscando;
+      this.mensajeFarmaciaTurnoCercana = mensaje;
+      this.changeDetectorRef.detectChanges();
+    });
+  }
+
+  private calcularDistanciaMetros(origen: CoordenadasLngLat, destino: CoordenadasLngLat) {
+    const radioTierraMetros = 6371000;
+    const latOrigen = this.gradosARadianes(origen.lat);
+    const latDestino = this.gradosARadianes(destino.lat);
+    const deltaLat = this.gradosARadianes(destino.lat - origen.lat);
+    const deltaLng = this.gradosARadianes(destino.lng - origen.lng);
+    const a = Math.sin(deltaLat / 2) ** 2 +
+      Math.cos(latOrigen) * Math.cos(latDestino) * Math.sin(deltaLng / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return radioTierraMetros * c;
+  }
+
+  private gradosARadianes(grados: number) {
+    return grados * Math.PI / 180;
+  }
+
+  private formatearDistancia(distanciaMetros: number) {
+    if (distanciaMetros < 1000) {
+      return `${Math.round(distanciaMetros)} m`;
+    }
+
+    return `${(distanciaMetros / 1000).toFixed(1)} km`;
+  }
+
+  private obtenerMensajeErrorUbicacion(error: any) {
+    if (error && error.code === 1) {
+      return 'Necesitamos permiso de ubicacion para buscar la mas cercana.';
+    }
+
+    if ((error && error.code === 3) || (error instanceof Error && error.message === 'geolocation-timeout')) {
+      return 'No pudimos obtener tu ubicacion a tiempo.';
+    }
+
+    return 'No pudimos obtener tu ubicacion.';
   }
 
   private escaparHtml(texto: string) {

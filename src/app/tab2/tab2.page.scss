@@ -112,6 +112,27 @@
     --box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
+.acciones-mapa ion-button.map-action--nearest {
+    --background: #e0f2fe;
+    --color: #0369a1;
+    --border-color: #7dd3fc;
+    --box-shadow: 0 10px 24px rgba(14, 165, 233, 0.14);
+}
+
+.estado-cercana {
+    max-width: 240px;
+    padding: 8px 12px;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.25;
+    backdrop-filter: blur(10px);
+}
+
 @media (max-width: 420px) {
     .acciones-mapa {
         left: 12px;
@@ -121,5 +142,9 @@
 
     .acciones-mapa ion-button {
         width: 100%;
+    }
+
+    .estado-cercana {
+        max-width: none;
     }
 }
