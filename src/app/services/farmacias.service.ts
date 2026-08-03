@@ -20,7 +20,7 @@ export class FarmaciasService {
   }
 
   getTurnosColegio() {
-    return this.http.get<TurnoProgramadoLocalidad[]>('assets/data/turnos-colegio-julio-2026.json');
+    return this.http.get<TurnoProgramadoLocalidad[]>('assets/data/turnos-colegio-agosto-2026.json');
   }
 
   getTurnosRosario() {

@@ -1,13 +1,14 @@
 [
   {
     "localidad": "Santa Fe",
-    "mes": "2026-07",
+    "mes": "2026-08",
     "turnos": [
       {
         "turno": "PRIMER TURNO",
         "rangos": [
-          { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" },
-          { "desde": "2026-07-22T08:00:00-03:00", "hasta": "2026-07-23T08:00:00-03:00" }
+          { "desde": "2026-08-03T08:00:00-03:00", "hasta": "2026-08-04T08:00:00-03:00" },
+          { "desde": "2026-08-15T08:00:00-03:00", "hasta": "2026-08-16T08:00:00-03:00" },
+          { "desde": "2026-08-27T08:00:00-03:00", "hasta": "2026-08-28T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Banchio", "direccion": "Irigoyen Freyre 2200", "telefono": "452 2268" },
@@ -27,7 +28,7 @@
             "direccion": "San Martin 3001",
             "telefono": "481 1118",
             "soloRangos": [
-              { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" }
+              { "desde": "2026-08-03T08:00:00-03:00", "hasta": "2026-08-04T08:00:00-03:00" }
             ]
           }
         ]
@@ -35,8 +36,9 @@
       {
         "turno": "SEGUNDO TURNO",
         "rangos": [
-          { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" },
-          { "desde": "2026-07-23T08:00:00-03:00", "hasta": "2026-07-24T08:00:00-03:00" }
+          { "desde": "2026-08-04T08:00:00-03:00", "hasta": "2026-08-05T08:00:00-03:00" },
+          { "desde": "2026-08-16T08:00:00-03:00", "hasta": "2026-08-17T08:00:00-03:00" },
+          { "desde": "2026-08-28T08:00:00-03:00", "hasta": "2026-08-29T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Amherdt", "direccion": "Saavedra 2498", "telefono": "452 4846" },
@@ -54,7 +56,7 @@
             "direccion": "Suipacha 2310",
             "telefono": "452 7618",
             "soloRangos": [
-              { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" }
+              { "desde": "2026-08-04T08:00:00-03:00", "hasta": "2026-08-05T08:00:00-03:00" }
             ]
           }
         ]
@@ -62,13 +64,13 @@
       {
         "turno": "TERCER TURNO",
         "rangos": [
-          { "desde": "2026-06-30T08:00:00-03:00", "hasta": "2026-07-01T08:00:00-03:00" },
-          { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" },
-          { "desde": "2026-07-24T08:00:00-03:00", "hasta": "2026-07-25T08:00:00-03:00" }
+          { "desde": "2026-08-05T08:00:00-03:00", "hasta": "2026-08-06T08:00:00-03:00" },
+          { "desde": "2026-08-17T08:00:00-03:00", "hasta": "2026-08-18T08:00:00-03:00" },
+          { "desde": "2026-08-29T08:00:00-03:00", "hasta": "2026-08-30T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Armando", "direccion": "25 de Mayo 3441", "telefono": "452 0603" },
-          { "nombre": "Arrimada", "direccion": "Alvear 3618", "telefono": "456 1397" },
+          { "nombre": "Arrimada", "direccion": "Alvear 3618", "telefono": "5816232" },
           { "nombre": "Daniel Lagger", "direccion": "Av. Fdo. Zuviria 6536", "telefono": "489 5994" },
           { "nombre": "El Inca", "direccion": "San Martin 2255", "telefono": "452 1747 / 453 5657" },
           { "nombre": "Burgues Romano", "direccion": "Av. Blas Parera 7001", "telefono": "489 1807" },
@@ -83,7 +85,7 @@
             "direccion": "Crespo 2808",
             "telefono": "453 0042",
             "soloRangos": [
-              { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" }
+              { "desde": "2026-08-05T08:00:00-03:00", "hasta": "2026-08-06T08:00:00-03:00" }
             ]
           }
         ]
@@ -91,9 +93,9 @@
       {
         "turno": "CUARTO TURNO",
         "rangos": [
-          { "desde": "2026-07-01T08:00:00-03:00", "hasta": "2026-07-02T08:00:00-03:00" },
-          { "desde": "2026-07-13T08:00:00-03:00", "hasta": "2026-07-14T08:00:00-03:00" },
-          { "desde": "2026-07-25T08:00:00-03:00", "hasta": "2026-07-26T08:00:00-03:00" }
+          { "desde": "2026-08-06T08:00:00-03:00", "hasta": "2026-08-07T08:00:00-03:00" },
+          { "desde": "2026-08-18T08:00:00-03:00", "hasta": "2026-08-19T08:00:00-03:00" },
+          { "desde": "2026-08-30T08:00:00-03:00", "hasta": "2026-08-31T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Abregu", "direccion": "Av. Freyre 3029", "telefono": "453 1300" },
@@ -114,9 +116,9 @@
       {
         "turno": "QUINTO TURNO",
         "rangos": [
-          { "desde": "2026-07-02T08:00:00-03:00", "hasta": "2026-07-03T08:00:00-03:00" },
-          { "desde": "2026-07-14T08:00:00-03:00", "hasta": "2026-07-15T08:00:00-03:00" },
-          { "desde": "2026-07-26T08:00:00-03:00", "hasta": "2026-07-27T08:00:00-03:00" }
+          { "desde": "2026-08-07T08:00:00-03:00", "hasta": "2026-08-08T08:00:00-03:00" },
+          { "desde": "2026-08-19T08:00:00-03:00", "hasta": "2026-08-20T08:00:00-03:00" },
+          { "desde": "2026-08-31T08:00:00-03:00", "hasta": "2026-09-01T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Acosta", "direccion": "Suipacha 2506", "telefono": "455 6677" },
@@ -137,9 +139,8 @@
       {
         "turno": "SEXTO TURNO",
         "rangos": [
-          { "desde": "2026-07-03T08:00:00-03:00", "hasta": "2026-07-04T08:00:00-03:00" },
-          { "desde": "2026-07-15T08:00:00-03:00", "hasta": "2026-07-16T08:00:00-03:00" },
-          { "desde": "2026-07-27T08:00:00-03:00", "hasta": "2026-07-28T08:00:00-03:00" }
+          { "desde": "2026-08-08T08:00:00-03:00", "hasta": "2026-08-09T08:00:00-03:00" },
+          { "desde": "2026-08-20T08:00:00-03:00", "hasta": "2026-08-21T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Capra", "direccion": "Entre Rios 3115", "telefono": "459 7877" },
@@ -148,7 +149,7 @@
           { "nombre": "Donadio", "direccion": "Javier de la Rosa 322", "telefono": "460 6020" },
           { "nombre": "Junges", "direccion": "Guemes 3701", "telefono": "456 1203" },
           { "nombre": "Long", "direccion": "Av. A. del Valle 4026", "telefono": "455 2457" },
-          { "nombre": "Mergen", "direccion": "Av. Penalosa 7308", "telefono": "155 849314" },
+          { "nombre": "Leon", "direccion": "Av. Penalosa 7308", "telefono": "155 849314" },
           { "nombre": "Ortega", "direccion": "Blas Parera 8448", "telefono": "484 2593" },
           { "nombre": "Pedro A. Kornijuk", "direccion": "Av. F. Zuviria 5323", "telefono": "488 2156" },
           { "nombre": "Sartor", "direccion": "Rivadavia 3300", "telefono": "455 5412" },
@@ -160,9 +161,8 @@
       {
         "turno": "SEPTIMO TURNO",
         "rangos": [
-          { "desde": "2026-07-04T08:00:00-03:00", "hasta": "2026-07-05T08:00:00-03:00" },
-          { "desde": "2026-07-16T08:00:00-03:00", "hasta": "2026-07-17T08:00:00-03:00" },
-          { "desde": "2026-07-28T08:00:00-03:00", "hasta": "2026-07-29T08:00:00-03:00" }
+          { "desde": "2026-08-09T08:00:00-03:00", "hasta": "2026-08-10T08:00:00-03:00" },
+          { "desde": "2026-08-21T08:00:00-03:00", "hasta": "2026-08-22T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Bolognesi", "direccion": "Av. Fdo. Zuviria 5079", "telefono": "488 7805" },
@@ -181,9 +181,8 @@
       {
         "turno": "OCTAVO TURNO",
         "rangos": [
-          { "desde": "2026-07-05T08:00:00-03:00", "hasta": "2026-07-06T08:00:00-03:00" },
-          { "desde": "2026-07-17T08:00:00-03:00", "hasta": "2026-07-18T08:00:00-03:00" },
-          { "desde": "2026-07-29T08:00:00-03:00", "hasta": "2026-07-30T08:00:00-03:00" }
+          { "desde": "2026-08-10T08:00:00-03:00", "hasta": "2026-08-11T08:00:00-03:00" },
+          { "desde": "2026-08-22T08:00:00-03:00", "hasta": "2026-08-23T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Barrientos", "direccion": "9 de Julio 2198", "telefono": "459 9601" },
@@ -202,9 +201,8 @@
       {
         "turno": "NOVENO TURNO",
         "rangos": [
-          { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" },
-          { "desde": "2026-07-18T08:00:00-03:00", "hasta": "2026-07-19T08:00:00-03:00" },
-          { "desde": "2026-07-30T08:00:00-03:00", "hasta": "2026-07-31T08:00:00-03:00" }
+          { "desde": "2026-08-11T08:00:00-03:00", "hasta": "2026-08-12T08:00:00-03:00" },
+          { "desde": "2026-08-23T08:00:00-03:00", "hasta": "2026-08-24T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Bertolin", "direccion": "Urquiza 1067", "telefono": "412 1091" },
@@ -212,7 +210,7 @@
           { "nombre": "Coll", "direccion": "Av. A. del Valle 6029", "telefono": "581 8682" },
           { "nombre": "Damiani", "direccion": "Urquiza 3180", "telefono": "456 5287" },
           { "nombre": "Domet Hurani", "direccion": "Av. Gorriti 3751-Loc. 2", "telefono": "155 139889" },
-          { "nombre": "Gabriel Jauregui", "direccion": "Echaque 7254", "telefono": "460 4556" },
+          { "nombre": "Gabriel Jauregui", "direccion": "Echague 7254", "telefono": "460 4556" },
           { "nombre": "Pirola", "direccion": "Av. Lopez y Planes 4499", "telefono": "456 3029" },
           { "nombre": "Nicolau Manzur", "direccion": "1 de Mayo 2699", "telefono": "452 3002" },
           { "nombre": "Pacce", "direccion": "Av. A. del Valle 4900", "telefono": "455 8517" },
@@ -224,7 +222,7 @@
             "direccion": "Rivadavia 3193",
             "telefono": "455 0724",
             "soloRangos": [
-              { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" }
+              { "desde": "2026-08-11T08:00:00-03:00", "hasta": "2026-08-12T08:00:00-03:00" }
             ]
           }
         ]
@@ -232,9 +230,9 @@
       {
         "turno": "DECIMO TURNO",
         "rangos": [
-          { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" },
-          { "desde": "2026-07-19T08:00:00-03:00", "hasta": "2026-07-20T08:00:00-03:00" },
-          { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" }
+          { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" },
+          { "desde": "2026-08-12T08:00:00-03:00", "hasta": "2026-08-13T08:00:00-03:00" },
+          { "desde": "2026-08-24T08:00:00-03:00", "hasta": "2026-08-25T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Coniglio", "direccion": "Av. Facundo Zuviria 5912", "telefono": "489 3327" },
@@ -252,7 +250,7 @@
             "direccion": "Stgo. del Estero 2764",
             "telefono": "456 9919 / 454 0404",
             "soloRangos": [
-              { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" }
+              { "desde": "2026-08-12T08:00:00-03:00", "hasta": "2026-08-13T08:00:00-03:00" }
             ]
           }
         ]
@@ -260,9 +258,9 @@
       {
         "turno": "UNDECIMO TURNO",
         "rangos": [
-          { "desde": "2026-07-08T08:00:00-03:00", "hasta": "2026-07-09T08:00:00-03:00" },
-          { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" },
-          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
+          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" },
+          { "desde": "2026-08-13T08:00:00-03:00", "hasta": "2026-08-14T08:00:00-03:00" },
+          { "desde": "2026-08-25T08:00:00-03:00", "hasta": "2026-08-26T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Argenti", "direccion": "San Jeronimo 1746", "telefono": "459 2943" },
@@ -282,13 +280,14 @@
       {
         "turno": "DUODECIMO TURNO",
         "rangos": [
-          { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
-          { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" },
-          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
+          { "desde": "2026-08-02T08:00:00-03:00", "hasta": "2026-08-03T08:00:00-03:00" },
+          { "desde": "2026-08-14T08:00:00-03:00", "hasta": "2026-08-15T08:00:00-03:00" },
+          { "desde": "2026-08-26T08:00:00-03:00", "hasta": "2026-08-27T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Bonazzola Estefania", "direccion": "Av. A. del Valle 5118", "telefono": "452 6519" },
           { "nombre": "Brambilla", "direccion": "Estanislao Zeballos 3731", "telefono": "489 4243 / 489 4287" },
+          { "nombre": "Burgi", "direccion": "Bv. Pellegrini 3187", "telefono": "581 5787" },
           { "nombre": "Colucci", "direccion": "Av. Freyre 1908", "telefono": "459 9418" },
           { "nombre": "German Lopez", "direccion": "Av. Gral. Paz 5201", "telefono": "452 8048" },
           { "nombre": "Gimenez", "direccion": "Urquiza 2332", "telefono": "452 6256" },
@@ -302,8 +301,7 @@
             "direccion": "Rivadavia 3098",
             "telefono": "456 1500",
             "soloRangos": [
-              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
-              { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
+              { "desde": "2026-08-02T08:00:00-03:00", "hasta": "2026-08-03T08:00:00-03:00" }
             ]
           },
           {
@@ -311,8 +309,7 @@
             "direccion": "San Jeronimo 3101",
             "telefono": "453 2805",
             "soloRangos": [
-              { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
-              { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
+              { "desde": "2026-08-02T08:00:00-03:00", "hasta": "2026-08-03T08:00:00-03:00" }
             ]
           }
         ]
@@ -320,21 +317,20 @@
     ],
     "fuente": {
       "tipo": "capturas-manuales-del-afiche",
-      "fechaReferencia": "2026-07 / 2026-08-01",
-      "nota": "Bloques de Santa Fe recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion. Incluye turno provisorio del 01/08/2026 cargado desde capturas hasta publicar el mes completo."
+      "fechaReferencia": "2026-08",
+      "nota": "Bloques de Santa Fe recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion."
     }
   },
   {
     "localidad": "Santo Tome",
-    "mes": "2026-07",
+    "mes": "2026-08",
     "turnos": [
       {
         "turno": "PRIMER TURNO",
         "rangos": [
-          { "desde": "2026-06-30T08:00:00-03:00", "hasta": "2026-07-01T08:00:00-03:00" },
-          { "desde": "2026-07-09T08:00:00-03:00", "hasta": "2026-07-10T08:00:00-03:00" },
-          { "desde": "2026-07-18T08:00:00-03:00", "hasta": "2026-07-19T08:00:00-03:00" },
-          { "desde": "2026-07-27T08:00:00-03:00", "hasta": "2026-07-28T08:00:00-03:00" }
+          { "desde": "2026-08-05T08:00:00-03:00", "hasta": "2026-08-06T08:00:00-03:00" },
+          { "desde": "2026-08-14T08:00:00-03:00", "hasta": "2026-08-15T08:00:00-03:00" },
+          { "desde": "2026-08-23T08:00:00-03:00", "hasta": "2026-08-24T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Erica Tepp", "direccion": "Av. Richeri 3296", "telefono": "474 1041" },
@@ -345,10 +341,9 @@
       {
         "turno": "SEGUNDO TURNO",
         "rangos": [
-          { "desde": "2026-07-01T08:00:00-03:00", "hasta": "2026-07-02T08:00:00-03:00" },
-          { "desde": "2026-07-10T08:00:00-03:00", "hasta": "2026-07-11T08:00:00-03:00" },
-          { "desde": "2026-07-19T08:00:00-03:00", "hasta": "2026-07-20T08:00:00-03:00" },
-          { "desde": "2026-07-28T08:00:00-03:00", "hasta": "2026-07-29T08:00:00-03:00" }
+          { "desde": "2026-08-06T08:00:00-03:00", "hasta": "2026-08-07T08:00:00-03:00" },
+          { "desde": "2026-08-15T08:00:00-03:00", "hasta": "2026-08-16T08:00:00-03:00" },
+          { "desde": "2026-08-24T08:00:00-03:00", "hasta": "2026-08-25T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Sauco", "direccion": "Alberdi 2154", "telefono": "474 6180" },
@@ -359,10 +354,9 @@
       {
         "turno": "TERCER TURNO",
         "rangos": [
-          { "desde": "2026-07-02T08:00:00-03:00", "hasta": "2026-07-03T08:00:00-03:00" },
-          { "desde": "2026-07-11T08:00:00-03:00", "hasta": "2026-07-12T08:00:00-03:00" },
-          { "desde": "2026-07-20T08:00:00-03:00", "hasta": "2026-07-21T08:00:00-03:00" },
-          { "desde": "2026-07-29T08:00:00-03:00", "hasta": "2026-07-30T08:00:00-03:00" }
+          { "desde": "2026-08-07T08:00:00-03:00", "hasta": "2026-08-08T08:00:00-03:00" },
+          { "desde": "2026-08-16T08:00:00-03:00", "hasta": "2026-08-17T08:00:00-03:00" },
+          { "desde": "2026-08-25T08:00:00-03:00", "hasta": "2026-08-26T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Cirelli", "direccion": "25 de Mayo 1654", "telefono": "474 0427" },
@@ -373,10 +367,9 @@
       {
         "turno": "CUARTO TURNO",
         "rangos": [
-          { "desde": "2026-07-03T08:00:00-03:00", "hasta": "2026-07-04T08:00:00-03:00" },
-          { "desde": "2026-07-12T08:00:00-03:00", "hasta": "2026-07-13T08:00:00-03:00" },
-          { "desde": "2026-07-21T08:00:00-03:00", "hasta": "2026-07-22T08:00:00-03:00" },
-          { "desde": "2026-07-30T08:00:00-03:00", "hasta": "2026-07-31T08:00:00-03:00" }
+          { "desde": "2026-08-08T08:00:00-03:00", "hasta": "2026-08-09T08:00:00-03:00" },
+          { "desde": "2026-08-17T08:00:00-03:00", "hasta": "2026-08-18T08:00:00-03:00" },
+          { "desde": "2026-08-26T08:00:00-03:00", "hasta": "2026-08-27T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Marta Tepp", "direccion": "Av. Lujan 3636", "telefono": "474 4804" },
@@ -387,10 +380,10 @@
       {
         "turno": "QUINTO TURNO",
         "rangos": [
-          { "desde": "2026-07-04T08:00:00-03:00", "hasta": "2026-07-05T08:00:00-03:00" },
-          { "desde": "2026-07-13T08:00:00-03:00", "hasta": "2026-07-14T08:00:00-03:00" },
-          { "desde": "2026-07-22T08:00:00-03:00", "hasta": "2026-07-23T08:00:00-03:00" },
-          { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" }
+          { "desde": "2026-07-31T08:00:00-03:00", "hasta": "2026-08-01T08:00:00-03:00" },
+          { "desde": "2026-08-09T08:00:00-03:00", "hasta": "2026-08-10T08:00:00-03:00" },
+          { "desde": "2026-08-18T08:00:00-03:00", "hasta": "2026-08-19T08:00:00-03:00" },
+          { "desde": "2026-08-27T08:00:00-03:00", "hasta": "2026-08-28T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Pescetti Julieta", "direccion": "Av. 7 de Marzo 1760", "telefono": "474 0375" },
@@ -402,9 +395,10 @@
       {
         "turno": "SEXTO TURNO",
         "rangos": [
-          { "desde": "2026-07-05T08:00:00-03:00", "hasta": "2026-07-06T08:00:00-03:00" },
-          { "desde": "2026-07-14T08:00:00-03:00", "hasta": "2026-07-15T08:00:00-03:00" },
-          { "desde": "2026-07-23T08:00:00-03:00", "hasta": "2026-07-24T08:00:00-03:00" }
+          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" },
+          { "desde": "2026-08-10T08:00:00-03:00", "hasta": "2026-08-11T08:00:00-03:00" },
+          { "desde": "2026-08-19T08:00:00-03:00", "hasta": "2026-08-20T08:00:00-03:00" },
+          { "desde": "2026-08-28T08:00:00-03:00", "hasta": "2026-08-29T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Mayoraz", "direccion": "25 de Mayo 2017", "telefono": "474 7057" },
@@ -415,9 +409,10 @@
       {
         "turno": "SEPTIMO TURNO",
         "rangos": [
-          { "desde": "2026-07-06T08:00:00-03:00", "hasta": "2026-07-07T08:00:00-03:00" },
-          { "desde": "2026-07-15T08:00:00-03:00", "hasta": "2026-07-16T08:00:00-03:00" },
-          { "desde": "2026-07-24T08:00:00-03:00", "hasta": "2026-07-25T08:00:00-03:00" }
+          { "desde": "2026-08-02T08:00:00-03:00", "hasta": "2026-08-03T08:00:00-03:00" },
+          { "desde": "2026-08-11T08:00:00-03:00", "hasta": "2026-08-12T08:00:00-03:00" },
+          { "desde": "2026-08-20T08:00:00-03:00", "hasta": "2026-08-21T08:00:00-03:00" },
+          { "desde": "2026-08-29T08:00:00-03:00", "hasta": "2026-08-30T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Contini", "direccion": "Sarmiento 1776", "telefono": "474 0422" },
@@ -428,46 +423,37 @@
       {
         "turno": "OCTAVO TURNO",
         "rangos": [
-          { "desde": "2026-07-07T08:00:00-03:00", "hasta": "2026-07-08T08:00:00-03:00" },
-          { "desde": "2026-07-16T08:00:00-03:00", "hasta": "2026-07-17T08:00:00-03:00" },
-          { "desde": "2026-07-25T08:00:00-03:00", "hasta": "2026-07-26T08:00:00-03:00" }
+          { "desde": "2026-08-03T08:00:00-03:00", "hasta": "2026-08-04T08:00:00-03:00" },
+          { "desde": "2026-08-12T08:00:00-03:00", "hasta": "2026-08-13T08:00:00-03:00" },
+          { "desde": "2026-08-21T08:00:00-03:00", "hasta": "2026-08-22T08:00:00-03:00" },
+          { "desde": "2026-08-30T08:00:00-03:00", "hasta": "2026-08-31T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Quassolo", "direccion": "Sarmiento 2343", "telefono": "474 7428" },
           { "nombre": "Mariana Gomez", "direccion": "Avenida Lujan 2468", "telefono": "474 2737" },
-          { "nombre": "Rivero", "direccion": "Mariano Candioti 2801", "telefono": "154 623606" }
+          { "nombre": "Rivero", "direccion": "Mariano Candioti 2801", "telefono": "154 623606" },
+          { "nombre": "Terenzi", "direccion": "Belgrano 3018", "telefono": "474 4371" }
         ]
       },
       {
         "turno": "NOVENO TURNO",
         "rangos": [
-          { "desde": "2026-07-08T08:00:00-03:00", "hasta": "2026-07-09T08:00:00-03:00" },
-          { "desde": "2026-07-17T08:00:00-03:00", "hasta": "2026-07-18T08:00:00-03:00" },
-          { "desde": "2026-07-26T08:00:00-03:00", "hasta": "2026-07-27T08:00:00-03:00" }
+          { "desde": "2026-08-04T08:00:00-03:00", "hasta": "2026-08-05T08:00:00-03:00" },
+          { "desde": "2026-08-13T08:00:00-03:00", "hasta": "2026-08-14T08:00:00-03:00" },
+          { "desde": "2026-08-22T08:00:00-03:00", "hasta": "2026-08-23T08:00:00-03:00" },
+          { "desde": "2026-08-31T08:00:00-03:00", "hasta": "2026-09-01T08:00:00-03:00" }
         ],
         "farmacias": [
           { "nombre": "Adrian Carrizo", "direccion": "Belgrano 3405", "telefono": "474 1865" },
           { "nombre": "Firmani", "direccion": "25 de Mayo 1878", "telefono": "474 4847" },
           { "nombre": "Palacin", "direccion": "Mariano Candioti 3677", "telefono": "474 1674" }
         ]
-      },
-      {
-        "turno": "TURNO PROVISORIO 01/08/2026",
-        "rangos": [
-          { "desde": "2026-08-01T08:00:00-03:00", "hasta": "2026-08-02T08:00:00-03:00" }
-        ],
-        "farmacias": [
-          { "nombre": "Macagno", "direccion": "Av. 7 de Marzo 2601", "telefono": "474 2196" },
-          { "nombre": "Mayoraz", "direccion": "25 de Mayo 2017", "telefono": "474 7057" },
-          { "nombre": "Rivero", "direccion": "Candioti 2801", "telefono": "154 623606" },
-          { "nombre": "Tosello", "direccion": "Lopez y Planes 2865", "telefono": "4470671" }
-        ]
       }
     ],
     "fuente": {
       "tipo": "capturas-manuales-del-afiche",
-      "fechaReferencia": "2026-07 / 2026-08-01",
-      "nota": "Bloques de Santo Tome recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion. Incluye turno provisorio del 01/08/2026 cargado desde capturas hasta publicar el mes completo."
+      "fechaReferencia": "2026-08",
+      "nota": "Bloques de Santo Tome recortados del afiche del Colegio de Farmaceuticos de Santa Fe, Primera Circunscripcion."
     }
   }
 ]
