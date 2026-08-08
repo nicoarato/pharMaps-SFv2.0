@@ -58,9 +58,6 @@ export class Tab2Page implements OnInit {
   visibles = false;
   turnosVisibles = false;
   modoMapa: 'ninguno' | 'farmacias' | 'turnos' = 'ninguno';
-  estilo = 'secondary';
-  estiloTurnos = 'primary';
-  estiloMapa = '';
   mapaListo = false;
   iconoFarmaciaCargado = false;
   private popupActivo: Mapboxgl.Popup = null;
@@ -267,10 +264,6 @@ export class Tab2Page implements OnInit {
       .slice(0, 8);
   }
 
-  buscarFarmaciasPorClick() {
-    this.buscarFarmacias(this.terminoBusqueda);
-  }
-
   seleccionarFarmacia(farmacia: FarmaciaGeojson) {
     if (!farmacia) {
       return;
@@ -303,8 +296,6 @@ export class Tab2Page implements OnInit {
   private actualizarEstadosBotones() {
     this.visibles = this.modoMapa === 'farmacias';
     this.turnosVisibles = this.modoMapa === 'turnos';
-    this.estilo = this.visibles ? 'medium' : 'secondary';
-    this.estiloTurnos = this.turnosVisibles ? 'medium' : 'primary';
   }
 
   private farmaciaCoincide(farmacia: FarmaciaGeojson, busqueda: string) {
@@ -704,7 +695,9 @@ export class Tab2Page implements OnInit {
     }
 
     const { geometry: { coordinates }, properties: { name, phone, address } } = farmacia;
-    const popupHtml = this.construirContenidoPopup(name, phone, address, deTurno);
+    const lng = Number(coordinates[0]);
+    const lat = Number(coordinates[1]);
+    const popupHtml = this.construirContenidoPopup(name, phone, address, deTurno, lat, lng);
 
     this.cerrarPopupActivo();
 
@@ -714,15 +707,23 @@ export class Tab2Page implements OnInit {
       maxWidth: '300px',
       className: 'pharmap-popup'
     })
-      .setLngLat([Number(coordinates[0]), Number(coordinates[1])])
+      .setLngLat([lng, lat])
       .setHTML(popupHtml)
       .addTo(this.mapa);
   }
 
-  private construirContenidoPopup(name: string, phone: string, address: string, deTurno: boolean) {
+  private construirContenidoPopup(
+    name: string,
+    phone: string,
+    address: string,
+    deTurno: boolean,
+    lat: number,
+    lng: number
+  ) {
     const badge = deTurno
       ? '<span class="popup-badge popup-badge--turno">De turno hoy</span>'
       : '';
+    const mapsUrl = this.construirUrlGoogleMaps(lat, lng);
 
     return `
       <div class="popup-card">
@@ -743,8 +744,21 @@ export class Tab2Page implements OnInit {
             <span class="popup-row__value">${this.escaparHtml(phone)}</span>
           </div>
         </div>
+        <a
+          class="popup-card__action"
+          href="${this.escaparHtml(mapsUrl)}"
+          target="_blank"
+          rel="noopener noreferrer">
+          Ir
+        </a>
       </div>
     `;
+  }
+
+  private construirUrlGoogleMaps(lat: number, lng: number) {
+    const destino = encodeURIComponent(`${lat},${lng}`);
+
+    return `https://www.google.com/maps/dir/?api=1&destination=${destino}&travelmode=driving`;
   }
 
   private escaparHtml(texto: string) {
@@ -904,14 +918,5 @@ export class Tab2Page implements OnInit {
 
     return Number.isFinite(lng) && Number.isFinite(lat);
   }
-
-  private formatearFecha(fecha: Date) {
-    const year = fecha.getFullYear();
-    const month = `${fecha.getMonth() + 1}`.padStart(2, '0');
-    const day = `${fecha.getDate()}`.padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
-  }
-
 
 }
