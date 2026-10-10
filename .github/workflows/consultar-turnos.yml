@@ -16,7 +16,9 @@ permissions:
 
 jobs:
   consultar:
-    runs-on: ubuntu-latest
+    # Los primeros runners Linux agotaron la conexión al Colegio.
+    # El diagnóstico en macOS pudo acceder a la portada y al PDF.
+    runs-on: macos-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
