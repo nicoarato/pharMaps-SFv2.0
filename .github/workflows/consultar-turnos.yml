@@ -1,0 +1,34 @@
+name: Consultar turnos Santa Fe y Esperanza
+
+on:
+  schedule:
+    # 09:17 de Argentina, del 1 al 5 de cada mes.
+    - cron: '17 12 1-5 * *'
+  workflow_dispatch:
+  push:
+    branches: ['automation/consulta-turnos']
+    paths:
+      - '.github/workflows/consultar-turnos.yml'
+      - 'helpers/turnos-monitor/**'
+
+permissions:
+  contents: read
+
+jobs:
+  consultar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Consultar fuentes y comparar con referencia
+        run: python helpers/turnos-monitor/check.py
+      - name: Guardar informe y publicaciones descargadas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: consulta-turnos-${{ github.run_id }}
+          path: turnos-report/
+          retention-days: 14

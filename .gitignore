@@ -33,3 +33,6 @@ npm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# Informes locales de consulta de turnos
+/turnos-report/
