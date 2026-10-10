@@ -1,0 +1,29 @@
+name: Diagnosticar acceso a fuentes de turnos
+on:
+  workflow_dispatch:
+  push:
+    branches: ['automation/consulta-turnos']
+    paths:
+      - '.github/workflows/diagnosticar-turnos.yml'
+      - 'helpers/turnos-monitor/diagnose.py'
+permissions:
+  contents: read
+jobs:
+  diagnosticar:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python helpers/turnos-monitor/diagnose.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: conectividad-${{ matrix.os }}
+          path: turnos-report/connectivity.json
+          retention-days: 7
