@@ -42,5 +42,18 @@ Ambas fuentes funcionaron localmente. En dos ejecuciones de GitHub Actions,
 Esperanza devolvió las 31 fechas de octubre. Santa Fe agotó el tiempo de conexión
 HTTPS, incluso con IPv4 y reintentos. No se ha confirmado la causa: podría ser
 una restricción de red del sitio o un problema de ruta desde los runners.
-La programación de Santa Fe requiere resolver ese acceso antes de considerarse
-operativa; por ejemplo, probar otro entorno de ejecución con acceso a la fuente.
+El diagnóstico posterior comparó DNS, HTTP/HTTPS, con/sin www y descarga directa
+del PDF desde Linux y macOS en GitHub. Ambos resolvieron a 135.181.16.98 y todos
+los accesos dieron HTTP 200. Otro runner Linux siguió fallando: el comportamiento
+depende del servidor o su ruta de conexión, sin causa exacta confirmada.
+
+Se cambió la consulta a `macos-latest` y la ejecución completa
+https://github.com/nicoarato/pharMaps-SFv2.0/actions/runs/38072908932
+finalizó correctamente: PDF de octubre de Santa Fe y calendario de octubre de
+Esperanza coincidentes con la referencia local. Esto prueba acceso y detección,
+no la corrección de los turnos del PDF ni disponibilidad futura garantizada.
+
+Para repetir el diagnóstico: `python3 helpers/turnos-monitor/diagnose.py`, o usar
+el workflow manual `Diagnosticar acceso a fuentes de turnos`. Las sondas reportan
+los fallos en el JSON; que el job de diagnóstico termine correctamente no implica
+que todas las URLs hayan respondido (revisar `http_code` y `exitCode`).
