@@ -57,3 +57,33 @@ Para repetir el diagnóstico: `python3 helpers/turnos-monitor/diagnose.py`, o us
 el workflow manual `Diagnosticar acceso a fuentes de turnos`. Las sondas reportan
 los fallos en el JSON; que el job de diagnóstico termine correctamente no implica
 que todas las URLs hayan respondido (revisar `http_code` y `exitCode`).
+
+## Importación de Esperanza
+
+`python3 helpers/turnos-monitor/import_esperanza.py` valida el calendario
+descargado y genera un candidato en `turnos-report/esperanza-candidate.json`.
+Con `--apply` también reemplaza el JSON local, únicamente si todos los controles
+pasan y hay diferencias de contenido (la fecha de consulta sola no genera cambios).
+`--month YYYY-MM` permite una prueba histórica; Actions usa el mes actual argentino.
+
+Se exige coincidencia del encabezado y las fechas con el mes esperado, todos los
+días del mes, fechas y farmacias sin duplicados, nombres reconocidos y no reemplazar
+un calendario de un mes posterior. Los turnos se generan de 08:00 a 08:00, incluyendo
+el cambio de mes/año. El catálogo explícito es `esperanza-farmacias.json`; incluye
+los nombres usados actualmente en la app. La variante Tkaczyck se mapea a TKACZYK.
+Nombres nuevos o ambiguos requieren revisar y ampliar el catálogo, sin adivinarlos.
+
+Actions ejecuta las pruebas y la importación aun cuando Santa Fe falle, para que
+las consultas sean independientes. Si Esperanza no pudo descargarse o validarse,
+no crea cambios. En ejecuciones manuales/programadas válidas, abre o actualiza un
+PR borrador con únicamente `turnos-esperanza.json`, usando el token de GitHub.
+Debe estar habilitada la opción de permitir a GitHub Actions crear Pull Requests
+en Settings > Actions > General. Los pushes de la rama de prueba solo verifican
+la generación; no crean PR de datos. No hay integración ni despliegue automático.
+
+La fuente de octubre tiene `Dolnalisio / Barrios` el día 12; nuestros datos actuales
+dicen `Bar / Barrios`. La importación está detenida por ese nombre desconocido hasta
+confirmar el turno. Donalisio ya está en el catálogo; no se asume que Dolnalisio sea
+el mismo nombre sin resolver la diferencia del día 12.
+
+Pruebas: `python3 -m unittest discover -s helpers/turnos-monitor -p 'test_*.py'`.

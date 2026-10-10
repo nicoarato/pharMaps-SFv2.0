@@ -36,3 +36,4 @@ npm-debug.log*
 
 # Informes locales de consulta de turnos
 /turnos-report/
+/helpers/turnos-monitor/__pycache__/

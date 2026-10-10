@@ -12,7 +12,8 @@ on:
       - 'helpers/turnos-monitor/**'
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   consultar:
@@ -27,6 +28,25 @@ jobs:
           python-version: '3.12'
       - name: Consultar fuentes y comparar con referencia
         run: python helpers/turnos-monitor/check.py
+      - name: Verificar importador de Esperanza
+        id: tests
+        if: always()
+        run: python -m unittest discover -s helpers/turnos-monitor -p 'test_*.py'
+      - name: Generar y validar actualización de Esperanza
+        id: esperanza
+        if: always()
+        run: python helpers/turnos-monitor/import_esperanza.py --apply
+      - name: Preparar Pull Request de Esperanza
+        if: always() && steps.tests.outcome == 'success' && steps.esperanza.outcome == 'success' && github.event_name != 'push'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: master
+          branch: automation/turnos-esperanza
+          add-paths: src/assets/data/turnos-esperanza.json
+          commit-message: 'Actualizar turnos de Esperanza desde fuente oficial'
+          title: 'Actualizar turnos de Esperanza'
+          body: 'Calendario extraído de Turismo Esperanza. Se validaron el mes vigente, todas las fechas y los nombres contra el catálogo. Revisar cambios antes de publicar.'
+          draft: true
       - name: Guardar informe y publicaciones descargadas
         if: always()
         uses: actions/upload-artifact@v4
