@@ -130,3 +130,8 @@ del procesamiento y conservación de alternativas. Este resultado sobre un solo
 mes no demuestra un 99,9 % de precisión futura. Faltan afiches adicionales para
 medir generalización y ajustar recortes si el diseño cambia; la API de medios de
 WordPress rechazó la consulta pública de archivos anteriores con HTTP 401.
+
+La ejecución completa en GitHub del extractor y conciliador también fue exitosa:
+https://github.com/nicoarato/pharMaps-SFv2.0/actions/runs/38074301958
+con 146 filas resueltas, siete restricciones resueltas, cero dudas y ningún cambio
+de datos necesario para octubre.

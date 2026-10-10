@@ -185,6 +185,8 @@ def reconcile(ocr, month, catalog):
                 turn["farmacias"].append(copy.deepcopy(lookup[first["nombre"]]))
                 if not first["addressMatches"]:
                     issues.append({"type": "address", "block": block["id"], "nombre": first["nombre"], "readings": row["alternatives"]})
+                if not first["phoneMatches"]:
+                    issues.append({"type": "phone", "block": block["id"], "nombre": first["nombre"], "readings": row["alternatives"]})
             else:
                 issues.append({"type": "pharmacy" if not resolved else "duplicate-pharmacy", "block": block["id"],
                                "y": row["y"], "readings": row["alternatives"], "candidates": ranked[:5]})
