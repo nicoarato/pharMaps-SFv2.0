@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "extract:santa-fe": "node scripts/extract-santa-fe.mjs",
     "ocr:pdf": "node scripts/ocr-turnos-pdf.mjs",
     "ocr:santa-fe": "node scripts/ocr-turnos-santa-fe.mjs",
     "extract:pdf": "node scripts/extract-turnos-pdf.mjs",
