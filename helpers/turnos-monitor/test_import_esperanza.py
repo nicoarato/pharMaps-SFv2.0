@@ -2,7 +2,7 @@ import calendar
 import unittest
 from import_esperanza import convert
 
-REGISTRY = {"HILAS": "Farmacia HILAS", "TKACZYK": "Farmacia TKACZYK"}
+REGISTRY = {"HILAS": "Farmacia HILAS", "TKACZYK": "Farmacia TKACZYK", "DONALISIO": "Farmacia DONALISIO"}
 
 
 def source(year=2026, month=10, name="Hilas"):
@@ -21,7 +21,7 @@ class ImportTests(unittest.TestCase):
         self.assertEqual(len(convert(source(2028, 2), "2028-02", REGISTRY, "2028-02-01")["items"]), 29)
 
     def test_invalid_calendars(self):
-        cases = [source(name="Dolnalisio"), source() + " 31/10/2026 Hilas",
+        cases = [source(name="Farmacia desconocida"), source() + " 31/10/2026 Hilas",
                  source().replace("10/10/2026 — Hilas", ""), source(name="Hilas / Hilas"),
                  source().replace("01/10/2026", "01/11/2026"), source(month=12)]
         for text in cases:
@@ -31,6 +31,8 @@ class ImportTests(unittest.TestCase):
     def test_explicit_spelling_variant(self):
         result = convert(source(name="Tkaczyck"), "2026-10", REGISTRY, "2026-10-01")
         self.assertEqual(result["items"][0]["farmacias"][0]["alias"], "TKACZYK")
+        result = convert(source(name="Dolnalisio"), "2026-10", REGISTRY, "2026-10-01")
+        self.assertEqual(result["items"][0]["farmacias"][0]["alias"], "DONALISIO")
 
 
 if __name__ == "__main__":

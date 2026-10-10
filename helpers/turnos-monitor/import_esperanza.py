@@ -31,6 +31,7 @@ def convert(text, month, registry, retrieved):
     lookup = {normalize(alias): (alias, name) for alias, name in registry.items()}
     # Variante ortográfica observada en la fuente; no se usa coincidencia difusa.
     lookup["TKACZYCK"] = lookup["TKACZYK"]
+    lookup["DOLNALISIO"] = lookup["DONALISIO"]
     items, seen, unknown = [], set(), set()
     for index, match in enumerate(matches):
         day = date(int(match[3]), int(match[2]), int(match[1]))

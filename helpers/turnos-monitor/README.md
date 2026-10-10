@@ -82,8 +82,8 @@ en Settings > Actions > General. Los pushes de la rama de prueba solo verifican
 la generación; no crean PR de datos. No hay integración ni despliegue automático.
 
 La fuente de octubre tiene `Dolnalisio / Barrios` el día 12; nuestros datos actuales
-dicen `Bar / Barrios`. La importación está detenida por ese nombre desconocido hasta
-confirmar el turno. Donalisio ya está en el catálogo; no se asume que Dolnalisio sea
-el mismo nombre sin resolver la diferencia del día 12.
+dicen `Bar / Barrios`. A partir de la indicación del usuario se agregó la equivalencia
+explícita Dolnalisio → DONALISIO. El candidato sigue la fuente para ese día; la
+diferencia con los datos actuales debe revisarse en el PR antes de publicar.
 
 Pruebas: `python3 -m unittest discover -s helpers/turnos-monitor -p 'test_*.py'`.
