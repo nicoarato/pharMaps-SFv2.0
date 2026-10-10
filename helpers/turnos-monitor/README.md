@@ -35,3 +35,12 @@ Pendiente para una siguiente etapa: extracción/OCR de Santa Fe, validación de
 mes, días completos y nombres, y generación de JSON y Pull Requests. Los enlaces
 o formatos pueden cambiar y requerir ajustes. En repositorios públicos GitHub
 puede desactivar la programación después de 60 días sin actividad.
+
+## Resultado de la prueba del 10/10/2026
+
+Ambas fuentes funcionaron localmente. En dos ejecuciones de GitHub Actions,
+Esperanza devolvió las 31 fechas de octubre. Santa Fe agotó el tiempo de conexión
+HTTPS, incluso con IPv4 y reintentos. No se ha confirmado la causa: podría ser
+una restricción de red del sitio o un problema de ruta desde los runners.
+La programación de Santa Fe requiere resolver ese acceso antes de considerarse
+operativa; por ejemplo, probar otro entorno de ejecución con acceso a la fuente.
