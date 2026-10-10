@@ -87,3 +87,46 @@ explícita Dolnalisio → DONALISIO. El candidato sigue la fuente para ese día;
 diferencia con los datos actuales debe revisarse en el PR antes de publicar.
 
 Pruebas: `python3 -m unittest discover -s helpers/turnos-monitor -p 'test_*.py'`.
+
+## Importación de Santa Fe
+
+El workflow instala las dependencias aisladas de `helpers/turnos-ocr` y renderiza
+el PDF a escala 3. Comprueba mes y etiqueta de localidad y recorta los 12 bloques
+de Santa Fe. Para cada bloque obtiene tres lecturas: original, binarizada y texto
+disperso. Conserva página completa, recortes, coordenadas, textos y confianza OCR.
+Un control independiente de bandas de tinta señala filas que el OCR haya omitido.
+
+```sh
+npm ci --prefix helpers/turnos-ocr
+node helpers/turnos-ocr/scripts/extract-santa-fe.mjs archivo.pdf turnos-report/santa-fe-ocr
+python3 helpers/turnos-monitor/import_santa_fe.py
+```
+
+El conciliador usa nombres del catálogo `santa-fe-farmacias.json`, dirección y
+teléfono, acuerdo entre lecturas y separación entre candidatos. No hereda fechas
+ni pertenencia a grupos de un mes anterior. Reconstruye los rangos de 08:00 a 08:00
+y las restricciones de farmacias que atienden solo en una de las fechas del grupo.
+Conserva separadamente las direcciones que continúan en otra línea y las notas.
+Se exige cobertura completa del mes y ausencia de días y farmacias duplicados.
+Los puntajes de similitud no son probabilidades calibradas de acierto.
+
+Una duda **no detiene la lectura de otros bloques**. Genera `candidate.json`,
+`review.json` y `review.md`, incluyendo todas las variantes de OCR y los cinco
+mejores candidatos del catálogo por lectura. No se garantiza enumerar todas las
+interpretaciones posibles. Los casos sin texto también se señalan con su recorte.
+El artifact de Actions incluye el PDF original y toda la evidencia.
+
+Con dudas, la app conserva sus datos, pero el workflow abre un PR borrador con
+el candidato parcial, informes y recortes pertinentes en `turnos-review/santa-fe/`.
+Con todas las validaciones superadas, `--apply` actualiza solo Santa Fe para el
+mes correspondiente en el JSON compartido, conservando Santo Tomé y otros meses,
+y propone ese cambio en un PR borrador. No publica ni integra automáticamente.
+Si el candidato coincide con los datos actuales, no crea una actualización vacía.
+
+Validación inicial con el afiche de octubre de 2026: 146/146 filas de farmacias,
+7/7 restricciones de fechas y todos los rangos coinciden con los datos manuales
+existentes. También se prueba una farmacia desconocida para verificar continuidad
+del procesamiento y conservación de alternativas. Este resultado sobre un solo
+mes no demuestra un 99,9 % de precisión futura. Faltan afiches adicionales para
+medir generalización y ajustar recortes si el diseño cambia; la API de medios de
+WordPress rechazó la consulta pública de archivos anteriores con HTTP 401.

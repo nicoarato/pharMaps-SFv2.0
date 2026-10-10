@@ -10,6 +10,8 @@ on:
     paths:
       - '.github/workflows/consultar-turnos.yml'
       - 'helpers/turnos-monitor/**'
+      - 'helpers/turnos-ocr/scripts/extract-santa-fe.mjs'
+      - 'helpers/turnos-ocr/package*.json'
 
 permissions:
   contents: write
@@ -20,7 +22,7 @@ jobs:
     # Los primeros runners Linux agotaron la conexión al Colegio.
     # El diagnóstico en macOS pudo acceder a la portada y al PDF.
     runs-on: macos-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,7 +30,7 @@ jobs:
           python-version: '3.12'
       - name: Consultar fuentes y comparar con referencia
         run: python helpers/turnos-monitor/check.py
-      - name: Verificar importador de Esperanza
+      - name: Verificar importadores
         id: tests
         if: always()
         run: python -m unittest discover -s helpers/turnos-monitor -p 'test_*.py'
@@ -46,6 +48,35 @@ jobs:
           commit-message: 'Actualizar turnos de Esperanza desde fuente oficial'
           title: 'Actualizar turnos de Esperanza'
           body: 'Calendario extraído de Turismo Esperanza. Se validaron el mes vigente, todas las fechas y los nombres contra el catálogo. Revisar cambios antes de publicar.'
+          draft: true
+      - uses: actions/setup-node@v4
+        if: always()
+        with:
+          node-version: '24'
+      - name: Instalar herramientas OCR
+        id: ocr_dependencies
+        if: always()
+        run: npm ci --prefix helpers/turnos-ocr
+      - name: Leer bloques de Santa Fe con tres variantes OCR
+        id: ocr
+        if: always() && steps.ocr_dependencies.outcome == 'success'
+        run: node helpers/turnos-ocr/scripts/extract-santa-fe.mjs turnos-report/santa-fe-0.pdf turnos-report/santa-fe-ocr
+      - name: Conciliar Santa Fe y preparar alternativas de lecturas dudosas
+        id: santa_fe
+        if: always() && steps.ocr.outcome == 'success'
+        run: python helpers/turnos-monitor/import_santa_fe.py --apply
+      - name: Preparar Pull Request de Santa Fe
+        if: always() && steps.tests.outcome == 'success' && steps.santa_fe.outcome == 'success' && github.event_name != 'push'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: ${{ github.ref_name }}
+          branch: automation/turnos-santa-fe
+          add-paths: |
+            src/assets/data/turnos-colegio-agosto-2026.json
+            turnos-review/santa-fe/**
+          commit-message: 'Preparar actualización y revisión OCR de Santa Fe'
+          title: 'Actualizar o revisar turnos de Santa Fe'
+          body: 'PDF leído en tres variantes OCR y conciliado con el catálogo. Si hay dudas, se adjuntan candidato, lecturas, alternativas y recortes en turnos-review/santa-fe; el JSON de la app conserva sus datos. Si todo se valida, se propone el JSON actualizado. Revisar antes de publicar. El artifact de la ejecución contiene el PDF y todas las lecturas.'
           draft: true
       - name: Guardar informe y publicaciones descargadas
         if: always()
