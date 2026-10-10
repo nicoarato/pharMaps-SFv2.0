@@ -10,7 +10,8 @@ fuera porque ya existe el calendario anual.
 python3 helpers/turnos-monitor/check.py
 ```
 
-Requiere Python 3.9+ con base de zonas horarias y acceso a Internet. No instala
+Requiere Python 3.9+, curl, base de zonas horarias y acceso a Internet. Usa IPv4
+y hasta dos reintentos por descarga ante fallos transitorios. No instala
 dependencias. Escribe HTML, PDF de Santa Fe, texto del calendario de Esperanza,
 `report.json` y `summary.md` en `turnos-report/` (ignorado por Git).
 

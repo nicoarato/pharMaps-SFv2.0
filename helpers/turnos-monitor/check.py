@@ -3,12 +3,12 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 from datetime import datetime
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
-from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent
@@ -38,12 +38,15 @@ class Page(HTMLParser):
 
 
 def download(url):
-    request = Request(url, headers={"User-Agent": "PharMaps-turnos-monitor/1.0"})
-    with urlopen(request, timeout=60) as response:
-        data = response.read(20_000_001)
-        if len(data) > 20_000_000:
-            raise ValueError("Fuente supera el límite de 20 MB")
-        return data
+    response = subprocess.run([
+        "curl", "--ipv4", "--location", "--fail", "--silent", "--show-error",
+        "--connect-timeout", "15", "--max-time", "45", "--retry", "2",
+        "--retry-delay", "3", "--max-filesize", "20000000",
+        "--user-agent", "PharMaps-turnos-monitor/1.0", url,
+    ], capture_output=True, timeout=160)
+    if response.returncode:
+        raise ValueError(response.stderr.decode(errors="replace").strip())
+    return response.stdout
 
 
 def main():
