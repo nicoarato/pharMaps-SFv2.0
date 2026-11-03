@@ -1,0 +1,51 @@
+name: Consultar turnos Esperanza
+
+on:
+  schedule:
+    # 09:17 de Argentina, del 1 al 5 de cada mes.
+    - cron: '17 12 1-5 * *'
+  workflow_dispatch:
+  push:
+    branches: ['automation/consulta-turnos']
+    paths:
+      - '.github/workflows/consultar-esperanza.yml'
+      - 'helpers/turnos-monitor/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  consultar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Consultar calendario de Esperanza
+        run: python helpers/turnos-monitor/check.py --source esperanza
+      - name: Verificar importador de Esperanza
+        run: python -m unittest discover -s helpers/turnos-monitor -p 'test_import_esperanza.py'
+      - name: Generar y validar actualización de Esperanza
+        id: esperanza
+        run: python helpers/turnos-monitor/import_esperanza.py --apply
+      - name: Preparar Pull Request de Esperanza
+        if: github.event_name != 'push'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: ${{ github.ref_name }}
+          branch: automation/turnos-esperanza
+          add-paths: src/assets/data/turnos-esperanza.json
+          commit-message: 'Actualizar turnos de Esperanza desde fuente oficial'
+          title: 'Actualizar turnos de Esperanza'
+          body: 'Calendario extraído de Turismo Esperanza. Se validaron el mes vigente, todas las fechas y los nombres contra el catálogo. Revisar cambios antes de publicar.'
+          draft: true
+      - name: Guardar informe y publicación descargada
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: consulta-esperanza-${{ github.run_id }}
+          path: turnos-report/
+          retention-days: 14

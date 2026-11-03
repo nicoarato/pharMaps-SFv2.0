@@ -17,9 +17,16 @@ dependencias. Escribe HTML, PDF de Santa Fe, texto del calendario de Esperanza,
 
 ## GitHub Actions
 
-El workflow `Consultar turnos Santa Fe y Esperanza` ejecuta la consulta del día
-1 al 5 a las 09:17 de Argentina; GitHub puede retrasar la ejecución. También
-permite ejecución manual y una prueba por push a `automation/consulta-turnos`.
+Los workflows `Consultar turnos Esperanza` y `Consultar turnos Santa Fe y Santo Tomé`
+se ejecutan de forma independiente del día 1 al 5 a las 09:17 de Argentina; GitHub
+puede retrasar la ejecución. Ambos permiten ejecución manual y una prueba por push
+a `automation/consulta-turnos`. Cada uno consulta únicamente su fuente y guarda
+su propio artifact. El segundo descarga el afiche compartido del Colegio: por ahora
+solo importa Santa Fe; Santo Tomé sigue requiriendo revisión e importación manual.
+La separación no agrega todavía un importador de Santo Tomé.
+
+Para consultar una sola fuente localmente, usar `check.py --source esperanza` o
+`check.py --source santa-fe`; sin argumentos se consultan ambas fuentes.
 La programación se activa al integrar el workflow a la rama predeterminada.
 Ver el resumen y descargar el artifact en la pestaña Actions; se conserva 14 días.
 
@@ -28,8 +35,8 @@ un calendario válido o nuevo. Se compara el contenido del PDF y el bloque de
 turnos de Esperanza; se ignoran cambios ajenos al calendario de esa ciudad.
 La referencia no se actualiza automáticamente: después de revisar un cambio,
 actualizar los hashes de `baseline.json` con los del informe aprobado.
-Un error en cualquiera de las fuentes marca la ejecución como fallida, guardando
-el informe de ambas. Esta prueba no envía mensajes ni modifica/publica datos.
+Un error de consulta marca únicamente el workflow de esa fuente como fallido.
+La consulta guarda informes; los pasos posteriores pueden proponer datos en un PR borrador.
 
 Pendiente para una siguiente etapa: extracción/OCR de Santa Fe, validación de
 mes, días completos y nombres, y generación de JSON y Pull Requests. Los enlaces
@@ -73,8 +80,8 @@ el cambio de mes/año. El catálogo explícito es `esperanza-farmacias.json`; in
 los nombres usados actualmente en la app. La variante Tkaczyck se mapea a TKACZYK.
 Nombres nuevos o ambiguos requieren revisar y ampliar el catálogo, sin adivinarlos.
 
-Actions ejecuta las pruebas y la importación aun cuando Santa Fe falle, para que
-las consultas sean independientes. Si Esperanza no pudo descargarse o validarse,
+Actions ejecuta la consulta, las pruebas y la importación de Esperanza en su propio
+workflow, independiente de Santa Fe y Santo Tomé. Si Esperanza no pudo descargarse o validarse,
 no crea cambios. En ejecuciones manuales/programadas válidas, abre o actualiza un
 PR borrador con únicamente `turnos-esperanza.json`, usando el token de GitHub.
 Debe estar habilitada la opción de permitir a GitHub Actions crear Pull Requests

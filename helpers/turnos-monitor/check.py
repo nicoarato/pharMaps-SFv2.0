@@ -1,4 +1,5 @@
 """Consulta las fuentes públicas sin modificar los datos de la aplicación."""
+import argparse
 import hashlib
 import json
 import os
@@ -50,6 +51,10 @@ def download(url):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--source", choices=["all", "santa-fe", "esperanza"], default="all",
+                        help="Consultar solo la fuente seleccionada; santa-fe descarga el afiche compartido con Santo Tomé")
+    args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     baseline_path = ROOT / "baseline.json"
     baseline = json.loads(baseline_path.read_text()) if baseline_path.exists() else {}
@@ -59,6 +64,8 @@ def main():
         ("esperanza", "https://esperanza.tur.ar/2016/12/12/farmacias-de-turno/"),
     ]
     for city, url in sources:
+        if args.source != "all" and city != args.source:
+            continue
         result = {"city": city, "url": url}
         try:
             html = download(url)
@@ -103,7 +110,8 @@ def main():
             result.update(status="error", error=str(error))
         report["sources"].append(result)
     (OUT / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
-    lines = ["## Consulta de turnos: Santa Fe y Esperanza", "", f"Consulta: {report['checkedAt']}", "",
+    title = {"all": "Santa Fe, Santo Tomé y Esperanza", "santa-fe": "Santa Fe y Santo Tomé", "esperanza": "Esperanza"}[args.source]
+    lines = [f"## Consulta de turnos: {title}", "", f"Consulta: {report['checkedAt']}", "",
              "Comparación contra la referencia inicial. No se actualizan los JSON ni se confirma vigencia automáticamente.", ""]
     for source in report["sources"]:
         lines.append(f"- {source['city']}: **{source['status']}** — {source.get('title', source.get('error', source.get('note', '')))}")
