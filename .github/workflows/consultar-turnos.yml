@@ -79,13 +79,10 @@ jobs:
         with:
           base: ${{ github.ref_name }}
           branch: automation/turnos-santa-fe
-          add-paths: |
-            src/assets/data/turnos-colegio-agosto-2026.json
-            turnos-review/santa-fe/**
-            turnos-review/santo-tome/**
-          commit-message: 'Preparar actualización y revisión OCR de Santa Fe y Santo Tomé'
-          title: 'Actualizar o revisar turnos de Santa Fe y Santo Tomé'
-          body: 'El afiche vigente tiene prioridad. Si no está disponible, se propone el respaldo diario de El Litoral, con cobertura parcial y únicamente las fechas publicadas; revisar advertencias de direcciones y teléfonos en el artifact. PDF leído en tres variantes OCR y conciliado con el catálogo. Si hay dudas, se adjuntan candidato, lecturas, alternativas y recortes por localidad en turnos-review/; el JSON de la app conserva sus datos. Si todo se valida, se propone el JSON actualizado. Revisar antes de publicar. El artifact de la ejecución contiene el PDF y todas las lecturas.'
+          add-paths: src/assets/data/turnos-colegio-agosto-2026.json
+          commit-message: 'Actualizar turnos de Santa Fe y Santo Tomé'
+          title: 'Actualizar turnos de Santa Fe y Santo Tomé'
+          body: 'Actualización de turnos validados de Santa Fe y Santo Tomé. El afiche vigente tiene prioridad; si falta, se usa El Litoral con cobertura parcial de las fechas publicadas. Este PR incluye únicamente el JSON de la app. PDF, HTML, candidatos, advertencias e imágenes se conservan en el artifact de Actions durante 14 días. Los datos dudosos no se importan. Revisar las fechas y el informe antes de publicar.'
           draft: true
       - name: Guardar informe y publicaciones descargadas
         if: always()

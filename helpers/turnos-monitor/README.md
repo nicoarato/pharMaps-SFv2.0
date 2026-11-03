@@ -123,8 +123,10 @@ mejores candidatos del catálogo por lectura. No se garantiza enumerar todas las
 interpretaciones posibles. Los casos sin texto también se señalan con su recorte.
 El artifact de Actions incluye el PDF original y toda la evidencia.
 
-Con dudas, la app conserva sus datos, pero el workflow abre un PR borrador con
-el candidato parcial, informes y recortes pertinentes en `turnos-review/santa-fe/`.
+Con dudas, la app conserva sus datos. Los candidatos, informes y recortes se
+guardan exclusivamente en `turnos-report/`, dentro del artifact de Actions.
+Los PR de datos incluyen únicamente el JSON validado de la app. Si no cambia
+ningún dato validado, no se abre un PR solo para revisión.
 Con todas las validaciones superadas, `--apply` actualiza la localidad seleccionada para el
 mes correspondiente en el JSON compartido, conservando la otra localidad y otros meses,
 y propone ese cambio en un PR borrador. No publica ni integra automáticamente.
@@ -156,8 +158,8 @@ python3 helpers/turnos-monitor/import_santa_fe.py --locality santo-tome --input 
 
 Se validan mes, localidad, nueve bloques, rangos de 24 horas, cobertura completa,
 nombres, direcciones, teléfonos y filas de tinta sin lectura. Las dudas conservan
-los datos publicados y generan evidencia en `turnos-review/santo-tome/`.
-El PR compartido propone las actualizaciones validadas y los candidatos de revisión.
+los datos publicados y generan evidencia en el artifact de Actions.
+El PR compartido incluye únicamente el JSON con las actualizaciones validadas.
 Los datos de octubre de Santo Tomé se usan como referencia de prueba: nueve grupos,
 29 farmacias y todas las fechas deben coincidir con los datos revisados existentes.
 Un cambio de diseño del afiche puede requerir ajustar los recortes.

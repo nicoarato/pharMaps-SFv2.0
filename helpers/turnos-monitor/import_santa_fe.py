@@ -268,20 +268,7 @@ def main():
         lines.extend([f"## {issue['type']} — bloque {issue.get('block', 'general')}", "",
                       "```json", json.dumps(issue, ensure_ascii=False, indent=2), "```", ""])
     (folder / "review.md").write_text("\n".join(lines) + "\n")
-    # Las dudas no bloquean el procesamiento: preparar evidencia para un PR borrador.
-    if report["status"] == "needs-review":
-        review_dir = ROOT.parents[1] / "turnos-review" / args.locality / args.month
-        review_dir.mkdir(parents=True, exist_ok=True)
-        summary = {k: v for k, v in report.items() if k != "blocks"}
-        summary["sourcePdf"] = json.loads(Path(args.input).read_text())["source"]
-        (review_dir / "review.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n")
-        (review_dir / "README.md").write_text("Candidato incompleto para revisión; no se importa en la app.\n\n" + "\n".join(lines))
-        (review_dir / "candidate.json").write_text(json.dumps(candidate, ensure_ascii=False, indent=2) + "\n")
-        for block in {issue.get("block") for issue in report["issues"]} - {None}:
-            image = folder / f"turno-{block}.png"
-            if image.exists():
-                import shutil
-                shutil.copyfile(image, review_dir / image.name)
+    # Informes, candidatos y recortes permanecen en turnos-report/ (artifact de Actions).
     print(json.dumps({k: v for k, v in report.items() if k not in ("blocks", "issues")}, ensure_ascii=False, indent=2))
     print(f"Dudas: {len(report.get('issues', []))}; informe: {folder / 'review.md'}")
     if report["status"] == "error":
