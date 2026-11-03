@@ -2,8 +2,8 @@ name: Consultar turnos Santa Fe y Santo Tomé
 
 on:
   schedule:
-    # 09:17 de Argentina, del 1 al 5 de cada mes.
-    - cron: '17 12 1-5 * *'
+    # 09:17 de Argentina, todos los días para mantener el respaldo diario.
+    - cron: '17 12 * * *'
   workflow_dispatch:
   push:
     branches: ['automation/consulta-turnos']
@@ -29,37 +29,52 @@ jobs:
         with:
           python-version: '3.12'
       - name: Consultar fuentes y comparar con referencia
+        continue-on-error: true
         run: python helpers/turnos-monitor/check.py --source santa-fe
       - name: Verificar importadores
         id: tests
         if: always()
-        run: python -m unittest discover -s helpers/turnos-monitor -p 'test_import_santa_fe.py'
+        run: python -m unittest discover -s helpers/turnos-monitor -p 'test_import_*.py'
       - uses: actions/setup-node@v4
+        continue-on-error: true
         if: always()
         with:
           node-version: '24'
       - name: Instalar herramientas OCR
         id: ocr_dependencies
+        continue-on-error: true
         if: always()
         run: npm ci --prefix helpers/turnos-ocr
       - name: Leer bloques de Santa Fe con tres variantes OCR
         id: ocr
+        continue-on-error: true
         if: always() && steps.ocr_dependencies.outcome == 'success'
         run: node helpers/turnos-ocr/scripts/extract-santa-fe.mjs turnos-report/santa-fe-0.pdf turnos-report/santa-fe-ocr
       - name: Conciliar Santa Fe y preparar alternativas de lecturas dudosas
         id: santa_fe
+        continue-on-error: true
         if: always() && steps.ocr.outcome == 'success'
         run: python helpers/turnos-monitor/import_santa_fe.py --apply
       - name: Leer los nueve bloques de Santo Tomé con tres variantes OCR
         id: ocr_santo_tome
+        continue-on-error: true
         if: always() && steps.ocr_dependencies.outcome == 'success'
         run: node helpers/turnos-ocr/scripts/extract-santa-fe.mjs turnos-report/santa-fe-0.pdf turnos-report/santo-tome-ocr santo-tome
       - name: Conciliar Santo Tomé y preparar alternativas de lecturas dudosas
         id: santo_tome
+        continue-on-error: true
         if: always() && steps.ocr_santo_tome.outcome == 'success'
         run: python helpers/turnos-monitor/import_santa_fe.py --locality santo-tome --input turnos-report/santo-tome-ocr/ocr.json --apply
+      - name: Usar El Litoral para Santa Fe si falta el afiche vigente
+        id: fallback_santa_fe
+        if: always() && steps.tests.outcome == 'success'
+        run: python helpers/turnos-monitor/import_litoral.py --locality santa-fe --apply
+      - name: Usar El Litoral para Santo Tomé si falta el afiche vigente
+        id: fallback_santo_tome
+        if: always() && steps.tests.outcome == 'success'
+        run: python helpers/turnos-monitor/import_litoral.py --locality santo-tome --apply
       - name: Preparar Pull Request de Santa Fe y Santo Tomé
-        if: always() && steps.tests.outcome == 'success' && steps.santa_fe.outcome == 'success' && steps.santo_tome.outcome == 'success' && github.event_name != 'push'
+        if: always() && steps.tests.outcome == 'success' && steps.fallback_santa_fe.outcome == 'success' && steps.fallback_santo_tome.outcome == 'success' && github.event_name != 'push'
         uses: peter-evans/create-pull-request@v7
         with:
           base: ${{ github.ref_name }}
@@ -70,7 +85,7 @@ jobs:
             turnos-review/santo-tome/**
           commit-message: 'Preparar actualización y revisión OCR de Santa Fe y Santo Tomé'
           title: 'Actualizar o revisar turnos de Santa Fe y Santo Tomé'
-          body: 'PDF leído en tres variantes OCR y conciliado con el catálogo. Si hay dudas, se adjuntan candidato, lecturas, alternativas y recortes por localidad en turnos-review/; el JSON de la app conserva sus datos. Si todo se valida, se propone el JSON actualizado. Revisar antes de publicar. El artifact de la ejecución contiene el PDF y todas las lecturas.'
+          body: 'El afiche vigente tiene prioridad. Si no está disponible, se propone el respaldo diario de El Litoral, con cobertura parcial y únicamente las fechas publicadas; revisar advertencias de direcciones y teléfonos en el artifact. PDF leído en tres variantes OCR y conciliado con el catálogo. Si hay dudas, se adjuntan candidato, lecturas, alternativas y recortes por localidad en turnos-review/; el JSON de la app conserva sus datos. Si todo se valida, se propone el JSON actualizado. Revisar antes de publicar. El artifact de la ejecución contiene el PDF y todas las lecturas.'
           draft: true
       - name: Guardar informe y publicaciones descargadas
         if: always()

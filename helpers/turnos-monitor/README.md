@@ -18,8 +18,9 @@ dependencias. Escribe HTML, PDF de Santa Fe, texto del calendario de Esperanza,
 ## GitHub Actions
 
 Los workflows `Consultar turnos Esperanza` y `Consultar turnos Santa Fe y Santo Tomé`
-se ejecutan de forma independiente del día 1 al 5 a las 09:17 de Argentina; GitHub
-puede retrasar la ejecución. Ambos permiten ejecución manual y una prueba por push
+se ejecutan de forma independiente a las 09:17 de Argentina: Esperanza del día
+1 al 5, y el Colegio todos los días para mantener el respaldo diario. GitHub puede
+retrasar la ejecución. Ambos permiten ejecución manual y una prueba por push
 a `automation/consulta-turnos`. Cada uno consulta únicamente su fuente y guarda
 su propio artifact. El segundo descarga el afiche compartido del Colegio: por ahora
 importa Santa Fe y Santo Tomé con validaciones y candidatos independientes.
@@ -160,3 +161,33 @@ El PR compartido propone las actualizaciones validadas y los candidatos de revis
 Los datos de octubre de Santo Tomé se usan como referencia de prueba: nueve grupos,
 29 farmacias y todas las fechas deben coincidir con los datos revisados existentes.
 Un cambio de diseño del afiche puede requerir ajustar los recortes.
+
+## Respaldo diario: El Litoral
+
+Si la descarga/OCR falla o el afiche no corresponde al mes vigente, el workflow
+consulta `https://servicios.ellitoral.com/seccion/farmacias/` para Santa Fe y
+`https://servicios.ellitoral.com/seccion/farmacias-de-turno-santo-tome` para Santo Tomé.
+Las páginas publican hoy y mañana; no proporcionan cobertura de todo el mes.
+
+`import_litoral.py --locality santa-fe --apply` y la variante `--locality santo-tome`
+validan localidad, fecha de hoy en Argentina, continuidad de las fechas, horario,
+nombres sin duplicados y coincidencia de dirección o teléfono con el catálogo.
+Se usan las fechas visibles: el atributo `datetime` observado invierte día y mes.
+Las discrepancias de contacto se informan sin sobrescribir los datos del catálogo.
+Una fecha desactualizada, farmacia desconocida o fila incompleta impide la importación.
+
+Cada fecha se incorpora como rango de 08:00 a 08:00 en el JSON existente. Se conservan
+otras fechas, meses y localidades; un calendario ya revisado tiene prioridad sobre
+el respaldo. La fuente queda identificada como `html-litoral-diario` y su cobertura
+como parcial. Un afiche vigente con dudas mantiene su circuito de revisión, sin
+reemplazarlo silenciosamente por esta fuente secundaria.
+
+El Action se ejecuta a diario y abre/actualiza el mismo PR borrador. Las actualizaciones
+requieren revisar e integrar el PR para publicarse; no hay merge automático.
+El artifact contiene el HTML, los candidatos y `*-litoral-import.json`, y el resumen
+de Actions detalla la fuente utilizada y las advertencias. Fallos en la consulta/OCR
+principal son recuperables; si el respaldo tampoco valida, el job queda fallido.
+
+Pruebas del respaldo basadas en las páginas reales del 02/11/2026: 11 y 12 farmacias
+de Santa Fe, tres y tres de Santo Tomé, rechazo de fechas antiguas y datos desconocidos,
+prioridad del PDF y acumulación de fechas sin borrar datos existentes.
