@@ -1,0 +1,210 @@
+{
+  "localidad": "Santo Tome",
+  "mes": "2026-11",
+  "turnos": [
+    {
+      "turno": "PRIMER TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Erica Tepp",
+          "direccion": "Av. Richeri 3296",
+          "telefono": "474 1041"
+        },
+        {
+          "nombre": "Stessens",
+          "direccion": "Av. 7 de Marzo 1882",
+          "telefono": "474 3669"
+        },
+        {
+          "nombre": "Villata",
+          "direccion": "Av. Lujan 2979",
+          "telefono": "474 3371"
+        }
+      ]
+    },
+    {
+      "turno": "SEGUNDO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Sauco",
+          "direccion": "Alberdi 2154",
+          "telefono": "474 6180"
+        },
+        {
+          "nombre": "Olivero",
+          "direccion": "Hernandarias 1793",
+          "telefono": "475 1075"
+        },
+        {
+          "nombre": "Escobar",
+          "direccion": "Av. 7 de Marzo 1527",
+          "telefono": "474 0133"
+        }
+      ]
+    },
+    {
+      "turno": "TERCER TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Cirelli",
+          "direccion": "25 de Mayo 1654",
+          "telefono": "474 0427"
+        },
+        {
+          "nombre": "Gomez",
+          "direccion": "La Rioja 2295",
+          "telefono": "475 3219"
+        },
+        {
+          "nombre": "Zimmermann",
+          "direccion": "Mariano Candioti 3226",
+          "telefono": "474 7279"
+        }
+      ]
+    },
+    {
+      "turno": "CUARTO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Marta Tepp",
+          "direccion": "Av. Lujan 3636",
+          "telefono": "474 4804"
+        },
+        {
+          "nombre": "Bonino",
+          "direccion": "Obispo Gelabert 2198",
+          "telefono": "474 4484"
+        },
+        {
+          "nombre": "Martinez",
+          "direccion": "Hipolito Yrigoyen 2235",
+          "telefono": "474 3995"
+        }
+      ]
+    },
+    {
+      "turno": "QUINTO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Pescetti Julieta",
+          "direccion": "Av. 7 de Marzo 1760",
+          "telefono": "474 0375"
+        },
+        {
+          "nombre": "Berta",
+          "direccion": "Ejercito Argentino 2695",
+          "telefono": "474 9893"
+        },
+        {
+          "nombre": "Cruz",
+          "direccion": "M. Candioti 2493",
+          "telefono": "474 3501"
+        },
+        {
+          "nombre": "Curado",
+          "direccion": "Paseo Las Acacias - AP01 km 151 - Loc. U31 y U37",
+          "telefono": "155317070"
+        }
+      ]
+    },
+    {
+      "turno": "SEXTO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Mayoraz",
+          "direccion": "25 de Mayo 2017",
+          "telefono": "474 7057"
+        },
+        {
+          "nombre": "Macagno",
+          "direccion": "Av. 7 de Marzo 2601",
+          "telefono": "474 2196"
+        },
+        {
+          "nombre": "Tosello",
+          "direccion": "Lopez y Planes 2865",
+          "telefono": "154 470671"
+        }
+      ]
+    },
+    {
+      "turno": "SEPTIMO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Contini",
+          "direccion": "Sarmiento 1776",
+          "telefono": "474 0422"
+        },
+        {
+          "nombre": "Marcolini",
+          "direccion": "Av. Lujan 2659",
+          "telefono": "474 1354"
+        },
+        {
+          "nombre": "San Roque",
+          "direccion": "Av. 7 de Marzo 2118",
+          "telefono": "474 0466"
+        }
+      ]
+    },
+    {
+      "turno": "OCTAVO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Mariana Gomez",
+          "direccion": "Avenida Lujan 2468",
+          "telefono": "474 2737"
+        },
+        {
+          "nombre": "Quassolo",
+          "direccion": "Sarmiento 2343",
+          "telefono": "474 7428"
+        },
+        {
+          "nombre": "Rivero",
+          "direccion": "Mariano Candioti 2801",
+          "telefono": "154 623606"
+        },
+        {
+          "nombre": "Terenzi",
+          "direccion": "Belgrano 3018",
+          "telefono": "474 4371"
+        }
+      ]
+    },
+    {
+      "turno": "NOVENO TURNO",
+      "rangos": [],
+      "farmacias": [
+        {
+          "nombre": "Adrian Carrizo",
+          "direccion": "Belgrano 3405",
+          "telefono": "474 1865"
+        },
+        {
+          "nombre": "Firmani",
+          "direccion": "25 de Mayo 1878",
+          "telefono": "474 4847"
+        },
+        {
+          "nombre": "Palacin",
+          "direccion": "Mariano Candioti 3677",
+          "telefono": "474 1674"
+        }
+      ]
+    }
+  ],
+  "fuente": {
+    "tipo": "pdf-ocr-candidato",
+    "fechaReferencia": "2026-11",
+    "nota": "OCR en tres variantes; nombres conciliados con catálogo, restricciones de fechas y revisión de alternativas."
+  }
+}
