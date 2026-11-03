@@ -50,8 +50,16 @@ jobs:
         id: santa_fe
         if: always() && steps.ocr.outcome == 'success'
         run: python helpers/turnos-monitor/import_santa_fe.py --apply
-      - name: Preparar Pull Request de Santa Fe
-        if: always() && steps.tests.outcome == 'success' && steps.santa_fe.outcome == 'success' && github.event_name != 'push'
+      - name: Leer los nueve bloques de Santo Tomé con tres variantes OCR
+        id: ocr_santo_tome
+        if: always() && steps.ocr_dependencies.outcome == 'success'
+        run: node helpers/turnos-ocr/scripts/extract-santa-fe.mjs turnos-report/santa-fe-0.pdf turnos-report/santo-tome-ocr santo-tome
+      - name: Conciliar Santo Tomé y preparar alternativas de lecturas dudosas
+        id: santo_tome
+        if: always() && steps.ocr_santo_tome.outcome == 'success'
+        run: python helpers/turnos-monitor/import_santa_fe.py --locality santo-tome --input turnos-report/santo-tome-ocr/ocr.json --apply
+      - name: Preparar Pull Request de Santa Fe y Santo Tomé
+        if: always() && steps.tests.outcome == 'success' && steps.santa_fe.outcome == 'success' && steps.santo_tome.outcome == 'success' && github.event_name != 'push'
         uses: peter-evans/create-pull-request@v7
         with:
           base: ${{ github.ref_name }}
@@ -59,9 +67,10 @@ jobs:
           add-paths: |
             src/assets/data/turnos-colegio-agosto-2026.json
             turnos-review/santa-fe/**
-          commit-message: 'Preparar actualización y revisión OCR de Santa Fe'
-          title: 'Actualizar o revisar turnos de Santa Fe'
-          body: 'PDF leído en tres variantes OCR y conciliado con el catálogo. Si hay dudas, se adjuntan candidato, lecturas, alternativas y recortes en turnos-review/santa-fe; el JSON de la app conserva sus datos. Si todo se valida, se propone el JSON actualizado. Revisar antes de publicar. El artifact de la ejecución contiene el PDF y todas las lecturas.'
+            turnos-review/santo-tome/**
+          commit-message: 'Preparar actualización y revisión OCR de Santa Fe y Santo Tomé'
+          title: 'Actualizar o revisar turnos de Santa Fe y Santo Tomé'
+          body: 'PDF leído en tres variantes OCR y conciliado con el catálogo. Si hay dudas, se adjuntan candidato, lecturas, alternativas y recortes por localidad en turnos-review/; el JSON de la app conserva sus datos. Si todo se valida, se propone el JSON actualizado. Revisar antes de publicar. El artifact de la ejecución contiene el PDF y todas las lecturas.'
           draft: true
       - name: Guardar informe y publicaciones descargadas
         if: always()

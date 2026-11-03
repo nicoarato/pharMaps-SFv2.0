@@ -93,16 +93,17 @@ def merge_lines(block):
     return sorted(rows, key=lambda row: row["y"])
 
 
-def reconcile(ocr, month, catalog):
+def reconcile(ocr, month, catalog, locality="Santa Fe"):
+    block_count = 9 if locality == "Santo Tome" else 12
     year, number = map(int, month.split("-"))
     issues, details, turns = [], [], []
     header = norm(ocr["header"]["text"])
     if header != MONTHS[number - 1] + str(year):
         issues.append({"type": "month", "readings": [ocr["header"]["text"]], "expected": month})
-    if norm(ocr.get("locality", {}).get("text", "")) != "SANTAFE":
-        issues.append({"type": "layout", "message": "No se reconoció la etiqueta SANTA FE"})
-    if len(ocr["blocks"]) != 12 or sorted(b["id"] for b in ocr["blocks"]) != list(range(1, 13)):
-        issues.append({"type": "layout", "message": "Se requieren exactamente 12 bloques distintos"})
+    if norm(ocr.get("locality", {}).get("text", "")) != norm(locality):
+        issues.append({"type": "layout", "message": f"No se reconoció la etiqueta {locality}"})
+    if len(ocr["blocks"]) != block_count or sorted(b["id"] for b in ocr["blocks"]) != list(range(1, block_count + 1)):
+        issues.append({"type": "layout", "message": f"Se requieren exactamente {block_count} bloques distintos"})
     lookup = {p["nombre"]: p for p in catalog}
     for block in ocr["blocks"]:
         turn = {"turno": LABELS[block["id"] - 1] + " TURNO", "rangos": [], "farmacias": []}
@@ -120,10 +121,11 @@ def reconcile(ocr, month, catalog):
             crop_height = ocr["rendered"]["height"] * block["region"]["h"]
             touches_edge = any(line["bbox"]["x0"] == 0 and abs((line["bbox"]["y0"] + line["bbox"]["y1"]) / 2 - row["y"]) < 14
                                for reading in block["readings"] for line in reading["lines"])
-            if row["y"] > crop_height * .94 and touches_edge:
+            if row["y"] > crop_height * .94 and touches_edge and (locality == "Santa Fe" or not any(
+                    re.search(r"[A-Za-zÁÉÍÓÚáéíóú]{4,}|\d{3}", t) for t in texts)):
                 detail["ignoredBorders"].append(row)
                 continue
-            if row["y"] < 165:
+            if row["y"] < block.get("headerHeight", 165):
                 header_rows.append(row)
             elif any(norm(t).startswith(("LAFARM", "LAFAR", "LAFAM", "AFARM")) for t in texts):
                 notes.append(row)
@@ -137,7 +139,7 @@ def reconcile(ocr, month, catalog):
             detail["dateReadings"].append({"method": method, "text": text, "pairs": [[str(a), str(b)] for a, b in parsed]})
         votes = Counter(tuple(tuple(p) for p in r["pairs"]) for r in detail["dateReadings"] if r["pairs"])
         selected = votes.most_common(1)
-        if selected and selected[0][1] >= 2 and len(selected[0][0]) in (2, 3):
+        if selected and selected[0][1] >= 2 and len(selected[0][0]) in ((3, 4) if locality == "Santo Tome" else (2, 3)):
             turn["rangos"] = ranges([(date.fromisoformat(a), date.fromisoformat(b)) for a, b in selected[0][0] if a.startswith(month)])
         else:
             issues.append({"type": "dates", "block": block["id"], "alternatives": detail["dateReadings"]})
@@ -223,7 +225,7 @@ def reconcile(ocr, month, catalog):
     expected = {f"{month}-{day:02}" for day in range(1, calendar.monthrange(year, number)[1] + 1)}
     if set(starts) != expected or len(starts) != len(set(starts)):
         issues.append({"type": "coverage", "missing": sorted(expected - set(starts)), "duplicates": [d for d, n in Counter(starts).items() if n > 1]})
-    item = {"localidad": "Santa Fe", "mes": month, "turnos": turns,
+    item = {"localidad": locality, "mes": month, "turnos": turns,
             "fuente": {"tipo": "pdf-ocr-validado" if not issues else "pdf-ocr-candidato",
                        "fechaReferencia": month, "nota": "OCR en tres variantes; nombres conciliados con catálogo, restricciones de fechas y revisión de alternativas."}}
     return item, {"month": month, "status": "validated" if not issues else "needs-review", "issues": issues, "blocks": details,
@@ -233,24 +235,26 @@ def reconcile(ocr, month, catalog):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--locality", choices=["santa-fe", "santo-tome"], default="santa-fe")
     parser.add_argument("--input", default="turnos-report/santa-fe-ocr/ocr.json")
     parser.add_argument("--month", default=datetime.now(ZoneInfo("America/Argentina/Cordoba")).strftime("%Y-%m"))
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
+    locality = "Santo Tome" if args.locality == "santo-tome" else "Santa Fe"
     folder = Path(args.input).parent
     folder.mkdir(parents=True, exist_ok=True)
     try:
-        catalog = json.loads((ROOT / "santa-fe-farmacias.json").read_text())
-        candidate, report = reconcile(json.loads(Path(args.input).read_text()), args.month, catalog)
+        catalog = json.loads((ROOT / f"{args.locality}-farmacias.json").read_text())
+        candidate, report = reconcile(json.loads(Path(args.input).read_text()), args.month, catalog, locality)
         existing = json.loads(TARGET.read_text())
-        old = next((x for x in existing if x["localidad"] == "Santa Fe" and x["mes"] == args.month), None)
+        old = next((x for x in existing if x["localidad"] == locality and x["mes"] == args.month), None)
         report["changed"] = old is None or old["turnos"] != candidate["turnos"]
         report["applied"] = False
         (folder / "candidate.json").write_text(json.dumps(candidate, ensure_ascii=False, indent=2) + "\n")
         if args.apply and report["status"] == "validated" and report["changed"]:
-            if any(x["mes"] > args.month for x in existing if x["localidad"] == "Santa Fe"):
+            if any(x["mes"] > args.month for x in existing if x["localidad"] == locality):
                 raise ValueError("No reemplazar calendarios posteriores")
-            updated = [x for x in existing if not (x["localidad"] == "Santa Fe" and x["mes"] == args.month)] + [candidate]
+            updated = [x for x in existing if not (x["localidad"] == locality and x["mes"] == args.month)] + [candidate]
             tmp = TARGET.with_suffix(".json.tmp")
             tmp.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n")
             tmp.replace(TARGET)
@@ -258,7 +262,7 @@ def main():
     except (ValueError, OSError, KeyError, IndexError) as error:
         report = {"status": "error", "error": str(error), "changed": False, "applied": False}
     (folder / "review.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
-    lines = ["# Lectura del afiche de Santa Fe", "", f"Estado: {report['status']}", "",
+    lines = [f"# Lectura del afiche de {locality}", "", f"Estado: {report['status']}", "",
              "Las puntuaciones son similitudes de texto, no probabilidades de acierto.", ""]
     for issue in report.get("issues", []):
         lines.extend([f"## {issue['type']} — bloque {issue.get('block', 'general')}", "",
@@ -266,7 +270,7 @@ def main():
     (folder / "review.md").write_text("\n".join(lines) + "\n")
     # Las dudas no bloquean el procesamiento: preparar evidencia para un PR borrador.
     if report["status"] == "needs-review":
-        review_dir = ROOT.parents[1] / "turnos-review/santa-fe" / args.month
+        review_dir = ROOT.parents[1] / "turnos-review" / args.locality / args.month
         review_dir.mkdir(parents=True, exist_ok=True)
         summary = {k: v for k, v in report.items() if k != "blocks"}
         summary["sourcePdf"] = json.loads(Path(args.input).read_text())["source"]

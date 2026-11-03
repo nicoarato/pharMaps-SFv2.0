@@ -22,8 +22,7 @@ se ejecutan de forma independiente del día 1 al 5 a las 09:17 de Argentina; Git
 puede retrasar la ejecución. Ambos permiten ejecución manual y una prueba por push
 a `automation/consulta-turnos`. Cada uno consulta únicamente su fuente y guarda
 su propio artifact. El segundo descarga el afiche compartido del Colegio: por ahora
-solo importa Santa Fe; Santo Tomé sigue requiriendo revisión e importación manual.
-La separación no agrega todavía un importador de Santo Tomé.
+importa Santa Fe y Santo Tomé con validaciones y candidatos independientes.
 
 Para consultar una sola fuente localmente, usar `check.py --source esperanza` o
 `check.py --source santa-fe`; sin argumentos se consultan ambas fuentes.
@@ -125,8 +124,8 @@ El artifact de Actions incluye el PDF original y toda la evidencia.
 
 Con dudas, la app conserva sus datos, pero el workflow abre un PR borrador con
 el candidato parcial, informes y recortes pertinentes en `turnos-review/santa-fe/`.
-Con todas las validaciones superadas, `--apply` actualiza solo Santa Fe para el
-mes correspondiente en el JSON compartido, conservando Santo Tomé y otros meses,
+Con todas las validaciones superadas, `--apply` actualiza la localidad seleccionada para el
+mes correspondiente en el JSON compartido, conservando la otra localidad y otros meses,
 y propone ese cambio en un PR borrador. No publica ni integra automáticamente.
 Si el candidato coincide con los datos actuales, no crea una actualización vacía.
 
@@ -142,3 +141,22 @@ La ejecución completa en GitHub del extractor y conciliador también fue exitos
 https://github.com/nicoarato/pharMaps-SFv2.0/actions/runs/38074301958
 con 146 filas resueltas, siete restricciones resueltas, cero dudas y ningún cambio
 de datos necesario para octubre.
+
+## Importación de Santo Tomé
+
+El workflow del Colegio también recorta los nueve bloques de la franja derecha
+bajo SANTO TOMÉ y obtiene tres lecturas OCR. Usa un catálogo propio,
+`santo-tome-farmacias.json`, sin reutilizar grupos ni fechas de meses anteriores.
+
+```sh
+node helpers/turnos-ocr/scripts/extract-santa-fe.mjs archivo.pdf turnos-report/santo-tome-ocr santo-tome
+python3 helpers/turnos-monitor/import_santa_fe.py --locality santo-tome --input turnos-report/santo-tome-ocr/ocr.json --apply
+```
+
+Se validan mes, localidad, nueve bloques, rangos de 24 horas, cobertura completa,
+nombres, direcciones, teléfonos y filas de tinta sin lectura. Las dudas conservan
+los datos publicados y generan evidencia en `turnos-review/santo-tome/`.
+El PR compartido propone las actualizaciones validadas y los candidatos de revisión.
+Los datos de octubre de Santo Tomé se usan como referencia de prueba: nueve grupos,
+29 farmacias y todas las fechas deben coincidir con los datos revisados existentes.
+Un cambio de diseño del afiche puede requerir ajustar los recortes.

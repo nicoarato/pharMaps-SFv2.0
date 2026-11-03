@@ -4,7 +4,9 @@ import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import { createWorker } from 'tesseract.js';
 
-const [input, output = 'turnos-report/santa-fe-ocr'] = process.argv.slice(2);
+const [input, output = 'turnos-report/santa-fe-ocr', locality = 'santa-fe'] = process.argv.slice(2);
+if (!['santa-fe', 'santo-tome'].includes(locality)) throw new Error('Localidad no soportada');
+const santoTome = locality === 'santo-tome';
 if (!input) throw new Error('Uso: node extract-santa-fe.mjs archivo.pdf carpeta-salida');
 await fs.mkdir(output, { recursive: true });
 const pdf = await pdfjs.getDocument({ data: new Uint8Array(await fs.readFile(input)), isEvalSupported: false, useSystemFonts: true }).promise;
@@ -30,12 +32,12 @@ function crop(region, threshold = false) {
   }
   return c.toBuffer('image/png');
 }
-async function inkBands(buffer) {
+async function inkBands(buffer, headerHeight = 165, bottom = .94) {
   const img = await loadImage(buffer), c = createCanvas(img.width, img.height), ctx = c.getContext('2d');
   ctx.drawImage(img, 0, 0);
   const { data } = ctx.getImageData(0, 0, c.width, c.height);
   const bands = []; let start = null, last = null;
-  for (let y = 165; y < c.height * .94; y++) {
+  for (let y = headerHeight; y < c.height * bottom; y++) {
     let count = 0;
     for (let x = Math.floor(c.width * .03); x < c.width * .36; x++) {
       const i = (y * c.width + x) * 4;
@@ -63,18 +65,23 @@ async function recognize(buffer, psm) {
 const report = { source: input, pages: pdf.numPages, rendered: { width: canvas.width, height: canvas.height }, blocks: [] };
 try {
   report.header = await recognize(crop({ x: .435, y: .104, w: .51, h: .052 }), 6);
-  report.locality = await recognize(crop({ x: .225, y: .181, w: .32, h: .035 }), 6);
+  report.locality = await recognize(crop(santoTome
+    ? { x: .750, y: .180, w: .215, h: .035 }
+    : { x: .225, y: .181, w: .32, h: .035 }), 6);
   await fs.writeFile(path.join(output, 'header.png'), crop({ x: .435, y: .104, w: .51, h: .052 }));
-  for (let row = 0; row < 4; row++) for (let col = 0; col < 3; col++) {
-    const id = row * 3 + col + 1;
-    const region = { x: [.048, .270, .493][col], y: [.237, .414, .590, .767][row], w: .200, h: .158 };
+  for (let index = 0; index < (santoTome ? 9 : 12); index++) {
+    const id = index + 1;
+    const region = santoTome
+      ? { x: .753, y: [.237, .321, .405, .489, .573, .657, .741, .825, .909][index], w: .200, h: .066 }
+      : { x: [.048, .270, .493][index % 3], y: [.237, .414, .590, .767][Math.floor(index / 3)], w: .200, h: .158 };
+    const headerHeight = 165;
     const original = crop(region), binary = crop(region, true);
     await fs.writeFile(path.join(output, `turno-${id}.png`), original);
     const readings = [];
     for (const [label, buffer, psm] of [['original', original, 6], ['binarizado', binary, 6], ['disperso', original, 11]]) {
       readings.push({ method: label, ...await recognize(buffer, psm) });
     }
-    report.blocks.push({ id, region, image: `turno-${id}.png`, inkBands: await inkBands(original), readings });
+    report.blocks.push({ id, region, image: `turno-${id}.png`, headerHeight, inkBands: await inkBands(original, headerHeight, santoTome ? .99 : .94), readings });
     console.log(`Turno ${id}: ${readings.map(r => `${r.method}=${r.confidence}`).join(', ')}`);
   }
 } finally { await worker.terminate(); }
