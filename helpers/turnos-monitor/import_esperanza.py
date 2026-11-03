@@ -26,11 +26,14 @@ def convert(text, month, registry, retrieved):
     if not header or header[1].lower() != MONTHS[number - 1] or int(header[2]) != year:
         raise ValueError(f"La publicación no corresponde al mes esperado {month}")
     matches = list(re.finditer(r"\b(\d{2})/(\d{2})/(20\d{2})\b", text))
-    if not matches or text[header.end():matches[0].start()].strip():
+    table_header = text[header.end():matches[0].start()].strip() if matches else ""
+    if not matches or (table_header and not re.fullmatch(
+            rf"{MONTHS[number - 1]}\s+TURNO", table_header, re.I)):
         raise ValueError("Formato de calendario inesperado")
     lookup = {normalize(alias): (alias, name) for alias, name in registry.items()}
     # Variante ortográfica observada en la fuente; no se usa coincidencia difusa.
     lookup["TKACZYCK"] = lookup["TKACZYK"]
+    lookup["TKACZYC"] = lookup["TKACZYK"]
     lookup["DOLNALISIO"] = lookup["DONALISIO"]
     items, seen, unknown = [], set(), set()
     for index, match in enumerate(matches):
@@ -39,7 +42,7 @@ def convert(text, month, registry, retrieved):
             raise ValueError(f"Fecha ajena al mes o duplicada: {day}")
         seen.add(day)
         end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
-        names = text[match.end():end].strip().lstrip("—–-:").strip().split("/")
+        names = re.split(r"/|\s+[—–-]\s+", text[match.end():end].strip().lstrip("—–-:").strip())
         pharmacies = []
         for name in names:
             key = normalize(name)

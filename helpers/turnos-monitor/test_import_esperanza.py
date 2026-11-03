@@ -1,4 +1,6 @@
 import calendar
+import json
+from pathlib import Path
 import unittest
 from import_esperanza import convert
 
@@ -12,6 +14,26 @@ def source(year=2026, month=10, name="Hilas"):
 
 
 class ImportTests(unittest.TestCase):
+    def test_november_table_from_official_source(self):
+        root = Path(__file__).resolve().parent
+        text = (root / "fixtures/esperanza-noviembre-2026.txt").read_text()
+        registry = json.loads((root / "esperanza-farmacias.json").read_text())
+        result = convert(text, "2026-11", registry, "2026-11-02")
+        self.assertEqual(len(result["items"]), 30)
+        self.assertTrue(all(len(item["farmacias"]) == 2 for item in result["items"]))
+        for day, aliases in {
+            1: ["BORGOGNO", "MARELLI"], 9: ["LIMACHE", "TKACZYK"],
+            10: ["GAMBOA", "SCHNEIDER S."], 21: ["LOUREYRO", "PAOLI"],
+            28: ["BIANCHINI", "TARDIOLI"], 30: ["HILAS", "FORTI"],
+        }.items():
+            self.assertEqual([p["alias"] for p in result["items"][day - 1]["farmacias"]], aliases)
+        for invalid in [text.replace("NOVIEMBRE TURNO", "OCTUBRE TURNO"),
+                        text.replace("NOVIEMBRE TURNO", "Texto inesperado"),
+                        text.replace("Borgogno – Marelli", "Borgogno – Desconocida", 1),
+                        text.replace("Borgogno – Marelli", "Borgogno – Borgogno", 1)]:
+            with self.subTest(text=invalid[:100]), self.assertRaises(ValueError):
+                convert(invalid, "2026-11", registry, "2026-11-02")
+
     def test_full_month_and_year_rollover(self):
         result = convert(source(month=12), "2026-12", REGISTRY, "2026-12-01")
         self.assertEqual(len(result["items"]), 31)
