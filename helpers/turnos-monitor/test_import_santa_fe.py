@@ -27,6 +27,20 @@ class SantaFeTests(unittest.TestCase):
         self.assertEqual(report["metrics"]["resolvedRows"], 146)
         self.assertEqual(report["metrics"]["resolvedExceptions"], 7)
 
+    def test_confirmed_bordignon_ocr_variant_in_exception(self):
+        altered = copy.deepcopy(self.ocr)
+        replaced = 0
+        for block in altered["blocks"]:
+            for reading in block["readings"]:
+                for line in reading["lines"]:
+                    if "Bordignon" in line["text"] and "sólo" in line["text"]:
+                        line["text"] = line["text"].replace("Bordignon", "Bordigrion")
+                        replaced += 1
+        self.assertGreater(replaced, 0)
+        candidate, report = reconcile(altered, "2026-10", self.catalog)
+        self.assertEqual(report["status"], "validated", report["issues"])
+        self.assertEqual(candidate["turnos"], self.expected["turnos"])
+
     def test_doubt_keeps_processing_and_alternatives(self):
         altered = copy.deepcopy(self.ocr)
         for reading in altered["blocks"][0]["readings"]:

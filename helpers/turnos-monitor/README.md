@@ -200,3 +200,9 @@ afiche de noviembre de 2026. Las ejecuciones programadas siguen buscando en la
 portada. Localmente se puede usar `check.py --source santa-fe --pdf-url URL`.
 La URL debe usar HTTPS y pertenecer a `colfarsfe.org.ar`; se verifica la firma PDF
 y se conservan las validaciones de mes y cobertura de ambas localidades.
+
+Revisión de noviembre de 2026: `Bordigrion` se acepta como variante OCR de
+Bordignon en las notas. Para Zapata Moran se confirmó conservar la dirección
+del catálogo (Blas Parera 6751), aunque el afiche dice Av. Peñaloza 5978.
+La excepción de dirección se limita a Santa Fe, noviembre de 2026 y teléfono
+coincidente; queda registrada en `addressReview` del informe.

@@ -185,7 +185,13 @@ def reconcile(ocr, month, catalog, locality="Santa Fe"):
             if resolved and first["nombre"] not in resolved_names:
                 resolved_names.add(first["nombre"])
                 turn["farmacias"].append(copy.deepcopy(lookup[first["nombre"]]))
-                if not first["addressMatches"]:
+                # Revisión de noviembre: conservar Blas Parera 6751 para Zapata Moran.
+                reviewed_address = (locality == "Santa Fe" and month == "2026-11"
+                                    and first["nombre"] == "Zapata Moran" and first["phoneMatches"]
+                                    and any("AVPENALOZA5978" in norm(r["text"]) for r in row["readings"]))
+                if reviewed_address and not first["addressMatches"]:
+                    row["addressReview"] = "Confirmado: conservar la dirección del catálogo, Blas Parera 6751."
+                if not first["addressMatches"] and not reviewed_address:
                     issues.append({"type": "address", "block": block["id"], "nombre": first["nombre"], "readings": row["alternatives"]})
                 if not first["phoneMatches"]:
                     issues.append({"type": "phone", "block": block["id"], "nombre": first["nombre"], "readings": row["alternatives"]})
@@ -198,7 +204,8 @@ def reconcile(ocr, month, catalog, locality="Santa Fe"):
             alternatives = []
             for reading in note["readings"]:
                 pairs = range_pairs(reading["text"], year, number)
-                text = norm(reading["text"])
+                # Variante OCR confirmada por revisión del afiche de noviembre de 2026.
+                text = norm(reading["text"]).replace("BORDIGRION", "BORDIGNON")
                 matched = [name for name in resolved_names if norm(name) in text]
                 # Abreviatura usada por el afiche, sin confundir con Burgués Romano.
                 if "WBURGUES" in text and "Wagner Burgues" in resolved_names:
