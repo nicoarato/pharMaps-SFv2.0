@@ -5,6 +5,12 @@ on:
     # 09:17 de Argentina, todos los días para mantener el respaldo diario.
     - cron: '17 12 * * *'
   workflow_dispatch:
+    inputs:
+      pdf_url:
+        description: URL directa del afiche compartido del Colegio
+        required: false
+        type: string
+        default: https://colfarsfe.org.ar/wp-content/uploads/2026/11/Afiche-Turnos-Noviembre-2026.pdf
   push:
     branches: ['automation/consulta-turnos']
     paths:
@@ -30,6 +36,8 @@ jobs:
           python-version: '3.12'
       - name: Consultar fuentes y comparar con referencia
         continue-on-error: true
+        env:
+          TURNOS_PDF_URL: ${{ inputs.pdf_url }}
         run: python helpers/turnos-monitor/check.py --source santa-fe
       - name: Verificar importadores
         id: tests

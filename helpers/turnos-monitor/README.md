@@ -193,3 +193,10 @@ principal son recuperables; si el respaldo tampoco valida, el job queda fallido.
 Pruebas del respaldo basadas en las páginas reales del 02/11/2026: 11 y 12 farmacias
 de Santa Fe, tres y tres de Santo Tomé, rechazo de fechas antiguas y datos desconocidos,
 prioridad del PDF y acumulación de fechas sin borrar datos existentes.
+
+La ejecución manual del workflow del Colegio acepta `pdf_url` para descargar un
+afiche específico sin depender del enlace de la portada. El valor inicial es el
+afiche de noviembre de 2026. Las ejecuciones programadas siguen buscando en la
+portada. Localmente se puede usar `check.py --source santa-fe --pdf-url URL`.
+La URL debe usar HTTPS y pertenecer a `colfarsfe.org.ar`; se verifica la firma PDF
+y se conservan las validaciones de mes y cobertura de ambas localidades.

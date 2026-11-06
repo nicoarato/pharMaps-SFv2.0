@@ -54,6 +54,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", choices=["all", "santa-fe", "esperanza"], default="all",
                         help="Consultar solo la fuente seleccionada; santa-fe descarga el afiche compartido con Santo Tomé")
+    parser.add_argument("--pdf-url", default=os.environ.get("TURNOS_PDF_URL", ""),
+                        help="URL directa del afiche del Colegio; omite la búsqueda en la portada")
     args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     baseline_path = ROOT / "baseline.json"
@@ -68,18 +70,20 @@ def main():
             continue
         result = {"city": city, "url": url}
         try:
-            html = download(url)
-            (OUT / f"{city}.html").write_bytes(html)
             page = Page()
-            page.feed(html.decode("utf-8"))
+            if city != "santa-fe" or not args.pdf_url:
+                html = download(url)
+                (OUT / f"{city}.html").write_bytes(html)
+                page.feed(html.decode("utf-8"))
             if city == "santa-fe":
-                links = sorted(set(urljoin(url, unescape(link)) for link in page.links
-                                   if re.search(r"afiche.*turnos.*\.pdf(?:\?|$)", link, re.I)))
+                links = [args.pdf_url] if args.pdf_url else sorted(set(
+                    urljoin(url, unescape(link)) for link in page.links
+                    if re.search(r"afiche.*turnos.*\.pdf(?:\?|$)", link, re.I)))
                 if not links:
                     raise ValueError("No se encontró el afiche de turnos; revisar la fuente")
                 documents = []
                 for index, link in enumerate(links):
-                    if urlparse(link).hostname != "colfarsfe.org.ar":
+                    if urlparse(link).hostname != "colfarsfe.org.ar" or urlparse(link).scheme != "https":
                         raise ValueError("El PDF apunta a un dominio inesperado")
                     pdf = download(link)
                     if not pdf.startswith(b"%PDF-"):
